@@ -12,5 +12,6 @@ export const site = {
     { label: 'Facebook', href: process.env.NEXT_PUBLIC_SOCIAL_FACEBOOK ?? '' },
     { label: 'Instagram', href: process.env.NEXT_PUBLIC_SOCIAL_INSTAGRAM ?? '' },
   ].filter((s) => s.href),
-  demoMode: process.env.DEMO_MODE === 'true',
+  // ON by default, OFF when DEMO_MODE=false. Always ignored when a backend (API_URL) is configured.
+  demoMode: process.env.DEMO_MODE !== 'false',
 } as const;

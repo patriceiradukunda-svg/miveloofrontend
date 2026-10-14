@@ -8,7 +8,7 @@ import { getT } from '@/i18n/server';
 
 const STEPS = ['Register as a school, supplier, group or institution', 'Complete verification where it applies', 'Publish, browse or order inside your workspace', 'Review your history and, optionally, advanced insights'];
 export default async function Home() {
-  const { t } = await getT(); const { items } = await listPublicProducts({ page: 1 });
+  const { t } = await getT(); const items = (await listPublicProducts({ page: 1 }).catch(() => null))?.items ?? [];
   return (
     <>
       <HeroSection />

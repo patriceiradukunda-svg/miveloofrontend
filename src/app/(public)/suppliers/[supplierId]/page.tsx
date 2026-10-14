@@ -12,7 +12,7 @@ export async function generateMetadata({ params }: P): Promise<Metadata> {
 }
 export default async function SupplierPage({ params }: P) {
   const s = await getPublicSupplier((await params).supplierId); if (!s) notFound();
-  const all = await listPublicProducts({}); const items = all.items.filter((p) => p.supplierId === s.id);
+  const all = await listPublicProducts({}).catch(() => null); const items = (all?.items ?? []).filter((p) => p.supplierId === s.id);
   return (
     <div className="container-page py-10 space-y-6">
       <Breadcrumbs items={[{ href: '/suppliers', label: 'Suppliers' }, { label: s.name }]} />

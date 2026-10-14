@@ -20,7 +20,7 @@ export async function logout() {
   redirect('/login');
 }
 export async function loginAction(_: { error?: string } | undefined, fd: FormData): Promise<{ error?: string }> {
-  if (!hasBackend) return { error: 'No backend is connected in this build. Use the demo buttons below.' };
+  if (!hasBackend) return { error: site.demoMode ? 'No backend is connected. Use the demo buttons below.' : 'Sign-in is not available yet because the service is not connected. You can still browse the marketplace.' };
   const res = await fetch(`${process.env.API_URL}/auth/login`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ email: fd.get('email'), password: fd.get('password') }) });
   if (!res.ok) return { error: res.status === 429 ? 'Too many attempts. Please wait a few minutes.' : 'That email and password do not match.' };
   const sc = res.headers.getSetCookie().find((c) => c.startsWith(`${SESSION_COOKIE}=`));

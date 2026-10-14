@@ -12,7 +12,7 @@ npm run typecheck && npm run lint && npm test
 npm run build && npm run test:e2e   # Playwright (npx playwright install first)
 ```
 
-With no `API_URL`, the app runs on clearly-labelled **sample data**. With `DEMO_MODE=true`, the login page offers one-click demo workspaces for every role. **Demo mode uses an unsigned cookie and is not security. Set `DEMO_MODE=false` in any shared environment.**
+With no `API_URL`, the app runs on clearly-labelled **sample data**. Demo logins are ON by default while no backend is connected (login page offers one-click demo workspaces for every role); set `DEMO_MODE=false` to turn them off. They are ignored whenever `API_URL` is set. With demo off and no backend, the public site still works and sign-in explains it is unavailable. **Demo mode uses an unsigned cookie and is not security.**
 
 ## What is built
 

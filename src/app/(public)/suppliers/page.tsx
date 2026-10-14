@@ -6,7 +6,7 @@ import { Card } from '@/components/ui/card';
 import { SampleBadge, Badge } from '@/components/ui/badge';
 export const metadata: Metadata = { title: 'Suppliers', alternates: { canonical: '/suppliers' } };
 export default async function Suppliers() {
-  const list = await listPublicSuppliers();
+  const list = await listPublicSuppliers().catch(() => []);
   return (
     <div className="container-page py-12"><PageHeader title="Suppliers on Miveloo" lead="Public profiles show what a supplier has chosen to share. Verification status is shown only where it has been completed." />
       <ul className="mt-8 grid gap-5 md:grid-cols-3">{list.map((s) => (

@@ -15,7 +15,8 @@ type SP = Promise<Record<string, string | undefined>>;
 export default async function MarketplacePage({ searchParams }: { searchParams: SP }) {
   const sp = await searchParams; const { t } = await getT();
   const page = Number(sp.page) || 1; const maxPrice = sp.maxPrice ? Number(sp.maxPrice) : undefined;
-  const data = await listPublicProducts({ q: sp.q, category: sp.category, district: sp.district, availability: sp.availability, maxPrice, page });
+  const data = await listPublicProducts({ q: sp.q, category: sp.category, district: sp.district, availability: sp.availability, maxPrice, page }).catch(() => null);
+  if (!data) return <div className="container-page py-12"><PageHeader title="Food listings from suppliers" /><div className="mt-8"><EmptyState title="Marketplace temporarily unavailable" body="We could not load listings just now. Please try again in a moment." action={{ href: '/marketplace', label: 'Try again' }} /></div></div>;
   const qs = (p: number) => { const n = new URLSearchParams(Object.entries(sp).filter(([, v]) => v) as [string, string][]); n.set('page', String(p)); return `/marketplace?${n}`; };
   return (
     <div className="container-page py-12">
