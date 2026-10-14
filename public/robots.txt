@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+Disallow: /app/
+Disallow: /school/
+Disallow: /supplier/
+Disallow: /group/
+Disallow: /institution/
+Disallow: /admin/
+Disallow: /api/
