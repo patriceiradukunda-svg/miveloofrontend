@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { HeroSection } from '@/components/public/HeroSection';
 import { AudienceCards } from '@/components/public/AudienceCards';
 import { PricingCards } from '@/components/public/PricingCards';
@@ -19,7 +20,7 @@ export default async function Home() {
       <section className="container-page py-16"><div className="flex flex-wrap items-end justify-between gap-3"><h2 className="text-fluid-h2 font-semibold text-teal-dark">From the marketplace</h2><ButtonLink href="/marketplace" variant="secondary">See all listings</ButtonLink></div>
         <p className="mt-2 text-sm text-ink-soft">{t('home.sampleNote')}</p><div className="mt-6"><ProductGrid items={items.slice(0, 3)} /></div></section>
       <section className="container-page py-8"><h2 className="text-fluid-h2 font-semibold text-teal-dark">AI that is honest about what it knows</h2>
-        <p className="mt-3 max-w-2xl text-lg text-ink-soft">Forecasts, alerts and recommendations are being developed. They will be shown as estimates, with their data and assumptions, never as guarantees. <a className="font-bold underline" href="/ai-intelligence">See what exists today</a>.</p></section>
+        <p className="mt-3 max-w-2xl text-lg text-ink-soft">Forecasts, alerts and recommendations are being developed. They will be shown as estimates, with their data and assumptions, never as guarantees. <Link className="font-bold underline" href="/ai-intelligence">See what exists today</Link>.</p></section>
       <section className="container-page py-16"><h2 className="text-fluid-h2 font-semibold text-teal-dark">Get started in four steps</h2>
         <ol className="mt-8 grid gap-5 md:grid-cols-4">{STEPS.map((s, i) => <li key={s} className="rounded-2xl bg-white p-5 shadow-card"><span className="grid h-10 w-10 place-items-center rounded-full bg-gold font-display text-xl font-bold">{i + 1}</span><p className="mt-3 font-semibold">{s}</p></li>)}</ol></section>
       <section className="container-page py-8"><h2 className="text-fluid-h2 font-semibold text-teal-dark">Free core. Optional extras.</h2><p className="mb-6 mt-2 text-ink-soft">The core marketplace has no platform access fee. Advanced services are optional and clearly labelled.</p><PricingCards /></section>

@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { demoLogin } from '../actions';
 import { Button } from '@/components/ui/button';
 import { ROLES, ROLE_LABEL } from '@/config/roles';
@@ -6,7 +7,7 @@ import { hasBackend } from '@/lib/api-client';
 
 export function DemoAccess() {
   if (hasBackend) return null;
-  if (!site.demoMode) return <p role="status" className="mt-8 rounded-2xl bg-gold-tint p-4 text-sm">Sign-in is not available yet because the service is not connected. You can still <a className="font-bold underline" href="/marketplace">browse the marketplace</a>.</p>;
+  if (!site.demoMode) return <p role="status" className="mt-8 rounded-2xl bg-gold-tint p-4 text-sm">Sign-in is not available yet because the service is not connected. You can still <Link className="font-bold underline" href="/marketplace">browse the marketplace</Link>.</p>;
   return (
     <section aria-labelledby="demo" className="mt-8 rounded-2xl border-2 border-dashed border-gold-dark p-4">
       <h2 id="demo" className="font-sans text-base font-bold">Explore with sample data</h2>
