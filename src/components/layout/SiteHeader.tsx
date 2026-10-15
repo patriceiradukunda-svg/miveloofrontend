@@ -18,7 +18,7 @@ export async function SiteHeader() {
   const session = await getSession();
   const items = [
     { href: '/', label: t('nav.home', 'Home') },
-    { href: '/how-it-works', label: t('nav.howItWorks', 'How it works') },
+    { href: '/how-it-works', label: t('nav.howItWorks', 'Process') },
     { href: '/schools', label: t('nav.forSchools', 'Schools') },
     { href: '/sell', label: t('nav.becomeSupplier', 'Suppliers') },
     { href: '/impact', label: t('nav.impact', 'Impact') },
