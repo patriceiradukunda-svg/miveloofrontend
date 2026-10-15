@@ -1,7 +1,7 @@
 import type { Role } from './roles';
 
 export const routes = {
-  home: '/', sell: '/sell', marketplace: '/marketplace', suppliers: '/suppliers',
+  home: '/', sell: '/sell',
   howItWorks: '/how-it-works', schools: '/schools', institutions: '/institutions',
   ai: '/ai-intelligence', pricing: '/pricing', about: '/about', mission: '/about/mission',
   team: '/about/team', impact: '/impact', contact: '/contact', faq: '/faq', help: '/help',
@@ -18,5 +18,7 @@ export const PROTECTED_PREFIXES: ReadonlyArray<{ prefix: string; role: Role | 'a
   { prefix: '/supplier', role: 'supplier' },
   { prefix: '/group', role: 'group' },
   { prefix: '/institution', role: 'institution' },
+  { prefix: '/marketplace', role: 'any' }, // private: old links are routed by the server gate
+  { prefix: '/suppliers', role: 'any' },
   { prefix: '/app', role: 'any' },
 ];

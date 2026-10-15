@@ -32,7 +32,7 @@ export function ContentPage({ slug, after }: { slug: string; after?: React.React
           </Reveal>
         ))}
         {after}
-        <div className="flex flex-wrap gap-3 pt-4"><ButtonLink href="/tour" variant="gold">🧭 Take the tour</ButtonLink><ButtonLink href="/marketplace" variant="secondary">Browse marketplace</ButtonLink><Link className="inline-flex min-h-12 items-center px-4 font-bold underline" href="/contact">Contact us</Link></div>
+        <div className="flex flex-wrap gap-3 pt-4"><ButtonLink href="/tour" variant="gold">🧭 Take the tour</ButtonLink><ButtonLink href="/how-it-works" variant="secondary">How it works</ButtonLink><Link className="inline-flex min-h-12 items-center px-4 font-bold underline" href="/contact">Contact us</Link></div>
       </div>
     </>
   );

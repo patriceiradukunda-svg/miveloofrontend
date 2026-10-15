@@ -18,7 +18,7 @@ export async function HeroSection() {
           <div className="flex flex-wrap gap-3">
             <ButtonLink href="/tour" variant="gold">🧭 {t('tour.cta', 'Tour with the founder')}</ButtonLink>
             <ButtonLink href="/sell" variant="primary">{t('home.ctaSell')}</ButtonLink>
-            <ButtonLink href="/marketplace" variant="secondary">{t('home.ctaBrowse')}</ButtonLink>
+            <ButtonLink href="/how-it-works" variant="secondary">{t('home.ctaBrowse')}</ButtonLink>
           </div>
           <p className="text-sm"><Link className="font-bold text-teal underline underline-offset-4" href="/register/school">{t('home.ctaSchool')} →</Link></p>
         </div>

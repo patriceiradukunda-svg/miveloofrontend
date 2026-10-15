@@ -8,7 +8,7 @@ import { Reveal } from '@/components/ui/reveal';
 import { ButtonLink } from '@/components/ui/button';
 export const metadata: Metadata = { title: 'A note from the founder', alternates: { canonical: '/about/founder' } };
 
-const VALUES = [['🌱', 'Start with the person', 'A school cook, a farmer, a cooperative leader. If it is not clear to them, it is not finished.'], ['🔍', 'Say what is real', 'We label live, in development and planned. We never present sample data as real.'], ['🤝', 'Fair to both sides', 'Schools need dependable food; suppliers need dependable markets. We build for both.'], ['🛡️', 'Private by default', 'School data is private. Suppliers choose what the public sees.']];
+const VALUES = [['🌱', 'Start with the person', 'A school cook, a farmer, a cooperative leader. If it is not clear to them, it is not finished.'], ['🔍', 'Say what is real', 'We label live, in development and planned. We never present sample data as real.'], ['🤝', 'Fair to both sides', 'Schools need dependable food; suppliers need dependable markets. We build for both.'], ['🛡️', 'Private by default', 'School data is private, and the marketplace is for verified schools only.']];
 export default function Founder() {
   return (
     <>

@@ -5,7 +5,7 @@ import { Reveal } from '@/components/ui/reveal';
 import type { FeatureStatus } from '@/config/plans';
 export const metadata: Metadata = { title: 'Roadmap', description: 'What works today, what is in development, and what is planned.', alternates: { canonical: '/roadmap' } };
 const P: { n: string; t: string; s: FeatureStatus; items: string[] }[] = [
-  { n: '1', t: 'Foundation and core marketplace', s: 'available', items: ['Public website and public listings', 'Supplier registration and listing management', 'School registration and verification', 'Protected school purchasing and order lifecycle', 'Admin tools to run the marketplace safely'] },
+  { n: '1', t: 'Foundation and core marketplace', s: 'available', items: ['Public website and a private marketplace for verified schools', 'Supplier registration and listing management', 'School registration and verification', 'Protected school purchasing and order lifecycle', 'Admin tools to run the marketplace safely'] },
   { n: '2', t: 'School and supplier operations', s: 'in-development', items: ['Meal and demand planning', 'Procurement approvals and budgets', 'Inventory, wastage and replenishment', 'Delivery tracking', 'Cooperative operations'] },
   { n: '3', t: 'Exchange and intelligence', s: 'planned', items: ['School-to-school exchange', 'Price intelligence and forecasting', 'Personalised recommendations and alerts', 'Paid advanced analytics'] },
   { n: '4', t: 'Institutional services', s: 'agreement', items: ['Institutional dashboards', 'Aggregated regional intelligence', 'Programme monitoring', 'Contracted data services, as data coverage grows'] },

@@ -12,7 +12,7 @@ export const publicContent: Record<string, PublicPage> = {
     "1. Suppliers publish",
     [
      "Farmers, traders, distributors and cooperatives register, then list what they have: quantity, unit, price and general location.",
-     "Only the details a supplier chooses to publish become public."
+     "Schools see only the details a supplier chooses to publish."
     ]
    ],
    [
@@ -208,7 +208,7 @@ export const publicContent: Record<string, PublicPage> = {
     "Principles",
     [
      "We collect only what each account type needs.",
-     "Public pages show only what suppliers choose to publish.",
+     "Marketplace listings are visible only to verified schools, and only what suppliers choose to publish.",
      "School-level data is never public.",
      "Final policy text to be supplied by Miveloo legal counsel."
     ]
@@ -373,7 +373,7 @@ export const publicContent: Record<string, PublicPage> = {
    [
     "Public vs private",
     [
-     "Public pages show only what a supplier chooses to publish.",
+     "The marketplace is private: only verified schools can see listings, and suppliers choose what schools see.",
      "School data is private. Institutional views use aggregated or anonymised data under agreements."
     ]
    ],

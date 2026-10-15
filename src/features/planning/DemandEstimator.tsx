@@ -26,7 +26,7 @@ export function DemandEstimator() {
       <button type="button" onClick={() => setP([...p, { food: '', gramsPerStudent: 0 }])} className="mt-3 min-h-11 rounded-full border-2 border-teal px-5 font-bold text-teal hover:bg-teal-tint">+ Add food</button>
       <div className="mt-6 rounded-2xl bg-cream p-4" aria-live="polite">
         <h3 className="font-display text-xl font-semibold">You would need about</h3>
-        {needs.length ? <ul className="mt-2 divide-y divide-ink/10">{needs.map((n) => <li key={n.food} className="flex flex-wrap items-center justify-between gap-2 py-2"><span><strong>{n.food}</strong>: {formatNumber(n.kg)} kg</span><Link className="font-bold text-teal underline" href={`/marketplace?q=${encodeURIComponent(n.food.split(' ')[0] ?? '')}`}>Find in marketplace →</Link></li>)}</ul> : <p className="text-ink-soft">Add a food and grams per student to see the quantity.</p>}
+        {needs.length ? <ul className="mt-2 divide-y divide-ink/10">{needs.map((n) => <li key={n.food} className="flex flex-wrap items-center justify-between gap-2 py-2"><span><strong>{n.food}</strong>: {formatNumber(n.kg)} kg</span><Link className="font-bold text-teal underline" href="/register/school">Register to source it →</Link></li>)}</ul> : <p className="text-ink-soft">Add a food and grams per student to see the quantity.</p>}
         {needs.length > 0 && <p className="mt-2 text-right font-bold">Total: {formatNumber(Math.round(total * 10) / 10)} kg</p>}
       </div>
     </section>

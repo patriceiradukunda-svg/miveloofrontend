@@ -6,7 +6,7 @@ import { StatusBadge } from '@/components/ui/badge';
 import type { FeatureStatus } from '@/config/plans';
 
 const S: { id: string; tab: string; title: string; who: string; text: string; scene: SceneName; status: FeatureStatus; href: string }[] = [
-  { id: 'list', tab: '1 · List', title: 'Suppliers list what they have', who: 'Farmers, traders, cooperatives', text: 'Describe the product, quantity, unit, price and general location. You decide what the public sees. Listing is free.', scene: 'farm', status: 'available', href: '/sell' },
+  { id: 'list', tab: '1 · List', title: 'Suppliers list what they have', who: 'Farmers, traders, cooperatives', text: 'Describe the product, quantity, unit, price and general location. You decide what schools see. Listing is free.', scene: 'farm', status: 'available', href: '/sell' },
   { id: 'verify', tab: '2 · Verify', title: 'We check before we trust', who: 'Miveloo team', text: 'Schools and suppliers are verified before protected actions unlock. Choosing a role never grants access by itself.', scene: 'trust', status: 'available', href: '/trust' },
   { id: 'order', tab: '3 · Order', title: 'Schools compare and order', who: 'Verified schools', text: 'Compare offers, check delivery terms, and submit a purchase order. Suppliers accept or decline; every change is recorded.', scene: 'school', status: 'available', href: '/schools' },
   { id: 'deliver', tab: '4 · Deliver', title: 'Food moves, status follows', who: 'Suppliers and delivery operators', text: 'Preparing, dispatched, delivered: statuses follow one clear lifecycle. The school confirms what actually arrived and records any issue.', scene: 'delivery', status: 'in-development', href: '/roadmap' },

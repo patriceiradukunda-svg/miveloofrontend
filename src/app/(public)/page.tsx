@@ -4,21 +4,19 @@ import { HeroSection } from '@/components/public/HeroSection';
 import { AudienceCards } from '@/components/public/AudienceCards';
 import { PricingCards } from '@/components/public/PricingCards';
 import { InteractiveCycle } from '@/components/public/InteractiveCycle';
-import { CategoryPreview } from '@/components/public/CategoryPreview';
+import { PrivateMarketplaceNotice } from '@/components/public/PrivateMarketplaceNotice';
 import { SectionHeading } from '@/components/layout/SectionHeading';
 import { Scene } from '@/components/media/Scenes';
 import { Photo } from '@/components/media/Photo';
 import { Reveal } from '@/components/ui/reveal';
 import { ButtonLink } from '@/components/ui/button';
 import { StatusBadge } from '@/components/ui/badge';
-import { listPublicProducts } from '@/features/products/services/products.service';
 import { startPaths } from '@/config/tour';
 import { founder } from '@/config/founder';
 import { getT } from '@/i18n/server';
 
 export default async function Home() {
-  const { t } = await getT();
-  const items = (await listPublicProducts({ page: 1 }).catch(() => null))?.items ?? [];
+  await getT();
   return (
     <>
       <HeroSection />
@@ -31,9 +29,7 @@ export default async function Home() {
       </section>
       <section className="container-page py-16"><SectionHeading eyebrow="How it works" title="From the farm to the school kitchen, step by step" lead="Tap a stage to see who does what, and what is live today." /><div className="mt-8"><InteractiveCycle /></div></section>
       <AudienceCards />
-      <section className="bg-cream-deep/60 py-16"><div className="container-page">
-        <SectionHeading eyebrow="Marketplace" title="See what suppliers are listing" lead={t('home.sampleNote')} />
-        <div className="mt-8"><CategoryPreview items={items} /></div></div></section>
+      <PrivateMarketplaceNotice />
       <section className="container-page py-16"><div className="grid items-center gap-10 md:grid-cols-2">
         <Reveal><div className="overflow-hidden rounded-3xl shadow-card"><Photo k="agritech" alt="" className="aspect-[4/3]" fallback={<Scene name="data" />} /></div></Reveal>
         <Reveal delay={100}><div className="space-y-4"><SectionHeading eyebrow="Food-system intelligence" title="AI that shows its work" />

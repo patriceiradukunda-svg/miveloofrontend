@@ -4,7 +4,8 @@ Access is enforced by `src/lib/guard.ts` (server render) and must be re-enforced
 
 | Area | Paths | Who |
 |---|---|---|
-| Public | `/`, `/tour`, `/sell`, `/marketplace`, `/marketplace/[id]`, `/suppliers`, `/schools`, `/cooperatives`, `/exchange`, `/institutions`, `/ai-intelligence`, `/pricing`, `/trust`, `/roadmap`, `/about/*`, `/impact`, `/contact`, `/faq`, `/help`, `/insights`, legal pages | Anyone (no purchase controls) |
+| Public | `/`, `/tour`, `/sell`, `/schools`, `/cooperatives`, `/exchange`, `/institutions`, `/ai-intelligence`, `/pricing`, `/trust`, `/roadmap`, `/about/*`, `/impact`, `/contact`, `/faq`, `/help`, `/insights`, legal pages | Anyone. The marketplace is NOT public |
+| Private marketplace | `/school/marketplace` (the only marketplace). Old `/marketplace*` and `/suppliers*` URLs are routed by `src/lib/marketplace-gate.ts`: schools go to `/school/marketplace`, visitors to login, everyone else to access-denied | Verified schools only |
 | Auth | `/login`, `/register/*`, `/forgot-password`, `/reset-password`, `/verify-account`, `/resend-verification`, `/accept-invitation`, `/complete-profile`, `/two-factor`, `/access-denied`, `/session-expired` | Anyone |
 | Shared workspace | `/app/*` | Any signed-in user |
 | School | `/school/*` | School role. Purchasing pages also need `verification = verified` |
