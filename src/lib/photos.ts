@@ -17,9 +17,13 @@ export const PHOTO_CREDITS: Record<PhotoKey, string> = {
   schoolKitchen: 'World Food Programme', trainingKitchen: 'Singita',
 };
 const present = new Set<string>(manifest as string[]);
-export function photoSrc(k: PhotoKey): string | null {
-  const f = PHOTO_FILES[k]; return present.has(f) ? `/images/photos/${f}` : null;
+// If a source photo cannot be downloaded, a related real photo from the same pack is used instead (credit follows the photo shown).
+const FALLBACKS: Partial<Record<PhotoKey, PhotoKey[]>> = { schoolMeal: ['schoolKitchen', 'trainingKitchen'], agritech: ['digitalFarmer', 'womenCoop'] };
+export function resolvePhoto(k: PhotoKey): { key: PhotoKey; src: string } | null {
+  for (const c of [k, ...(FALLBACKS[k] ?? [])]) { const f = PHOTO_FILES[c]; if (present.has(f)) return { key: c, src: `/images/photos/${f}` }; }
+  return null;
 }
+export function photoSrc(k: PhotoKey): string | null { return resolvePhoto(k)?.src ?? null; }
 export function getPhotoMap(): Record<PhotoKey, string | null> {
   return Object.fromEntries((Object.keys(PHOTO_FILES) as PhotoKey[]).map((k) => [k, photoSrc(k)])) as Record<PhotoKey, string | null>;
 }
