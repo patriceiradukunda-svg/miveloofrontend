@@ -18,10 +18,10 @@ export async function SiteHeader() {
   const session = await getSession();
   const items = [
     { href: '/', label: t('nav.home', 'Home') },
-    { href: '/how-it-works', label: t('nav.howItWorks', 'How it works') },
-    { href: '/schools', label: t('nav.forSchools', 'For Schools & Institutions') },
-    { href: '/sell', label: t('nav.becomeSupplier', 'Become a Supplier') },
-    { href: '/impact', label: t('nav.impact', 'Our Impact') },
+    { href: '/how-it-works', label: t('nav.howItWorks', 'Process') },
+    { href: '/schools', label: t('nav.forSchools', 'Schools') },
+    { href: '/sell', label: t('nav.becomeSupplier', 'Suppliers') },
+    { href: '/impact', label: t('nav.impact', 'Impact') },
   ];
   const actions = (
     <>
