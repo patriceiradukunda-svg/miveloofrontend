@@ -144,7 +144,6 @@ export default async function ImpactPage() {
             <Link href="/register" className={gold}>{t('imp.cta', 'Get Started')} <span aria-hidden className="ml-2">→</span></Link>
             <Link href="/sell" className={light}>{t('how.supCta', 'Become a Supplier')}</Link>
           </div>
-          <p className="mx-auto mt-10 max-w-xl text-sm text-cream/80">{t('home2.photoNote', 'Photographs are illustrative and do not depict verified Miveloo users. Marketplace access is available to authorised schools and partners after sign-in.')}</p>
         </Reveal>
       </Bg>
     </>

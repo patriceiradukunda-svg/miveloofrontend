@@ -142,7 +142,6 @@ export default async function HowItWorksPage() {
             <Link href="/register" className={gold}>{t('how.cta', 'Get Started')} <span aria-hidden className="ml-2">→</span></Link>
             <Link href="/impact" className={light}>{t('how.impact', 'Our Impact')}</Link>
           </div>
-          <p className="mx-auto mt-10 max-w-xl text-sm text-cream/80">{t('home2.photoNote', 'Photographs are illustrative and do not depict verified Miveloo users. Marketplace access is available to authorised schools and partners after sign-in.')}</p>
         </Reveal>
       </Bg>
     </>

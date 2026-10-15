@@ -9,7 +9,7 @@ const TourPlayer = dynamic(() => import('./TourPlayer').then((m) => m.TourPlayer
 export function TourLauncher({ photos }: { photos: Record<PhotoKey, string | null> }) {
   const ref = useRef<HTMLDialogElement>(null); const [open, setOpen] = useState(false); const path = usePathname();
   useEffect(() => { const d = ref.current; if (!d) return; if (open && !d.open) d.showModal(); if (!open && d.open) d.close(); }, [open]);
-  if (path === '/tour') return null;
+  if (path === '/tour' || path === '/') return null;
   return (
     <>
       <button type="button" onClick={() => setOpen(true)} className="fixed bottom-4 left-4 z-40 inline-flex min-h-12 items-center gap-2 rounded-full bg-gold px-5 font-bold shadow-card hover:bg-gold-dark hover:text-white">

@@ -89,7 +89,6 @@ export default async function SchoolsPage() {
         <Reveal className={wide}>
           <h2 style={h1s} className="mx-auto max-w-4xl text-balance font-semibold leading-[1.04]">{t('schools.endTitle', 'Ready to register your school?')}</h2>
           <div className="mt-8 flex flex-wrap justify-center gap-3"><Link href="/register/school" className={gold}>{t('schools.cta', 'Register your school')} <span aria-hidden className="ml-2">→</span></Link><Link href="/contact" className={light}>{t('schools.contact', 'Contact us')}</Link></div>
-          <p className="mx-auto mt-10 max-w-xl text-sm text-cream/80">{t('home2.photoNote', 'Photographs are illustrative and do not depict verified Miveloo users. Marketplace access is available to authorised schools and partners after sign-in.')}</p>
         </Reveal>
       </Bg>
     </>

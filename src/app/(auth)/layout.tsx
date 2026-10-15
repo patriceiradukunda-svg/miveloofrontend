@@ -18,7 +18,6 @@ export default async function AuthLayout({ children }: { children: React.ReactNo
           <Eyebrow>Miveloo</Eyebrow>
           <h2 className="max-w-lg text-balance font-display text-4xl font-semibold leading-[1.08] xl:text-5xl">{tagline}</h2>
           <p className="max-w-md text-lg text-cream/90">{t('auth.sub', 'Connecting suppliers, cooperatives, schools and institutional partners for more reliable school feeding.')}</p>
-          <p className="text-xs text-cream/70">{t('auth.photoNote', 'Photograph is illustrative and does not depict a verified Miveloo user.')}</p>
         </div>
       </aside>
 
