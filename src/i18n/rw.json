@@ -165,5 +165,17 @@
  "imp.endTitle": "Witeguye gutangira?",
  "imp.cta": "Tangira",
  "imp.photo": "Ifoto",
- "imp.altHills": "Imirima ku misozi yo mu Rwanda"
+ "imp.altHills": "Imirima ku misozi yo mu Rwanda",
+ "nav.team": "Itsinda",
+ "team.eyebrow": "Itsinda ryacu",
+ "team.title": "Abubaka Miveloo.",
+ "team.lead": "Itsinda rito rikora kugira ngo kugaburira abanyeshuri birusheho kwizerwa, duhereye mu Rwanda.",
+ "team.mEyebrow": "Menya itsinda",
+ "team.mTitle": "Abantu nyakuri bari inyuma y'urubuga",
+ "team.gEyebrow": "Ibitugenga",
+ "team.gTitle": "Uko dukora",
+ "team.endTitle": "Ushaka dufatanye?",
+ "team.endLead": "Amashuri, abatanga ibiribwa, amakoperative n'abafatanyabikorwa murahawe ikaze kutwandikira.",
+ "team.contact": "Twandikire",
+ "team.photoAlt": "Ifoto ya"
 }

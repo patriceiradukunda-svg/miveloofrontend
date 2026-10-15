@@ -52,5 +52,17 @@
  "tour.cta": "Take the tour",
  "nav.home": "Home",
  "nav.schools": "Schools",
- "nav.workspace": "My workspace"
+ "nav.workspace": "My workspace",
+ "nav.team": "Team",
+ "team.eyebrow": "Our team",
+ "team.title": "The people building Miveloo.",
+ "team.lead": "A small team working to make school feeding more reliable, starting in Rwanda.",
+ "team.mEyebrow": "Meet the team",
+ "team.mTitle": "Real people behind the platform",
+ "team.gEyebrow": "What guides us",
+ "team.gTitle": "How we work",
+ "team.endTitle": "Want to work with us?",
+ "team.endLead": "Schools, suppliers, cooperatives and partners are welcome to get in touch.",
+ "team.contact": "Contact us",
+ "team.photoAlt": "Portrait of"
 }

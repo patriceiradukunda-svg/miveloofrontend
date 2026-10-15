@@ -1,6 +1,7 @@
-// Roles are intentionally generic until confirmed. Update with real titles and surnames.
-export const team = [
-  { name: 'Donatien', role: 'Team member', photo: '/images/team/donatien.jpg' },
-  { name: 'Patrice', role: 'Team member', photo: '/images/team/patrice.jpg' },
-  { name: 'Pascal', role: 'Team member', photo: '/images/team/pascal.jpg' },
+// Add each person's real title and a short bio when confirmed; both are optional and shown only if set.
+export interface TeamMember { name: string; role?: string; bio?: string; photo: string }
+export const team: TeamMember[] = [
+  { name: 'Donatien', photo: '/images/team/donatien.jpg' },
+  { name: 'Patrice', photo: '/images/team/patrice.jpg' },
+  { name: 'Pascal', photo: '/images/team/pascal.jpg' },
 ];
