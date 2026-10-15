@@ -12,7 +12,7 @@ export default async function AuthLayout({ children }: { children: React.ReactNo
   return (
     <div className="grid min-h-screen lg:grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)]">
       <aside className="relative isolate hidden overflow-hidden text-cream lg:block">
-        <Image src={`${P}harvesting-hope-in-the-highlands.png`} alt="" fill priority sizes="50vw" className="-z-20 object-cover" style={{ objectPosition: '50% 30%' }} />
+        <Image src="/images/harvesting-hope-in-the-highlands.png" alt="" fill priority sizes="50vw" className="-z-20 object-cover" style={{ objectPosition: '50% 30%' }} />
         <div aria-hidden className="absolute inset-0 -z-10 bg-gradient-to-t from-ink/90 via-ink/45 to-ink/20" />
         <div className="sticky top-0 flex h-screen flex-col justify-end gap-5 p-12 xl:p-16">
           <Eyebrow>Miveloo</Eyebrow>
@@ -31,7 +31,7 @@ export default async function AuthLayout({ children }: { children: React.ReactNo
           </div>
         </header>
         <div className="relative isolate h-28 overflow-hidden text-cream lg:hidden">
-          <Image src={`${P}harvesting-hope-in-the-highlands.png`} alt="" fill sizes="100vw" className="-z-20 object-cover" style={{ objectPosition: '50% 30%' }} />
+          <Image src="/images/harvesting-hope-in-the-highlands.png" alt="" fill sizes="100vw" className="-z-20 object-cover" style={{ objectPosition: '50% 30%' }} />
           <div aria-hidden className="absolute inset-0 -z-10 bg-gradient-to-r from-ink/85 to-ink/30" />
           <p className="flex h-full items-center px-4 font-display text-xl font-semibold sm:px-8">{tagline}</p>
         </div>
