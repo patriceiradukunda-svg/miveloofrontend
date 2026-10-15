@@ -10,7 +10,10 @@
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "test:e2e": "playwright test",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "prebuild": "node scripts/photos-manifest.mjs",
+    "predev": "node scripts/photos-manifest.mjs",
+    "images": "bash scripts/fetch-images.sh"
   },
   "dependencies": {
     "@fontsource-variable/fraunces": "^5.1.0",

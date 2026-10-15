@@ -2,8 +2,8 @@
 import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
 import { usePathname } from 'next/navigation';
+import type { NavItem } from './NavLinks';
 
-export interface NavItem { href: string; label: string }
 export function MobileNavigation({ items, menuLabel, closeLabel, extra }: { items: NavItem[]; menuLabel: string; closeLabel: string; extra: React.ReactNode }) {
   const [open, setOpen] = useState(false); const path = usePathname(); const btn = useRef<HTMLButtonElement>(null);
   useEffect(() => setOpen(false), [path]);
@@ -11,6 +11,7 @@ export function MobileNavigation({ items, menuLabel, closeLabel, extra }: { item
     const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') { setOpen(false); btn.current?.focus(); } };
     document.addEventListener('keydown', onKey); return () => document.removeEventListener('keydown', onKey);
   }, []);
+  useEffect(() => { document.body.style.overflow = open ? 'hidden' : ''; return () => { document.body.style.overflow = ''; }; }, [open]);
   return (
     <div className="xl:hidden">
       <button ref={btn} type="button" aria-expanded={open} aria-controls="mobile-nav" onClick={() => setOpen(!open)}

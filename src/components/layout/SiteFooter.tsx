@@ -27,8 +27,8 @@ export async function SiteFooter() {
           )}
           {site.social.length > 0 && <ul className="mt-3 flex flex-wrap gap-3 text-sm">{site.social.map((s) => <li key={s.label}><a className="underline" href={s.href} rel="noopener noreferrer" target="_blank">{s.label}</a></li>)}</ul>}
         </div>
-        {col(t('footer.explore'), [['/marketplace', t('nav.marketplace')], ['/sell', t('nav.sell')], ['/schools', 'Schools'], ['/institutions', 'Institutions'], ['/pricing', 'Pricing'], ['/about', t('nav.about')], ['/contact', 'Contact']])}
-        {col(t('footer.support'), [['/help', 'Help & support'], ['/faq', 'FAQs'], ['/register/supplier', 'Supplier onboarding'], ['/register/school', 'School registration'], ['/register/institution', 'Institutional partnerships'], ['/ai-intelligence', 'AI & data']])}
+        {col(t('footer.explore'), [['/sell', t('nav.sell')], ['/schools', 'Schools'], ['/cooperatives', 'Cooperatives'], ['/exchange', 'School exchange'], ['/institutions', 'Institutions'], ['/pricing', 'Pricing'], ['/tour', 'Tour with the founder'], ['/about', t('nav.about')], ['/about/founder', 'Founder\'s note'], ['/roadmap', 'Roadmap'], ['/contact', 'Contact']])}
+        {col(t('footer.support'), [['/help', 'Help & support'], ['/faq', 'FAQs'], ['/register/supplier', 'Supplier onboarding'], ['/register/school', 'School registration'], ['/register/institution', 'Institutional partnerships'], ['/trust', 'Trust centre'], ['/ai-intelligence', 'AI & data']])}
         {col(t('footer.legal'), [['/privacy', 'Privacy policy'], ['/terms', 'Terms of service'], ['/cookies', 'Cookie policy'], ['/supplier-terms', 'Supplier terms'], ['/school-terms', 'School terms'], ['/data-ai-policy', 'Data & AI policy']])}
       </div>
       <p className="border-t border-ink/10 py-4 text-center text-sm text-ink-soft">© {new Date().getFullYear()} Miveloo. {t('footer.rights')}</p>

@@ -13,11 +13,22 @@ const base = {
   password: z.string().refine(strongPassword, 'Use at least 10 characters, with letters and numbers.'),
   consent: z.literal('on', { errorMap: () => ({ message: 'Please confirm you agree to the privacy policy.' }) }),
 };
+const optNum = (min: number, max: number, msg: string) => z.preprocess((v) => (v === '' || v == null ? undefined : v), z.coerce.number({ invalid_type_error: msg }).min(min, msg).max(max, msg).optional());
+const location = {
+  latitude: optNum(-90, 90, 'Latitude must be between -90 and 90.'), longitude: optNum(-180, 180, 'Longitude must be between -180 and 180.'),
+  accuracy: optNum(0, 100000, 'Accuracy must be a positive number.'),
+  locationType: z.preprocess((v) => (v === '' ? undefined : v), z.enum(['school', 'farm', 'business', 'collection-point']).optional()),
+  locationConfirmed: z.literal('on').optional(),
+};
+const needsConfirm = (d: { latitude?: number; longitude?: number; locationConfirmed?: string }, ctx: z.RefinementCtx) => {
+  if ((d.latitude != null || d.longitude != null) && (d.latitude == null || d.longitude == null)) ctx.addIssue({ code: 'custom', path: ['latitude'], message: 'Enter both latitude and longitude, or leave both empty.' });
+  if (d.latitude != null && d.longitude != null && d.locationConfirmed !== 'on') ctx.addIssue({ code: 'custom', path: ['locationConfirmed'], message: 'Please confirm this is the location you want to register.' });
+};
 const org = z.string().trim().min(2, 'Enter the organisation name.');
 export const registrationSchemas = {
-  school: z.object({ ...base, organisation: org }),
-  supplier: z.object({ ...base, organisation: z.string().trim().optional() }),
-  cooperative: z.object({ ...base, organisation: org }),
+  school: z.object({ ...base, ...location, organisation: org }).superRefine(needsConfirm),
+  supplier: z.object({ ...base, ...location, organisation: z.string().trim().optional() }).superRefine(needsConfirm),
+  cooperative: z.object({ ...base, ...location, organisation: org }).superRefine(needsConfirm),
   institution: z.object({ ...base, organisation: org }),
 };
 export type RegistrationType = keyof typeof registrationSchemas;

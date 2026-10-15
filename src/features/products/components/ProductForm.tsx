@@ -25,7 +25,7 @@ export function ProductForm({ defaults = {} }: { defaults?: Record<string, strin
     <form onSubmit={submit} noValidate className="max-w-xl space-y-4"><FormError message={formErr} />
       <FormField label="Product name" error={errors.name} required>{(p) => <input {...p} name="name" defaultValue={d('name')} />}</FormField>
       <FormField label="Category" error={errors.category} required>{(p) => <select {...p} name="category" defaultValue={d('category')}><option value="">Choose…</option>{Object.entries(CATEGORY_LABEL).map(([k, v]) => <option key={k} value={k}>{v}</option>)}</select>}</FormField>
-      <FormField label="Description" error={errors.description} hint="Only what you write here is shown publicly." required>{(p) => <textarea {...p} name="description" rows={4} defaultValue={d('description')} />}</FormField>
+      <FormField label="Description" error={errors.description} hint="Verified schools see only what you write here." required>{(p) => <textarea {...p} name="description" rows={4} defaultValue={d('description')} />}</FormField>
       <div className="grid gap-4 sm:grid-cols-2">
         <FormField label="Unit" error={errors.unit} hint="kg, litre, bunch…" required>{(p) => <input {...p} name="unit" defaultValue={d('unit')} />}</FormField>
         <FormField label="Available quantity" error={errors.quantity} hint="Only confirmed stock." required>{(p) => <input {...p} name="quantity" inputMode="numeric" defaultValue={d('quantity')} />}</FormField>

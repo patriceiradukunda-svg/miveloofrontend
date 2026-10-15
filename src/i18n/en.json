@@ -12,7 +12,7 @@
  "home.title": "Reliable food for every school day, sourced from people nearby.",
  "home.lead": "Miveloo connects schools with farmers, suppliers and cooperatives, and uses data to make school feeding decisions clearer.",
  "home.ctaSell": "Sell on Miveloo",
- "home.ctaBrowse": "Browse the marketplace",
+ "home.ctaBrowse": "See how it works",
  "home.ctaSchool": "Register your school",
  "home.sampleNote": "Listings shown are sample data until live suppliers are published.",
  "footer.mission": "Helping schools get the food they need and suppliers reach reliable markets.",
@@ -46,5 +46,11 @@
  "market.availability": "Availability",
  "market.inStock": "In stock",
  "market.empty": "No listings match these filters.",
- "market.clear": "Clear filters"
+ "market.clear": "Clear filters",
+ "home.titleA": "Food for every school day,",
+ "home.titleB": "grown close to home.",
+ "tour.cta": "Tour with the founder",
+ "nav.home": "Home",
+ "nav.schools": "Schools",
+ "nav.workspace": "My workspace"
 }

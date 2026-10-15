@@ -3,8 +3,9 @@ import { useRouter } from 'next/navigation';
 import { LOCALE_NAMES, locales } from '@/i18n/config';
 import { LOCALE_COOKIE } from '@/lib/constants';
 import { useT } from '@/providers/LocaleProvider';
-import type { Locale } from '@/lib/formatters';
+import { cn } from '@/lib/utils';
 
+/** Compact two-way toggle: EN | RW. */
 export function LanguageSwitcher() {
   const { locale, t } = useT(); const router = useRouter();
   return (

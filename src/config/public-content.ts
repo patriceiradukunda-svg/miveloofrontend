@@ -1,5 +1,7 @@
 import type { FeatureStatus } from './plans';
-export interface PublicPage { title: string; lead: string; status: FeatureStatus | null; sections: [string, string[]][] }
+import type { SceneName } from '@/components/media/Scenes';
+import type { PhotoKey } from '@/lib/photos';
+export interface PublicPage { title: string; lead: string; status: FeatureStatus | null; scene?: SceneName; photo?: PhotoKey | null; sections: [string, string[]][] }
 export const publicContent: Record<string, PublicPage> = {
  "how-it-works": {
   "title": "How Miveloo works",
@@ -10,7 +12,7 @@ export const publicContent: Record<string, PublicPage> = {
     "1. Suppliers publish",
     [
      "Farmers, traders, distributors and cooperatives register, then list what they have: quantity, unit, price and general location.",
-     "Only the details a supplier chooses to publish become public."
+     "Schools see only the details a supplier chooses to publish."
     ]
    ],
    [
@@ -31,7 +33,9 @@ export const publicContent: Record<string, PublicPage> = {
      "Schools confirm what arrived and record issues. Historical data in your own dashboard is free; advanced insights are optional."
     ]
    ]
-  ]
+  ],
+  "scene": "cycle",
+  "photo": "market"
  },
  "schools": {
   "title": "For schools",
@@ -55,7 +59,9 @@ export const publicContent: Record<string, PublicPage> = {
      "School-to-school surplus exchange"
     ]
    ]
-  ]
+  ],
+  "scene": "school",
+  "photo": "schoolKitchen"
  },
  "institutions": {
   "title": "For institutions, NGOs and government partners",
@@ -83,7 +89,9 @@ export const publicContent: Record<string, PublicPage> = {
      "Institutional access needs organisation verification and a data-sharing agreement. Use the contact page to begin."
     ]
    ]
-  ]
+  ],
+  "scene": "data",
+  "photo": "agritech"
  },
  "ai-intelligence": {
   "title": "AI and data intelligence",
@@ -109,20 +117,30 @@ export const publicContent: Record<string, PublicPage> = {
      "Features are evaluated for accuracy, fairness, privacy and harm before being presented as dependable."
     ]
    ]
-  ]
+  ],
+  "scene": "data",
+  "photo": "digitalFarmer"
  },
  "about": {
   "title": "About Miveloo",
-  "lead": "A school food marketplace and food-system intelligence platform, starting in Rwanda.",
+  "lead": "We exist to make school feeding more reliable, starting in Rwanda.",
   "status": null,
   "sections": [
    [
     "Why we exist",
     [
-     "School feeding depends on food reaching kitchens reliably. Miveloo helps schools find food, helps suppliers reach dependable markets, and uses data to reduce avoidable inefficiency."
+     "School feeding depends on food reaching kitchens reliably. Miveloo helps schools find food, helps suppliers reach dependable markets, and uses honest data to reduce avoidable waste and inefficiency."
+    ]
+   ],
+   [
+    "Where we are today",
+    [
+     "Miveloo is early-stage. We label what is live, what is in development and what is planned, and we publish no customer, coverage or impact numbers we cannot prove."
     ]
    ]
-  ]
+  ],
+  "scene": "farm",
+  "photo": "hills"
  },
  "about/mission": {
   "title": "Mission",
@@ -138,7 +156,9 @@ export const publicContent: Record<string, PublicPage> = {
      "Support better-informed school-feeding decisions with honest data."
     ]
    ]
-  ]
+  ],
+  "scene": "cycle",
+  "photo": "womenHarvest"
  },
  "impact": {
   "title": "Mission and impact",
@@ -152,7 +172,9 @@ export const publicContent: Record<string, PublicPage> = {
      "Anything shown elsewhere labelled \"Sample data\" is illustrative and not a real transaction."
     ]
    ]
-  ]
+  ],
+  "scene": "data",
+  "photo": null
  },
  "help": {
   "title": "Help and support",
@@ -173,7 +195,9 @@ export const publicContent: Record<string, PublicPage> = {
      "Signed-in users can open support tickets from their workspace. Others can use the contact page."
     ]
    ]
-  ]
+  ],
+  "scene": "trust",
+  "photo": null
  },
  "privacy": {
   "title": "Privacy policy",
@@ -184,12 +208,14 @@ export const publicContent: Record<string, PublicPage> = {
     "Principles",
     [
      "We collect only what each account type needs.",
-     "Public pages show only what suppliers choose to publish.",
+     "Marketplace listings are visible only to verified schools, and only what suppliers choose to publish.",
      "School-level data is never public.",
      "Final policy text to be supplied by Miveloo legal counsel."
     ]
    ]
-  ]
+  ],
+  "scene": "trust",
+  "photo": null
  },
  "terms": {
   "title": "Terms of service",
@@ -202,7 +228,9 @@ export const publicContent: Record<string, PublicPage> = {
      "Final terms to be supplied by Miveloo legal counsel."
     ]
    ]
-  ]
+  ],
+  "scene": "trust",
+  "photo": null
  },
  "cookies": {
   "title": "Cookie policy",
@@ -215,7 +243,9 @@ export const publicContent: Record<string, PublicPage> = {
      "A language preference cookie and, when signed in, a session cookie. No advertising cookies. Analytics, if enabled, will be listed here."
     ]
    ]
-  ]
+  ],
+  "scene": "trust",
+  "photo": null
  },
  "supplier-terms": {
   "title": "Supplier terms",
@@ -228,7 +258,9 @@ export const publicContent: Record<string, PublicPage> = {
      "Final terms to be supplied by Miveloo legal counsel."
     ]
    ]
-  ]
+  ],
+  "scene": "trust",
+  "photo": null
  },
  "school-terms": {
   "title": "School terms",
@@ -241,7 +273,9 @@ export const publicContent: Record<string, PublicPage> = {
      "Final terms to be supplied by Miveloo legal counsel."
     ]
    ]
-  ]
+  ],
+  "scene": "trust",
+  "photo": null
  },
  "data-ai-policy": {
   "title": "Data and AI policy",
@@ -254,6 +288,113 @@ export const publicContent: Record<string, PublicPage> = {
      "Aggregated or anonymised views wherever possible.",
      "Sensitive data only for authorised users under agreement.",
      "AI output is labelled as estimate or recommendation."
+    ]
+   ]
+  ],
+  "scene": "trust",
+  "photo": null
+ },
+ "cooperatives": {
+  "title": "For cooperatives and supplier groups",
+  "lead": "Turn many members' harvests into one dependable supplier.",
+  "status": "in-development",
+  "scene": "coop",
+  "photo": "womenCoop",
+  "sections": [
+   [
+    "What groups will be able to do",
+    [
+     "Keep member and farm records",
+     "Estimate harvests and combine quantities into one listing",
+     "Allocate confirmed orders to members",
+     "Coordinate collection points and delivery"
+    ]
+   ],
+   [
+    "Confirmed vs estimated, always separate",
+    [
+     "Estimated capacity is a planning figure. Buyers only ever see confirmed stock as available.",
+     "Member personal and financial information is visible only to authorised managers."
+    ]
+   ],
+   [
+    "How to start",
+    [
+     "Register your group, complete verification, then add members. Group registration is open; group operations are being built."
+    ]
+   ]
+  ]
+ },
+ "exchange": {
+  "title": "School-to-school exchange",
+  "lead": "Food that would be wasted at one school can feed another.",
+  "status": "planned",
+  "scene": "exchange",
+  "photo": "trainingKitchen",
+  "sections": [
+   [
+    "How it will work",
+    [
+     "A verified school publishes surplus with quantity and expiry",
+     "Nearby verified schools can request it",
+     "Both sides agree collection or delivery, and record the outcome"
+    ]
+   ],
+   [
+    "Rules we will enforce",
+    [
+     "Food-safety and expiry checks come first",
+     "Only verified, authorised organisations can take part",
+     "Every transfer is tracked, so there is a record of what moved"
+    ]
+   ],
+   [
+    "Status",
+    [
+     "Planned. It follows the core marketplace and school operations."
+    ]
+   ]
+  ]
+ },
+ "trust": {
+  "title": "Trust centre",
+  "lead": "What we verify, what stays private, and what we will never claim.",
+  "status": null,
+  "scene": "trust",
+  "photo": "storage",
+  "sections": [
+   [
+    "Verification",
+    [
+     "Schools and suppliers are verified before protected features unlock.",
+     "Choosing a role at sign-up never grants access by itself."
+    ]
+   ],
+   [
+    "Public vs private",
+    [
+     "The marketplace is private: only verified schools can see listings, and suppliers choose what schools see.",
+     "School data is private. Institutional views use aggregated or anonymised data under agreements."
+    ]
+   ],
+   [
+    "Honest claims",
+    [
+     "We do not claim customers, partners, national coverage or measured impact without evidence.",
+     "Anything marked \"Sample data\" is illustrative."
+    ]
+   ],
+   [
+    "AI principles",
+    [
+     "Estimates are labelled as estimates, with data period and assumptions.",
+     "When data is insufficient, we say so instead of guessing."
+    ]
+   ],
+   [
+    "Report a problem",
+    [
+     "Use the contact page. We take safety and fraud reports seriously."
     ]
    ]
   ]

@@ -1,5 +1,7 @@
 User-agent: *
 Allow: /
+Disallow: /marketplace
+Disallow: /suppliers
 Disallow: /app/
 Disallow: /school/
 Disallow: /supplier/

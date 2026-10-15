@@ -18,11 +18,15 @@ With no `API_URL`, the app runs on clearly-labelled **sample data**. Demo logins
 
 | Area | State |
 |---|---|
-| Public site: home, sell, marketplace (search, filters, URL state, pagination), product and supplier pages, how it works, schools, institutions, AI, pricing, about, mission, team, impact, contact, FAQ, help, insights, legal drafts | Built (sample data, legal text is draft) |
+| Public site: home, sell, (the marketplace is private, see below) how it works, schools, institutions, AI, pricing, about, mission, team, impact, contact, FAQ, help, insights, legal drafts | Built (sample data, legal text is draft) |
 | Auth: login, 4 registration flows, forgot/resend, verify, invitation, profile, 2FA, access-denied, session-expired | UI + validation built; needs backend endpoints |
 | Role workspaces and admin shell, role navigation, server-side route guard, school verification gate | Built |
 | School marketplace purchase-request UI, orders list/detail with lifecycle rules, supplier listings + validated form, AI assistant (honest fallback), billing/plan page | Built (sample data) |
 | Meal planning, procurement, inventory, exchange, group operations, institutional intelligence, forecasting, payments, admin tooling | Placeholder pages that state their status. Not implemented. |
+
+## The marketplace is private
+
+Visitors and suppliers cannot see marketplace listings. Only verified schools can, at `/school/marketplace`. There is no public marketplace, product or supplier-listing page. Suppliers manage their own listings in `/supplier/products`.
 
 ## Security model
 
@@ -45,6 +49,14 @@ With no `API_URL`, the app runs on clearly-labelled **sample data**. Demo logins
 * **Kinyarwanda**: navigation, footer, auth, marketplace and hero strings are provided but need native-speaker review. Other strings fall back to English.
 * **Legal pages**: drafts; require legal review.
 * **Contact/social**: set env vars; nothing is shown until they exist.
+
+## Guided experience, imagery and visuals
+
+* **Founder tour** (`/tour`, floating "Tour with the founder" button): 9 stops, keyboard/mobile friendly. Copy in `src/config/tour.ts`; founder name/photo in `src/config/founder.ts` (**confirm these**).
+* **Photos**: run `npm run images` once (downloads from `scripts/image-manifest.csv`, resizes, writes a manifest). Pages use a real photo when present, otherwise an original illustration (`media/Scenes`). Credits are shown on each photo. **Confirm licences before production use.**
+* **New pages**: `/tour`, `/about/founder`, `/cooperatives`, `/exchange`, `/trust`, `/roadmap`.
+* **Interactive**: farm-to-school journey, category preview, demand estimator, observed-vs-forecast chart with uncertainty band (sample data), evidence legend, notification centre, location picker (device position is only a suggestion; user must confirm).
+* Docs: `docs/DESIGN_SYSTEM.md`, `docs/ROUTES.md`. CI: `.github/workflows/ci.yml`.
 
 ## Not included yet (known gaps)
 

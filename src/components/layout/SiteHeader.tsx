@@ -1,4 +1,6 @@
 import { getT } from '@/i18n/server';
+import { getSession } from '@/lib/session';
+import { ROLE_HOME } from '@/config/roles';
 import { ButtonLink } from '@/components/ui/button';
 import { Logo } from './Logo';
 import { LanguageSwitcher } from './LanguageSwitcher';
@@ -10,8 +12,10 @@ const HomeIcon = () => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4" aria-hidden><path d="M3 11l9-8 9 8" /><path d="M5 10v10h14V10" /></svg>
 );
 
+/** Visitors see: Home, How it works, Schools, Institutions, About + Sell on Miveloo and School login. Signed-in users see their workspace instead. */
 export async function SiteHeader() {
   const { t } = await getT();
+  const session = await getSession();
   const items = [
     { href: '/', label: t('nav.home', 'Home') },
     { href: '/how-it-works', label: t('nav.howItWorks', 'How it works') },
