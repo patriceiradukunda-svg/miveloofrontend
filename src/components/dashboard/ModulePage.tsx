@@ -3,7 +3,7 @@ import { modules } from '@/config/modules';
 import type { Role } from '@/config/roles';
 import { PageHeader } from '@/components/layout/PageHeader';
 import { MetricCard } from './MetricCard';
-import { FounderTip } from './FounderTip';
+import { QuickStart } from './QuickStart';
 import { EmptyState } from '@/components/ui/empty-state';
 import { SampleBadge } from '@/components/ui/badge';
 import { LockedFeature } from '@/components/feedback/LockedFeature';
@@ -20,7 +20,7 @@ export function ModulePage({ id }: { id: string }) {
   return (
     <div className="space-y-8">
       <PageHeader title={m.title} lead={m.desc} status={m.status} />
-      {isDash && top !== 'app' && <FounderTip role={top as Role} />}
+      {isDash && top !== 'app' && <QuickStart role={top as Role} />}
       {m.metrics && <section aria-label="Key figures"><div className="mb-2"><SampleBadge /></div><div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">{m.metrics.map(([l, v]) => <MetricCard key={l} label={l!} value={v!} />)}</div></section>}
       {isDash && top !== 'admin' && top !== 'institution' && <ChartContainer title="Orders per month" sample caption="Sample data. Historical record, not a forecast."><BarChart data={SALES} unit=" orders" /></ChartContainer>}
       {FORECAST_PAGES.includes(id) && <><PriceForecastChart /><EvidenceLegend /></>}

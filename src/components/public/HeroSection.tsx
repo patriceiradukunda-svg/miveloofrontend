@@ -16,7 +16,7 @@ export async function HeroSection() {
           <h1 className="text-fluid-hero font-semibold text-balance text-teal-dark">{t('home.titleA')} <span className="mark">{t('home.titleB')}</span></h1>
           <p className="max-w-xl text-lg text-ink-soft">{t('home.lead')}</p>
           <div className="flex flex-wrap gap-3">
-            <ButtonLink href="/tour" variant="gold">🧭 {t('tour.cta', 'Tour with the founder')}</ButtonLink>
+            <ButtonLink href="/tour" variant="gold">🧭 {t('tour.cta', 'Take the tour')}</ButtonLink>
             <ButtonLink href="/sell" variant="primary">{t('home.ctaSell')}</ButtonLink>
             <ButtonLink href="/how-it-works" variant="secondary">{t('home.ctaBrowse')}</ButtonLink>
           </div>

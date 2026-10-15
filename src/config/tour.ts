@@ -5,9 +5,9 @@ export interface TourStep {
   id: string; scene: SceneName; photo?: PhotoKey; href: string; cta: string;
   title: { en: string; rw: string }; say: string; points: string[];
 }
-/** Spoken in the founder's voice. No invented statistics, customers or partners. Kinyarwanda titles need native review. */
+/** Written in Miveloo's voice. No invented statistics, customers or partners. Kinyarwanda titles need native review. */
 export const tourSteps: TourStep[] = [
-  { id: 'why', scene: 'cycle', photo: 'schoolMeal', href: '/about/founder', cta: 'Read my story', title: { en: 'Why Miveloo exists', rw: 'Impamvu Miveloo ibaho' },
+  { id: 'why', scene: 'cycle', photo: 'schoolMeal', href: '/about/mission', cta: 'Our mission', title: { en: 'Why Miveloo exists', rw: 'Impamvu Miveloo ibaho' },
     say: 'A school meal only works when the food arrives: on time, fresh, at a fair price. The people who grow it and the kitchens that need it often cannot see each other. Miveloo is the bridge between them, with honest data on top.',
     points: ['Schools find the food they need', 'Suppliers reach reliable markets', 'Data helps everyone waste less'] },
   { id: 'schools', scene: 'school', photo: 'schoolKitchen', href: '/schools', cta: 'See the school journey', title: { en: 'If you run a school kitchen', rw: 'Niba uyobora igikoni cy\'ishuri' },
@@ -23,7 +23,7 @@ export const tourSteps: TourStep[] = [
     say: 'Food that would be wasted at one school can feed another nearby. Verified schools can offer surplus, request transfers and record the outcome, with food-safety rules respected.',
     points: ['Publish surplus with quantity and expiry', 'Nearby verified schools can request it', 'Every transfer is tracked'] },
   { id: 'ai', scene: 'data', photo: 'agritech', href: '/ai-intelligence', cta: 'Meet the intelligence layer', title: { en: 'Our AI is honest by design', rw: 'AI yacu ni iy\'ukuri' },
-    say: 'I do not want a magic chatbot. Miveloo shows estimates with their data period, assumptions and uncertainty, and says plainly when there is not enough data. A prediction is never a promise.',
+    say: 'Miveloo is not a magic chatbot. It shows estimates with their data period, assumptions and uncertainty, and says plainly when there is not enough data. A prediction is never a promise.',
     points: ['Observed facts vs estimates, clearly labelled', 'Sources and last-updated shown', 'No invented prices or forecasts'] },
   { id: 'pricing', scene: 'cycle', photo: 'market', href: '/pricing', cta: 'See free vs paid', title: { en: 'Free first, paid only if you want more', rw: 'Ubuntu mbere, kwishyura ari amahitamo' },
     say: 'Browsing, basic buying and selling, orders and your own history stay free. Advanced forecasts, alerts and institutional reports are optional, and we show the limits and terms before you pay.',
@@ -32,7 +32,7 @@ export const tourSteps: TourStep[] = [
     say: 'Schools and suppliers are verified. The marketplace is private to verified schools, and suppliers choose what schools see. School data is private. And we will never claim customers, coverage or impact we cannot prove.',
     points: ['Verification before access', 'Marketplace and school data kept private', 'Honest about what is live today'] },
   { id: 'start', scene: 'farm', photo: 'hills', href: '/register', cta: 'Create your account', title: { en: 'Ready? Pick your path', rw: 'Witeguye? Hitamo inzira yawe' },
-    say: 'Choose who you are and I will see you inside. Registering is free; access to protected features follows verification.',
+    say: 'Choose who you are to get started. Registering is free; access to protected features follows verification.',
     points: [] },
 ];
 export const startPaths = [

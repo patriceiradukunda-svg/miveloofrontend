@@ -4,7 +4,6 @@ import Link from 'next/link';
 import { useCallback, useEffect, useState } from 'react';
 import { Scene } from '@/components/media/Scenes';
 import { startPaths, tourSteps } from '@/config/tour';
-import { founder } from '@/config/founder';
 import { useT } from '@/providers/LocaleProvider';
 import type { PhotoKey } from '@/lib/photos';
 import { cn } from '@/lib/utils';
@@ -17,16 +16,13 @@ export function TourPlayer({ photos, compact, onClose }: { photos: Record<PhotoK
   useEffect(() => { const f = (e: KeyboardEvent) => { if (e.key === 'ArrowRight') go(i + 1); if (e.key === 'ArrowLeft') go(i - 1); }; addEventListener('keydown', f); return () => removeEventListener('keydown', f); }, [i, go]);
   const s = tourSteps[i]!; const photo = s.photo ? photos[s.photo] : null; const title = s.title[locale] ?? s.title.en;
   return (
-    <section aria-roledescription="guided tour" aria-label="Guided tour with the founder" className={cn('overflow-hidden rounded-3xl bg-white shadow-card', compact ? '' : 'border border-ink/10')}>
+    <section aria-roledescription="guided tour" aria-label="Guided tour" className={cn('overflow-hidden rounded-3xl bg-white shadow-card', compact ? '' : 'border border-ink/10')}>
       <div className="h-2 bg-cream-deep" role="progressbar" aria-valuemin={1} aria-valuemax={tourSteps.length} aria-valuenow={i + 1} aria-label={`Step ${i + 1} of ${tourSteps.length}`}><div className="h-full bg-gold transition-all" style={{ width: `${((i + 1) / tourSteps.length) * 100}%` }} /></div>
       <div key={s.id} className={cn('rise grid gap-6 p-5 sm:p-8', compact ? 'md:grid-cols-[1fr_1fr]' : 'lg:grid-cols-[1.05fr_1fr]')}>
         <div className="order-2 space-y-4 lg:order-1">
-          <div className="flex items-center gap-3">
-            <Image src={founder.photo} alt={`${founder.name}, ${founder.title}`} width={56} height={56} className="h-14 w-14 rounded-full border-2 border-gold object-cover" />
-            <p className="text-sm"><strong className="block text-base">{founder.name}</strong><span className="text-ink-soft">{founder.title} · step {i + 1} of {tourSteps.length}</span></p>
-          </div>
+          <div className="flex items-center gap-3"><span aria-hidden className="grid h-12 w-12 place-items-center rounded-2xl bg-gold text-2xl">🧭</span><p className="text-sm"><strong className="block text-base">Miveloo guide</strong><span className="text-ink-soft">Step {i + 1} of {tourSteps.length}</span></p></div>
           <h2 className="text-3xl font-semibold text-balance text-teal-dark sm:text-4xl">{title}</h2>
-          <blockquote className="relative rounded-2xl rounded-tl-sm bg-cream p-4 text-lg leading-relaxed"><span aria-hidden className="absolute -top-3 left-3 font-display text-5xl leading-none text-gold">“</span>{s.say}</blockquote>
+          <blockquote className="relative rounded-2xl rounded-tl-sm bg-cream p-4 text-lg leading-relaxed">{s.say}</blockquote>
           {s.points.length > 0 && <ul className="space-y-1.5">{s.points.map((p) => <li key={p} className="flex gap-2"><span aria-hidden className="text-green">✔</span>{p}</li>)}</ul>}
           {s.id === 'start' && <div className="grid gap-2 sm:grid-cols-2">{startPaths.map((p) => <Link key={p.href} href={p.href} className="inline-flex min-h-12 items-center justify-center rounded-full bg-teal px-4 text-center font-bold text-cream hover:bg-teal-dark">{p.label}</Link>)}</div>}
           {s.id !== 'start' && <Link href={s.href} className="inline-flex min-h-11 items-center font-bold text-teal underline underline-offset-4">{s.cta} →</Link>}

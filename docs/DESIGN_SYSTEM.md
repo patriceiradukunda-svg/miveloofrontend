@@ -28,6 +28,6 @@
 | Locked / not-yet-live capability | `feedback/LockedFeature` |
 | Form field with error | `forms/FormField` |
 | Confirm destructive action | `ui/confirm-dialog` |
-| Founder-guided tour | `features/tour/*` |
+| Guided tour | `features/tour/*` |
 
 Rules: status is never colour alone (symbol + label); touch targets are at least 44px; motion respects `prefers-reduced-motion`; charts have a text or table alternative.

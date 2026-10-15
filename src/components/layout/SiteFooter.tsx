@@ -27,7 +27,7 @@ export async function SiteFooter() {
           )}
           {site.social.length > 0 && <ul className="mt-3 flex flex-wrap gap-3 text-sm">{site.social.map((s) => <li key={s.label}><a className="underline" href={s.href} rel="noopener noreferrer" target="_blank">{s.label}</a></li>)}</ul>}
         </div>
-        {col(t('footer.explore'), [['/sell', t('nav.sell')], ['/schools', 'Schools'], ['/cooperatives', 'Cooperatives'], ['/exchange', 'School exchange'], ['/institutions', 'Institutions'], ['/pricing', 'Pricing'], ['/tour', 'Tour with the founder'], ['/about', t('nav.about')], ['/about/founder', 'Founder\'s note'], ['/roadmap', 'Roadmap'], ['/contact', 'Contact']])}
+        {col(t('footer.explore'), [['/sell', t('nav.sell')], ['/schools', 'Schools'], ['/cooperatives', 'Cooperatives'], ['/exchange', 'School exchange'], ['/institutions', 'Institutions'], ['/pricing', 'Pricing'], ['/tour', 'Take the tour'], ['/about', t('nav.about')], ['/roadmap', 'Roadmap'], ['/contact', 'Contact']])}
         {col(t('footer.support'), [['/help', 'Help & support'], ['/faq', 'FAQs'], ['/register/supplier', 'Supplier onboarding'], ['/register/school', 'School registration'], ['/register/institution', 'Institutional partnerships'], ['/trust', 'Trust centre'], ['/ai-intelligence', 'AI & data']])}
         {col(t('footer.legal'), [['/privacy', 'Privacy policy'], ['/terms', 'Terms of service'], ['/cookies', 'Cookie policy'], ['/supplier-terms', 'Supplier terms'], ['/school-terms', 'School terms'], ['/data-ai-policy', 'Data & AI policy']])}
       </div>
