@@ -46,5 +46,8 @@
  "market.availability": "Uko biboneka",
  "market.inStock": "Birahari",
  "market.empty": "Nta bicuruzwa bihuye n'ibyo wahisemo.",
- "market.clear": "Siba ibyahiswemo"
+ "market.clear": "Siba ibyahiswemo",
+ "home.titleA": "Ibiribwa byo ku munsi wose w'ishuri,",
+ "home.titleB": "byahinzwe hafi yawe.",
+ "tour.cta": "Sura Miveloo hamwe n'uwayishinze"
 }

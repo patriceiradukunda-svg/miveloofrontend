@@ -46,6 +46,14 @@ With no `API_URL`, the app runs on clearly-labelled **sample data**. Demo logins
 * **Legal pages**: drafts; require legal review.
 * **Contact/social**: set env vars; nothing is shown until they exist.
 
+## Guided experience, imagery and visuals
+
+* **Founder tour** (`/tour`, floating "Tour with the founder" button): 9 stops, keyboard/mobile friendly. Copy in `src/config/tour.ts`; founder name/photo in `src/config/founder.ts` (**confirm these**).
+* **Photos**: run `npm run images` once (downloads from `scripts/image-manifest.csv`, resizes, writes a manifest). Pages use a real photo when present, otherwise an original illustration (`media/Scenes`). Credits are shown on each photo. **Confirm licences before production use.**
+* **New pages**: `/tour`, `/about/founder`, `/cooperatives`, `/exchange`, `/trust`, `/roadmap`.
+* **Interactive**: farm-to-school journey, category preview, demand estimator, observed-vs-forecast chart with uncertainty band (sample data), evidence legend, notification centre, location picker (device position is only a suggestion; user must confirm).
+* Docs: `docs/DESIGN_SYSTEM.md`, `docs/ROUTES.md`. CI: `.github/workflows/ci.yml`.
+
 ## Not included yet (known gaps)
 
 Image upload, real-time messaging, notification preferences UI, two-factor flow, support tickets, i18n of workspace module pages, dropdown/popover/tabs/tooltip primitives, visual-regression and accessibility CI (add axe + Lighthouse CI), analytics (add consent-aware tooling, track searches/sign-ups/drop-off).

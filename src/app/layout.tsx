@@ -3,6 +3,7 @@ import './globals.css';
 import { site } from '@/config/site';
 import { getT } from '@/i18n/server';
 import { AppProviders } from '@/providers/AppProviders';
+import { ConnectivityBanner } from '@/components/feedback/ConnectivityBanner';
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
@@ -18,7 +19,9 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   const { locale, t } = await getT();
   return (
     <html lang={locale === 'rw' ? 'rw' : 'en'}>
+      <head><noscript><style>{'.reveal{opacity:1!important;transform:none!important}'}</style></noscript></head>
       <body>
+        <ConnectivityBanner />
         <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:left-3 focus:top-3 focus:z-50 focus:rounded-full focus:bg-gold focus:px-5 focus:py-3 focus:font-bold">{t('nav.skip')}</a>
         <AppProviders locale={locale}>{children}</AppProviders>
       </body>

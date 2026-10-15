@@ -9,6 +9,7 @@ import { friendlyError } from '@/lib/errors';
 import { fieldErrors, registrationSchemas, type RegistrationType } from '../schemas/auth.schema';
 import { useT } from '@/providers/LocaleProvider';
 import { INFO } from '../registration-info';
+import { LocationPicker } from '@/features/location/LocationPicker';
 
 export function RegistrationForm({ type }: { type: RegistrationType }) {
   const { t } = useT(); const info = INFO[type];
@@ -31,6 +32,7 @@ export function RegistrationForm({ type }: { type: RegistrationType }) {
       <FormField label={t('auth.email')} error={errors.email} required>{(p) => <input {...p} name="email" type="email" autoComplete="email" inputMode="email" />}</FormField>
       <FormField label={t('auth.phone')} error={errors.phone} hint="Example: 0788 123 456" required>{(p) => <input {...p} name="phone" type="tel" autoComplete="tel" inputMode="tel" />}</FormField>
       <FormField label={t('auth.district')} error={errors.district} required>{(p) => <input {...p} name="district" />}</FormField>
+      {type !== 'institution' && <LocationPicker errors={errors} />}
       <FormField label={t('auth.password')} error={errors.password} hint="At least 10 characters, with letters and numbers." required>{(p) => <input {...p} name="password" type="password" autoComplete="new-password" />}</FormField>
       <div><label className="flex items-start gap-3 text-sm"><input type="checkbox" name="consent" className="mt-1 h-5 w-5 accent-teal" aria-invalid={!!errors.consent} /><span>I agree to the <Link className="underline" href="/privacy">privacy policy</Link> and <Link className="underline" href="/terms">terms</Link>.</span></label>{errors.consent && <p role="alert" className="mt-1 text-sm font-semibold text-red-dark">⚠ {errors.consent}</p>}</div>
       <Button type="submit" className="w-full" disabled={busy}>{busy ? 'Creating…' : t('auth.submit')}</Button>
