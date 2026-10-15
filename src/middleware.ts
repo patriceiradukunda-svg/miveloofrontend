@@ -3,11 +3,15 @@ import { PROTECTED_PREFIXES } from '@/config/routes';
 import { SESSION_COOKIE } from '@/lib/constants';
 
 // Early, cheap redirect only. Role checks happen server-side in layouts and again in the backend.
+// The marketplace is internal: anonymous visitors are always sent to sign in.
+const GATED = ['/marketplace'];
 export function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl;
   const headers = new Headers(req.headers);
   headers.set('x-pathname', pathname);
-  const isProtected = PROTECTED_PREFIXES.some((r) => pathname === r.prefix || pathname.startsWith(r.prefix + '/'));
+  const isProtected =
+    PROTECTED_PREFIXES.some((r) => pathname === r.prefix || pathname.startsWith(r.prefix + '/')) ||
+    GATED.some((p) => pathname === p || pathname.startsWith(p + '/'));
   if (isProtected && !req.cookies.get(SESSION_COOKIE)) {
     const url = req.nextUrl.clone();
     url.pathname = '/login';

@@ -12,13 +12,13 @@ export function MobileNavigation({ items, menuLabel, closeLabel, extra }: { item
     document.addEventListener('keydown', onKey); return () => document.removeEventListener('keydown', onKey);
   }, []);
   return (
-    <div className="lg:hidden">
+    <div className="xl:hidden">
       <button ref={btn} type="button" aria-expanded={open} aria-controls="mobile-nav" onClick={() => setOpen(!open)}
-        className="inline-flex min-h-12 items-center gap-2 rounded-full border-2 border-teal px-4 font-bold text-teal">
+        className="inline-flex min-h-11 items-center gap-2 rounded-full border-2 border-teal px-4 font-bold text-teal">
         <span aria-hidden>{open ? '✕' : '☰'}</span>{open ? closeLabel : menuLabel}
       </button>
       {open && (
-        <nav id="mobile-nav" aria-label="Main" className="rise absolute inset-x-0 top-full border-b border-ink/10 bg-cream p-4 shadow-card">
+        <nav id="mobile-nav" aria-label="Main" className="rise absolute inset-x-0 top-full max-h-[calc(100svh-5rem)] overflow-y-auto border-b border-ink/10 bg-cream p-4 shadow-card">
           <ul className="space-y-1">{items.map((i) => <li key={i.href}><Link href={i.href} className="block rounded-xl px-3 py-3 text-lg font-semibold hover:bg-cream-deep">{i.label}</Link></li>)}</ul>
           <div className="mt-4 flex flex-col gap-3">{extra}</div>
         </nav>
