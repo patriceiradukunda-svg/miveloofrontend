@@ -127,5 +127,7 @@
  "sellp.photo": "Ifoto",
  "sellp.hHead": "Ibyo twiteze mu kuri",
  "sellp.hBody": "Kugenzurwa bishobora gusabwa mbere y’uko ibyo washyizeho bigaragara. Amatsinda agaragaza nk’ibiboneka gusa ibyemejwe, ntabwo ari ubushobozi bwo kugereranya.",
- "sellp.endTitle": "Witeguye kugurisha ku mashuri?"
+ "sellp.endTitle": "Witeguye kugurisha ku mashuri?",
+ "nav.login": "Kwinjira",
+ "home2.photoNote": "Amafoto ni ay’ikitegererezo kandi ntagaragaza abakoresha ba Miveloo bagenzuwe. Isoko riboneka ku mashuri n’abafatanyabikorwa babifitiye uburenganzira nyuma yo kwinjira."
 }
