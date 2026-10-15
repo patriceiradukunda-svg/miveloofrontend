@@ -13,7 +13,8 @@ export function ContentPage({ slug }: { slug: string }) {
           <section key={h}><h2 className="text-2xl font-semibold text-teal-dark">{h}</h2>
             {items.length === 1 ? <p className="mt-3 text-lg text-ink-soft">{items[0]}</p> : <ul className="mt-3 list-disc space-y-2 pl-5 text-lg text-ink-soft">{items.map((i) => <li key={i}>{i}</li>)}</ul>}</section>))}
       </div>
-      <div className="mt-12 flex flex-wrap gap-3"><ButtonLink href="/marketplace">Browse marketplace</ButtonLink><ButtonLink href="/contact" variant="secondary">Contact us</ButtonLink></div>
+      {/* The marketplace is internal (sign-in required), so public pages point to registration instead. */}
+      <div className="mt-12 flex flex-wrap gap-3"><ButtonLink href="/register">Get started</ButtonLink><ButtonLink href="/contact" variant="secondary">Contact us</ButtonLink></div>
     </div>
   );
 }
