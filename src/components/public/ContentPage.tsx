@@ -34,8 +34,6 @@ export function ContentPage({ slug, after }: { slug: string; after?: React.React
         {after}
         <div className="flex flex-wrap gap-3 pt-4"><ButtonLink href="/tour" variant="gold">🧭 Take the tour</ButtonLink><ButtonLink href="/how-it-works" variant="secondary">How it works</ButtonLink><Link className="inline-flex min-h-12 items-center px-4 font-bold underline" href="/contact">Contact us</Link></div>
       </div>
-      {/* The marketplace is internal (sign-in required), so public pages point to registration instead. */}
-      <div className="mt-12 flex flex-wrap gap-3"><ButtonLink href="/register">Get started</ButtonLink><ButtonLink href="/contact" variant="secondary">Contact us</ButtonLink></div>
-    </div>
+    </>
   );
 }
