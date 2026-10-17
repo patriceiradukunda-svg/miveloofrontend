@@ -17,7 +17,7 @@ const shadow = '[text-shadow:0_2px_24px_rgba(0,0,0,0.35)]';
 const lrOverlay = 'bg-gradient-to-r from-ink/90 via-ink/65 to-ink/15';
 
 function Eyebrow({ children, dark = true }: { children: React.ReactNode; dark?: boolean }) {
-  return <p className={`flex items-center gap-3 text-xs font-bold uppercase tracking-[0.16em] ${dark ? 'text-gold' : 'text-teal'}`}><span aria-hidden className="h-px w-8 bg-current" />{children}</p>;
+  return <p className={`flex items-center gap-3 text-[0.7rem] font-bold uppercase leading-snug tracking-[0.12em] sm:text-xs sm:tracking-[0.16em] ${dark ? 'text-gold' : 'text-teal'}`}><span aria-hidden className="h-px w-6 shrink-0 bg-current sm:w-8" /><span className="min-w-0">{children}</span></p>;
 }
 /** Full-bleed photo section: the image is the background; the overlay keeps text readable. */
 function Bg({ n, pos = 'center', overlay = lrOverlay, className = '', children }: { n: string; pos?: string; overlay?: string; className?: string; children: React.ReactNode }) {
@@ -52,7 +52,7 @@ export default async function Home() {
     { src: `${P}05-farmer-harvesting-greens.jpg`, alt: 'A farmer harvesting leafy greens', pos: '60% 40%' },
     { src: `${P}02-farmer-grass-portrait.jpg`, alt: 'A smiling farmer holding freshly cut grass', pos: '50% 25%' },
     { src: `${P}04-vendor-tomatoes-stall.jpg`, alt: 'A vendor behind a stall of tomatoes', pos: '50% 35%' },
-    { src: `${P}06-school-kitchen-cooks.jpg`, alt: 'Cooks serving rice in a school kitchen', pos: '50% 45%' },
+    { src: `${P}06-school-kitchen-cooks.jpg`, alt: 'Cooks serving rice in a school kitchen', pos: '50% 45%', posSm: '62% 45%' },
     { src: `${P}03-school-canteen-serving.jpg`, alt: 'Children eating a meal in a school canteen', pos: '50% 30%' },
   ];
   const produce = ['Tomatoes', 'Beans', 'Bananas', 'Potatoes', 'Onions', 'Cabbage', 'Leafy greens', 'Sweet potatoes', 'Grains', 'Peppers'];
@@ -85,14 +85,14 @@ export default async function Home() {
   ];
   return (
     <>
-      <HeroSlider slides={slides} labels={{ region: t('home2.slider', 'Photo gallery'), prev: t('home2.prev', 'Previous photo'), next: t('home2.next', 'Next photo'), goTo: t('home2.goTo', 'Go to photo') }}>
-        <div className={`${wide} rise space-y-6 pb-24 pt-32 sm:pb-20`}>
+      <HeroSlider slides={slides} labels={{ region: t('home2.slider', 'Photo gallery'), prev: t('home2.prev', 'Previous photo'), next: t('home2.next', 'Next photo'), goTo: t('home2.goTo', 'Go to photo'), pause: t('home2.pause', 'Pause photo rotation'), play: t('home2.play', 'Play photo rotation') }}>
+        <div className={`${wide} rise space-y-5 py-10 sm:space-y-6 sm:py-12 lg:pb-20 lg:pt-32`}>
           <Eyebrow>{t('home2.eyebrow', 'Rwanda’s school food ecosystem')}</Eyebrow>
           <h1 style={h1s} className={`max-w-6xl text-balance font-semibold leading-[1.04] tracking-tight ${shadow}`}>{t('home2.title', 'From local farms to school kitchens.')}</h1>
           <p className="max-w-2xl text-lg text-cream/90 md:text-xl">{t('home2.lead', 'Miveloo connects suppliers, cooperatives, schools and institutional partners for more reliable school feeding.')}</p>
-          <div className="flex flex-wrap gap-3 pt-2">
-            <Link href="/schools" className={gold}>{t('home2.ctaSchools', 'For Schools & Institutions')}</Link>
-            <Link href="/sell" className={light}>{t('home2.ctaSupplier', 'Become a Supplier')}</Link>
+          <div className="grid gap-3 pt-2 sm:flex sm:flex-wrap">
+            <Link href="/schools" className={`${gold} w-full sm:w-auto`}>{t('home2.ctaSchools', 'For Schools & Institutions')}</Link>
+            <Link href="/sell" className={`${light} w-full sm:w-auto`}>{t('home2.ctaSupplier', 'Become a Supplier')}</Link>
           </div>
         </div>
       </HeroSlider>
