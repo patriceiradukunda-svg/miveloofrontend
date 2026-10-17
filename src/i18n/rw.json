@@ -177,5 +177,18 @@
  "team.endTitle": "Ushaka dufatanye?",
  "team.endLead": "Amashuri, abatanga ibiribwa, amakoperative n'abafatanyabikorwa murahawe ikaze kutwandikira.",
  "team.contact": "Twandikire",
- "team.photoAlt": "Ifoto ya"
+ "team.photoAlt": "Ifoto ya",
+ "about2.eyebrow": "Ibyerekeye Miveloo",
+ "about2.title": "Gutuma kugaburira abanyeshuri birushaho kwizerwa, duhereye mu Rwanda.",
+ "about2.lead": "Miveloo ni isoko ry'ibiribwa by'amashuri n'urubuga rw'amakuru ku buryo bwo gutanga ibiribwa, ihuza amashuri yemejwe n'abahinga n'abatanga ibiribwa.",
+ "about2.team": "Menya itsinda",
+ "about2.wTitle": "Ifunguro ry'ishuri rikora iyo ibiribwa bihageze.",
+ "about2.mEyebrow": "Intego yacu",
+ "about2.mTitle": "Gutuma kugaburira abanyeshuri birushaho kwizerwa.",
+ "about2.vEyebrow": "Icyerekezo cyacu",
+ "about2.pEyebrow": "Miveloo ni iki",
+ "about2.sEyebrow": "Abo dukorera",
+ "about2.tEyebrow": "Aho tugeze uyu munsi",
+ "about2.rEyebrow": "Amahame yacu",
+ "about2.endTitle": "Fatanya natwe gutuma kugaburira abanyeshuri birushaho kwizerwa."
 }
