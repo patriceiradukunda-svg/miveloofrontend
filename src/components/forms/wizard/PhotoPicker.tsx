@@ -43,7 +43,9 @@ export function PhotoPicker({ files, onChange, max = 6, error }: { files: File[]
         <ul className="grid grid-cols-2 gap-3 sm:grid-cols-3">
           {files.map((f, k) => (
             <li key={`${f.name}-${k}`} className="overflow-hidden rounded-2xl border border-ink/10 bg-white">
-              <div className="relative aspect-square">{/* eslint-disable-next-line @next/next/no-img-element */}<img src={urls[k]} alt={`Photo ${k + 1}`} className="h-full w-full object-cover" />
+              <div className="relative aspect-square">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={urls[k]} alt={`Photo ${k + 1}`} className="h-full w-full object-cover" />
                 {k === 0 && <span className="absolute left-2 top-2 rounded-full bg-gold px-3 py-1 text-xs font-bold">Cover</span>}</div>
               <div className="flex items-center justify-between gap-1 p-2">
                 {k > 0 ? <button type="button" onClick={() => onChange([f, ...files.filter((_, i) => i !== k)])} className="min-h-11 px-2 text-sm font-bold text-teal underline">Make cover</button> : <span />}
