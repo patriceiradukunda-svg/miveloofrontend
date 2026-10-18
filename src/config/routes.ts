@@ -7,7 +7,7 @@ export const routes = {
   team: '/about/team', impact: '/impact', contact: '/contact', faq: '/faq', help: '/help',
   insights: '/insights', privacy: '/privacy', terms: '/terms', cookies: '/cookies',
   supplierTerms: '/supplier-terms', schoolTerms: '/school-terms', dataAi: '/data-ai-policy',
-  tour: '/tour', roadmap: '/roadmap', cooperatives: '/cooperatives', exchange: '/exchange', trust: '/trust',
+  tour: '/tour', careers: '/careers', roadmap: '/roadmap', cooperatives: '/cooperatives', exchange: '/exchange', trust: '/trust',
   login: '/login', register: '/register', forgot: '/forgot-password',
 } as const;
 
