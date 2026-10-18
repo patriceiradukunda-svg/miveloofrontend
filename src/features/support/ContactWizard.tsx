@@ -35,11 +35,11 @@ function ReviewStep() {
 
 export function ContactWizard() {
   const steps: Step[] = [
-    { id: 'you', title: 'About you', content: <><Text name="name" label="Your name" required autoComplete="name" /><Text name="email" label="Email" type="email" required autoComplete="email" inputMode="email" /><Choice name="who" label="Who are you writing as?" required options={WHO} /><Text name="organisation" label="Organisation (optional)" autoComplete="organization" /></>,
+    { id: 'you', summary: (v: Values) => str(v.name), title: 'About you', content: <><Text name="name" label="Your name" required autoComplete="name" /><Text name="email" label="Email" type="email" required autoComplete="email" inputMode="email" /><Choice name="who" label="Who are you writing as?" required options={WHO} /><Text name="organisation" label="Organisation (optional)" autoComplete="organization" /></>,
       validate: (v: Values) => { const e: Errors = {}; if (str(v.name).trim().length < 2) e.name = 'Enter your name.'; if (!EMAIL.test(str(v.email).trim())) e.email = 'Enter a valid email address.'; if (!str(v.who)) e.who = 'Choose one.'; return e; } },
-    { id: 'message', title: 'Your message', content: <Message />,
+    { id: 'message', summary: (v: Values) => str(v.topic), title: 'Your message', content: <Message />,
       validate: (v: Values) => { const e: Errors = {}; if (!str(v.topic)) e.topic = 'Choose a topic.'; if (str(v.message).trim().length < 15) e.message = 'Tell us a little more (at least 15 characters).'; if (arr(v.via).includes('phone') && str(v.phone).replace(/\D/g, '').length < 9) e.phone = 'Enter a valid phone number.'; return e; } },
-    { id: 'where', title: 'Where you are (optional)', content: <Where />, validate: (v: Values): Errors => (v.addLocation === true ? validateLocation(v) : {}) },
+    { id: 'where', summary: (v: Values) => v.addLocation === true ? locationSummary(v) : 'Skipped', title: 'Where you are (optional)', content: <Where />, validate: (v: Values): Errors => (v.addLocation === true ? validateLocation(v) : {}) },
     { id: 'review', title: 'Review and send', content: <ReviewStep /> },
   ];
   async function onSubmit(v: Values) {

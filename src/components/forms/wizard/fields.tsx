@@ -5,9 +5,9 @@ import { useWiz } from './Wizard';
 const str = (x: unknown) => (typeof x === 'string' ? x : '');
 export interface Option { value: string; label: string }
 
-export function Text({ name, label, hint, required, type = 'text', autoComplete, inputMode, placeholder, suggestions }: { suggestions?: string[]; name: string; label: string; hint?: string; required?: boolean; type?: string; autoComplete?: string; inputMode?: 'text' | 'tel' | 'email' | 'numeric' | 'decimal'; placeholder?: string }) {
+export function Text({ name, label, hint, required, type = 'text', autoComplete, inputMode, placeholder, suggestions, readOnly }: { readOnly?: boolean; suggestions?: string[]; name: string; label: string; hint?: string; required?: boolean; type?: string; autoComplete?: string; inputMode?: 'text' | 'tel' | 'email' | 'numeric' | 'decimal'; placeholder?: string }) {
   const { v, set, errors } = useWiz();
-  return <FormField label={label} hint={hint} error={errors[name]} required={required}>{(p) => <><input {...p} name={name} type={type} autoComplete={autoComplete} inputMode={inputMode} placeholder={placeholder} list={suggestions?.length ? `${p.id}-dl` : undefined} value={str(v[name])} onChange={(e) => set(name, e.target.value)} />{suggestions?.length ? <datalist id={`${p.id}-dl`}>{suggestions.map((x) => <option key={x} value={x} />)}</datalist> : null}</>}</FormField>;
+  return <FormField label={label} hint={hint} error={errors[name]} required={required}>{(p) => <><input {...p} name={name} type={type} autoComplete={autoComplete} inputMode={inputMode} placeholder={placeholder} readOnly={readOnly} aria-readonly={readOnly || undefined} list={suggestions?.length ? `${p.id}-dl` : undefined} value={str(v[name])} onChange={(e) => set(name, e.target.value)} className={readOnly ? `${p.className} bg-ink/5` : p.className} />{suggestions?.length ? <datalist id={`${p.id}-dl`}>{suggestions.map((x) => <option key={x} value={x} />)}</datalist> : null}</>}</FormField>;
 }
 export function Area({ name, label, hint, required, rows = 4 }: { name: string; label: string; hint?: string; required?: boolean; rows?: number }) {
   const { v, set, errors } = useWiz();

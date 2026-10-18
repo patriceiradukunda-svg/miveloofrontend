@@ -69,15 +69,15 @@ function Delivery() {
 export function ListingWizard() {
   const [photos, setPhotos] = useState<File[]>([]); const [photoErr, setPhotoErr] = useState<string>();
   const steps: Step[] = [
-    { id: 'what', title: 'What you sell', hint: 'Start with the product.', content: <What />,
+    { id: 'what', summary: (v: Values) => `${str(v.product)} · ${str(v.sub)}`, title: 'What you sell', hint: 'Start with the product.', content: <What />,
       validate: (v: Values) => { const e: Errors = {}; if (!str(v.category)) e.category = 'Choose a category.'; if (!str(v.sub)) e.sub = 'Choose a type.'; if (str(v.product).trim().length < 2) e.product = 'Enter the product name.'; if (!str(v.origin)) e.origin = 'Choose where it comes from.'; if (str(v.description).trim().length < 20) e.description = 'Describe the product in at least 20 characters.'; return e; } },
-    { id: 'supply', title: 'Quantity and price', content: <Supply />,
+    { id: 'supply', summary: (v: Values) => `${str(v.quantity)} ${str(v.unit)}`, title: 'Quantity and price', content: <Supply />,
       validate: (v: Values) => { const e: Errors = {}; if (!str(v.unit)) e.unit = 'Choose a unit.'; if (!pos(v.quantity)) e.quantity = 'Enter the quantity you have.'; if (!nonNeg(v.minOrder)) e.minOrder = 'Enter a number.'; if (!nonNeg(v.price)) e.price = 'Enter a price in RWF.'; if (!str(v.availability)) e.availability = 'Tell us when it is available.'; if (str(v.availability) && str(v.availability) !== 'now' && !str(v.availableFrom)) e.availableFrom = 'Choose a date.'; return e; } },
-    { id: 'quality', title: 'Quality and handling', content: <Quality />,
+    { id: 'quality', summary: (v: Values) => arr(v.quality).join(', ') || 'Nothing declared', title: 'Quality and handling', content: <Quality />,
       validate: (v: Values): Errors => (arr(v.quality).includes('Certified') && !str(v.certificate).trim() ? { certificate: 'Enter the certificate or mark number.' } : {}) },
-    { id: 'photos', title: 'Photos', hint: 'Clear photos of the real product help schools decide. Up to 6.', content: <PhotoPicker files={photos} onChange={(f) => { setPhotos(f); setPhotoErr(undefined); }} error={photoErr} />,
+    { id: 'photos', summary: () => `${photos.length} photo${photos.length === 1 ? '' : 's'}`, title: 'Photos', hint: 'Clear photos of the real product help schools decide. Up to 6.', content: <PhotoPicker files={photos} onChange={(f) => { setPhotos(f); setPhotoErr(undefined); }} error={photoErr} />,
       validate: (): Errors => { if (photos.length === 0) { setPhotoErr('Add at least one photo.'); return { photos: 'Add at least one photo.' }; } return {}; } },
-    { id: 'delivery', title: 'Pickup and delivery', content: <Delivery />,
+    { id: 'delivery', summary: (v: Values) => locationSummary(v), title: 'Pickup and delivery', content: <Delivery />,
       validate: (v: Values) => { const e = validateLocation(v); if (arr(v.fulfil).length === 0) e.fulfil = 'Choose at least one option.'; return e; } },
     { id: 'review', title: 'Review and save', hint: 'You can still change anything. The listing is saved as a draft first.', content: <ReviewStep photos={photos.length} /> },
   ];

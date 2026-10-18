@@ -53,9 +53,9 @@ const done = (what: string) => (
 /** Choose an advanced service or institutional plan. Registers interest until payments are live. */
 export function SubscriptionWizard() {
   const steps: Step[] = [
-    { id: 'plan', title: 'Choose a service', content: <PlanStep />, validate: (v: Values): Errors => (str(v.plan) ? {} : { plan: 'Choose a service.' }) },
-    { id: 'billing', title: 'Billing details', hint: 'Who should we contact, and where is your organisation?', content: <Payer billing />, validate: (v: Values) => payerErrors(v, true) },
-    { id: 'method', title: 'Payment preference', content: <MethodStep />, validate: (v: Values): Errors => (str(v.method) ? {} : { method: 'Choose one.' }) },
+    { id: 'plan', summary: (v: Values) => plans.find((p) => p.id === str(v.plan))?.name ?? '', title: 'Choose a service', content: <PlanStep />, validate: (v: Values): Errors => (str(v.plan) ? {} : { plan: 'Choose a service.' }) },
+    { id: 'billing', summary: (v: Values) => str(v.organisation), title: 'Billing details', hint: 'Who should we contact, and where is your organisation?', content: <Payer billing />, validate: (v: Values) => payerErrors(v, true) },
+    { id: 'method', summary: (v: Values) => METHODS.find((m) => m.value === str(v.method))?.title ?? '', title: 'Payment preference', content: <MethodStep />, validate: (v: Values): Errors => (str(v.method) ? {} : { method: 'Choose one.' }) },
     { id: 'review', title: 'Review and confirm', content: <SubReview /> },
   ];
   const body = (v: Values) => ({ kind: 'subscription', plan: str(v.plan), billing: { name: str(v.payerName), organisation: str(v.organisation), email: str(v.email), phone: str(v.phone), tin: str(v.tin), country: str(v.country) || 'RW', province: str(v.provinceName), district: str(v.districtName) || str(v.city), sector: str(v.sectorName), cell: str(v.cellName), village: str(v.villageName) }, preferredMethod: str(v.method) });
@@ -69,10 +69,10 @@ function SubReview() {
 /** One-off payment (order, invoice, contribution). Amount in RWF; the provider handles the actual payment. */
 export function PaymentWizard({ reference = '' }: { reference?: string }) {
   const steps: Step[] = [
-    { id: 'amount', title: 'What are you paying for?', content: <><Notice /><Select name="purpose" label="Purpose" required options={PURPOSES} placeholder="Choose a purpose" /><Text name="amount" label="Amount in RWF" required inputMode="numeric" /><Text name="reference" label="Order or invoice reference (optional)" /></>,
+    { id: 'amount', summary: (v: Values) => `${str(v.purpose)} · ${str(v.amount)} RWF`, title: 'What are you paying for?', content: <><Notice /><Select name="purpose" label="Purpose" required options={PURPOSES} placeholder="Choose a purpose" /><Text name="amount" label="Amount in RWF" required inputMode="numeric" /><Text name="reference" label="Order or invoice reference (optional)" /></>,
       validate: (v: Values) => { const e: Errors = {}; if (!str(v.purpose)) e.purpose = 'Choose a purpose.'; const n = Number(str(v.amount).replace(/,/g, '')); if (!Number.isFinite(n) || n < 1 || !Number.isInteger(n)) e.amount = 'Enter a whole amount in RWF.'; return e; } },
-    { id: 'payer', title: 'Who is paying?', content: <Payer billing={false} />, validate: (v: Values) => payerErrors(v, false) },
-    { id: 'method', title: 'Payment preference', content: <MethodStep />, validate: (v: Values): Errors => (str(v.method) ? {} : { method: 'Choose one.' }) },
+    { id: 'payer', summary: (v: Values) => str(v.payerName), title: 'Who is paying?', content: <Payer billing={false} />, validate: (v: Values) => payerErrors(v, false) },
+    { id: 'method', summary: (v: Values) => METHODS.find((m) => m.value === str(v.method))?.title ?? '', title: 'Payment preference', content: <MethodStep />, validate: (v: Values): Errors => (str(v.method) ? {} : { method: 'Choose one.' }) },
     { id: 'review', title: 'Review and confirm', content: <PayReview /> },
   ];
   const body = (v: Values) => ({ kind: 'payment', purpose: str(v.purpose), amountRWF: Number(str(v.amount).replace(/,/g, '')), reference: str(v.reference), payer: { name: str(v.payerName), organisation: str(v.organisation), email: str(v.email), phone: str(v.phone) }, preferredMethod: str(v.method) });
