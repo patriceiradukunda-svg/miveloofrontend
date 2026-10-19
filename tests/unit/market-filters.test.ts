@@ -21,7 +21,7 @@ describe('marketplace ranking', () => {
     expect(rank(MARKET_ITEMS, { ...defaultFilters(), q: 'beans' }, me).map((x) => x.item.id)).toContain('m-02');
   });
   it('items without coordinates sort last and are hidden by a radius filter', () => {
-    const noGeo = MARKET_ITEMS.map((i, n) => (n === 0 ? { ...i, place: { ...i.place, lat: undefined, lng: undefined } } : i));
+    const noGeo = MARKET_ITEMS.map((i, n) => (n === 0 ? { ...i, place: null } : i));
     expect(rank(noGeo, defaultFilters(), me).at(-1)!.item.id).toBe('m-01'); expect(rank(noGeo, { ...defaultFilters(), within: 100 }, me).some((x) => x.item.id === 'm-01')).toBe(false);
   });
 });

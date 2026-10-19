@@ -22,7 +22,7 @@ const SEEDS: Seed[] = [
   ['m-14', 'Sorghum flour', 'cereals', 800, 'kg', 500, 25, 'huye', 'Sample Cooperative N', 'group', 'both', 80, 4, 9, 'in-stock', photos('10-grains-legumes-bowls', '12-produce-flatlay'), ['Stone ground'], 'Wholegrain sorghum flour for porridge.'],
 ];
 export const MARKET_ITEMS: MarketItem[] = SEEDS.map(([id, name, category, price, unit, qty, minOrder, place, who, kind, mode, radiusKm, leadDays, listedDaysAgo, availability, pics, quality, description]) => ({
-  id, name, category, price, unit, qty, minOrder, place: PLACES[place], photos: pics, supplier: { name: who, kind, verified: false }, description, quality,
+  id, supplierId: `sample-supplier-${id}`, name, category, price, unit, qty, minOrder, place: PLACES[place], photos: pics, supplier: { name: who, kind, verified: false }, description, quality,
   delivery: { mode, radiusKm: radiusKm || undefined }, leadDays, listedDaysAgo, availability, isSample: true,
 }));
 
@@ -38,6 +38,6 @@ const MINE: [string, string, string, number, string, number, ListingStatus, stri
   ['prd-8', 'Rice', 'cereals', 1100, 'kg', 1200, 'unpublished', photos('10-grains-legumes-bowls'), 30],
 ];
 export const MY_LISTINGS: SupplierListing[] = MINE.map(([id, name, category, price, unit, qty, status, pics, ago]) => ({
-  id, name, category, price, unit, qty, status, photos: pics, place: PLACES.amariza, supplier: { name: 'You', kind: 'individual', verified: false },
-  description: `${name}: sample listing.`, quality: [], delivery: { mode: 'both', radiusKm: 30 }, listedDaysAgo: ago, availability: qty === 0 ? 'seasonal' : 'in-stock', isSample: true,
+  id, supplierId: 'sample-own-supplier', name, category, price, unit, qty, status, photos: pics, place: PLACES.amariza, supplier: { name: 'You', kind: 'individual', verified: false },
+  description: `${name}: sample listing.`, quality: [], delivery: { mode: 'both', radiusKm: 30 }, leadDays: null, listedDaysAgo: ago, availability: qty === 0 ? 'seasonal' : 'in-stock', isSample: true,
 }));

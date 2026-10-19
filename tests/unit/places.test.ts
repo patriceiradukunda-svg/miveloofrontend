@@ -35,7 +35,7 @@ describe('sample data is real and consistent', () => {
   });
   it('every sample photo exists', async () => { const { existsSync } = await import('node:fs'); for (const i of MARKET_ITEMS) for (const f of i.photos) expect(existsSync('public' + f), f).toBe(true); });
   it('the demo previews together cover all six relations', () => {
-    const seen = new Set<string>(); for (const k of DEMO_SCHOOL_PLACES) for (const i of MARKET_ITEMS) seen.add(relation(PLACES[k], i.place));
+    const seen = new Set<string>(); for (const k of DEMO_SCHOOL_PLACES) for (const i of MARKET_ITEMS) if (i.place) seen.add(relation(PLACES[k], i.place));
     expect([...seen].sort()).toEqual(['cell', 'country', 'district', 'province', 'sector', 'village']);
   });
 });
