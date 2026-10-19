@@ -22,7 +22,7 @@ export class ApiError extends Error {
 
 type Opts = { method?: string; body?: unknown; token?: string | null; orgId?: string; headers?: Record<string, string>; cache?: RequestCache; revalidate?: number };
 
-export async function api<T = any>(path: string, o: Opts = {}): Promise<T> {
+export async function api<T = unknown>(path: string, o: Opts = {}): Promise<T> {
   if (!liveApi) throw new ApiError(503, 'Live backend is not configured (set NEXT_PUBLIC_API_URL).');
   const headers: Record<string, string> = { Accept: 'application/json', ...(o.headers || {}) };
   let body: BodyInit | undefined;
@@ -78,9 +78,35 @@ export const myOrganizations = (token: string) => api<{ id: string; type: string
 export const createOrganization = (token: string, b: { type: 'school' | 'supplier' | 'cooperative' | 'government' | 'ngo'; name: string; registration_number?: string }) => api('/organizations', { method: 'POST', body: b, token });
 export const createListing = (token: string, b: { food_id: string; title: string; unit: string; unit_price: string; currency?: string; min_order_qty?: string; location_id?: string; expires_at?: string }) => api<Listing>('/listings', { method: 'POST', body: b, token });
 export const editListing = (token: string, id: string, b: { title?: string; unit_price?: string; min_order_qty?: string; expires_at?: string }) => api<Listing>(`/listings/${id}`, { method: 'PATCH', body: b, token });
-export const myLots = (token: string) => api<any[]>('/inventory/lots', { token });
+export type InventoryLot = {
+  id: string;
+  food_id: string;
+  listing_id: string | null;
+  unit: string;
+  quantity: string;
+  expires_on: string | null;
+  status?: string;
+};
+
+export const myLots = (token: string) => api<InventoryLot[]>('/inventory/lots', { token });
 export const addLot = (token: string, b: { food_id: string; listing_id?: string; unit: string; quantity: string; expires_on?: string }) => api('/inventory/lots', { method: 'POST', body: b, token });
-export const myOrders = (token: string) => api<any[]>('/orders', { token });
+export type Order = {
+  id: string;
+  status: string;
+  total_amount?: string;
+  currency?: string;
+  created_at?: string;
+  updated_at?: string;
+  lines?: {
+    id?: string;
+    listing_id: string;
+    quantity: string;
+    unit_price?: string;
+    total?: string;
+  }[];
+};
+
+export const myOrders = (token: string) => api<Order[]>('/orders', { token });
 export const placeOrder = (token: string, lines: { listing_id: string; quantity: string }[], delivery_location_id?: string) =>
   api('/orders', { method: 'POST', body: { lines, delivery_location_id }, token, headers: { 'Idempotency-Key': crypto.randomUUID() } });
 
