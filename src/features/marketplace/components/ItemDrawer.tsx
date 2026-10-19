@@ -10,8 +10,14 @@ import { I, ICON } from './icons';
 import { Sheet } from './Sheet';
 
 export const priceText = (i: { price: number | null; unit: string }) => (i.price == null ? 'Ask' : formatRWF(i.price));
-const deliveryText = (d: MarketItem['delivery']) => (d.mode === 'pickup' ? 'Pickup only' : d.mode === 'deliver' ? `Delivers up to ${d.radiusKm ?? '?'} km` : `Pickup or delivery (${d.radiusKm ?? '?'} km)`);
-const agoText = (n: number) => (n === 0 ? 'Listed today' : n === 1 ? 'Listed yesterday' : `Listed ${n} days ago`);
+const deliveryText = (d: MarketItem['delivery']) => !d
+  ? 'Delivery details unavailable'
+  : d.mode === 'pickup'
+    ? 'Pickup only'
+    : d.mode === 'deliver'
+      ? `Delivers up to ${d.radiusKm ?? '?'} km`
+      : `Pickup or delivery (${d.radiusKm ?? '?'} km)`;
+const agoText = (n: number | null) => n == null ? 'Listing date unavailable' : n === 0 ? 'Listed today' : n === 1 ? 'Listed yesterday' : `Listed ${n} days ago`;
 function Fact({ icon, text }: { icon: readonly string[]; text: string }) { return <li className="flex items-center gap-2.5 rounded-xl bg-white px-3 py-2.5 text-sm font-semibold"><span className="text-teal"><I d={icon} className="h-4 w-4" /></span>{text}</li>; }
 
 interface Props { mode: 'school' | 'supplier'; item: MarketItem | null; label?: PlaceLabel; onClose: () => void; onPhotos: () => void; onAdd?: (qty: number) => void; saved?: boolean; onSave?: () => void; footer?: React.ReactNode }
@@ -29,16 +35,16 @@ export function ItemDrawer({ mode, item, label, onClose, onPhotos, onAdd, saved,
               {item.photos.length > 1 && <span className="absolute bottom-3 left-3 inline-flex items-center gap-1.5 rounded-full bg-white/90 px-3 py-1.5 text-sm font-bold"><I d={ICON.image} className="h-4 w-4" />{item.photos.length}</span>}
             </button>
             <div className="space-y-5 p-5">
-              {mode === 'supplier' && <p className="rounded-xl bg-gold-tint px-3 py-2 text-sm font-semibold">This is how verified schools see your listing.</p>}
+              {mode === 'supplier' && <p className="rounded-xl bg-gold-tint px-3 py-2 text-sm font-semibold">Listing preview based on the information currently available.</p>}
               <div>
                 <p className="text-xs font-bold uppercase tracking-[0.14em] text-gold-dark">{catLabel(item.category)}</p>
                 <h2 className="mt-1 font-display text-3xl font-semibold leading-tight text-teal-dark">{item.name}</h2>
                 <p className="mt-1 text-2xl font-bold">{priceText(item)}<span className="text-base font-semibold text-ink-soft"> / {item.unit}</span></p>
                 {mode === 'school' && label && <p className="mt-2 flex flex-wrap items-center gap-x-1.5 text-ink-soft"><I d={ICON.pin} className="h-4 w-4 text-gold-dark" />{label.text && <span>{label.text}</span>}{label.distance && <span className="font-bold text-ink">{label.text ? '· ' : ''}{label.distance}</span>}</p>}
               </div>
-              <p className="text-ink-soft">{item.description}</p>
+              <p className="text-ink-soft">{item.description || "No description provided."}</p>
               <ul className="grid gap-2 sm:grid-cols-2">
-                <Fact icon={ICON.box} text={item.qty == null ? 'Stock: ask' : item.qty === 0 ? 'No stock' : `${formatNumber(item.qty)} ${item.unit} available`} />
+                <Fact icon={ICON.box} text={item.qty == null ? 'Stock not provided' : item.qty === 0 ? 'No stock' : `${formatNumber(item.qty)} ${item.unit} available`} />
                 {item.minOrder ? <Fact icon={ICON.plus} text={`Minimum ${formatNumber(item.minOrder)} ${item.unit}`} /> : null}
                 <Fact icon={ICON.truck} text={deliveryText(item.delivery)} />
                 {item.leadDays ? <Fact icon={ICON.clock} text={`Ready in ${item.leadDays} day${item.leadDays > 1 ? 's' : ''}`} /> : null}
@@ -47,8 +53,15 @@ export function ItemDrawer({ mode, item, label, onClose, onPhotos, onAdd, saved,
               {item.quality.length > 0 && <ul className="flex flex-wrap gap-2">{item.quality.map((q) => <li key={q} className="rounded-full bg-teal-tint px-3 py-1 text-sm font-semibold text-teal-dark">{q}</li>)}</ul>}
               {mode === 'school' && (
                 <div className="flex items-center justify-between gap-3 rounded-2xl bg-white p-3">
-                  <p className="text-sm"><strong>{item.supplier.name}</strong><span className="block text-ink-soft">{item.supplier.kind === 'group' ? 'Cooperative' : 'Individual supplier'} · {item.supplier.verified ? 'Verified' : 'Not yet verified'}</span></p>
-                  <button type="button" onClick={onSave} aria-pressed={saved} aria-label={saved ? 'Remove from saved suppliers' : 'Save supplier'} className="grid h-11 w-11 place-items-center rounded-full border-2 border-ink/15 hover:border-red aria-pressed:border-red aria-pressed:bg-red-tint aria-pressed:text-red"><I d={ICON.heart} /></button>
+                  <p className="text-sm">
+                    <strong>{item.supplier.name || 'Supplier details unavailable'}</strong>
+                    <span className="block text-ink-soft">
+                      {item.supplier.kind === 'group' ? 'Cooperative' : item.supplier.kind === 'individual' ? 'Individual supplier' : 'Supplier type unavailable'}
+                      {' · '}
+                      {item.supplier.verified == null ? 'Verification status unavailable' : item.supplier.verified ? 'Verified' : 'Not verified'}
+                    </span>
+                  </p>
+                  {item.supplier.name && <button type="button" onClick={onSave} aria-pressed={saved} aria-label={saved ? 'Remove from saved suppliers' : 'Save supplier'} className="grid h-11 w-11 place-items-center rounded-full border-2 border-ink/15 hover:border-red aria-pressed:border-red aria-pressed:bg-red-tint aria-pressed:text-red"><I d={ICON.heart} /></button>}
                 </div>
               )}
               <p className="text-xs text-ink-soft">Indicative supplier price. The supplier confirms the final price and quantity.</p>

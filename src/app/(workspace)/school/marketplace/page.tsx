@@ -5,5 +5,5 @@ import { loadSchoolMarket } from '@/features/marketplace/service';
 export const metadata = { title: 'Marketplace' };
 export default async function Page() {
   const d = await loadSchoolMarket();
-  return <Suspense fallback={<GallerySkeleton />}><SchoolGallery items={d.items} place={d.place} sample={d.sample} error={d.error} previews={d.previews} /></Suspense>;
+  return <Suspense fallback={<GallerySkeleton />}><SchoolGallery items={d.items} place={d.place} error={d.error} /></Suspense>;
 }
