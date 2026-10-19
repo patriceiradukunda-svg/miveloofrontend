@@ -4,7 +4,7 @@ import { messageOf, withBackendToken } from '@/lib/server/backend-session';
 
 // The backend measures in these units; the form accepts friendly words and we translate.
 const UNIT_MAP: Record<string, string> = { kg: 'kg', kilo: 'kg', kilogram: 'kg', g: 'g', gram: 'g', tonne: 'tonne', ton: 'tonne', l: 'l', litre: 'l', liter: 'l', ml: 'ml', piece: 'piece', pieces: 'piece', bunch: 'piece', head: 'piece', tray: 'piece', sack: 'piece', dozen: 'dozen' };
-export const normalizeUnit = (u: string) => UNIT_MAP[u.trim().toLowerCase()];
+const normalizeUnit = (u: string) => UNIT_MAP[u.trim().toLowerCase()];
 
 export type SaveListingResult = { ok: true; listingId: string; status: string; photos: number } | { ok: false; error: string };
 
