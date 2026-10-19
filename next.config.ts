@@ -12,6 +12,8 @@ const config: NextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
   images: { formats: ['image/avif', 'image/webp'] },
+  // product photo uploads go through server actions (max 1.5 MB per photo, a few per save)
+  experimental: { serverActions: { bodySizeLimit: '8mb' } },
   async headers() {
     return [{ source: '/:path*', headers: securityHeaders }];
   },
