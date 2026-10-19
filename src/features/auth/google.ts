@@ -1,5 +1,5 @@
 'use server';
-import { createPublicKey, createVerify } from 'node:crypto';
+import { createPublicKey, createVerify, type JsonWebKeyInput } from 'node:crypto';
 
 const CLIENT_ID = process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID;
 const b64 = (s: string) => Buffer.from(s.replace(/-/g, '+').replace(/_/g, '/'), 'base64');
@@ -17,7 +17,7 @@ export async function verifyGoogleCredential(credential: string): Promise<{ ok: 
     if (header.alg !== 'RS256' || !header.kid) return bad();
     const res = await fetch('https://www.googleapis.com/oauth2/v3/certs', { next: { revalidate: 3600 } });
     if (!res.ok) return bad();
-    const { keys } = (await res.json()) as { keys: (JsonWebKey & { kid?: string })[] };
+    const { keys } = (await res.json()) as { keys: (JsonWebKeyInput['key'] & { kid?: string })[] };
     const jwk = keys.find((k) => k.kid === header.kid);
     if (!jwk) return bad();
     if (!createVerify('RSA-SHA256').update(`${h}.${p}`).verify(createPublicKey({ key: jwk, format: 'jwk' }), b64(s))) return bad();
