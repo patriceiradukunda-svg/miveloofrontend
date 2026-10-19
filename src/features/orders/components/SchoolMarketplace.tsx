@@ -1,10 +1,9 @@
 "use client";
 import { useEffect, useMemo, useState } from 'react';
-import { sampleProducts, sampleSuppliers, CATEGORY_LABEL } from '@/lib/sample-data';
+import { CATEGORY_LABEL } from '@/config/product-categories';
 import { filterProducts } from '@/features/products/services/products.service';
 import { formatRWF } from '@/lib/formatters';
 import { Button } from '@/components/ui/button';
-import { SampleBadge } from '@/components/ui/badge';
 import { Card } from '@/components/ui/card';
 import { useToast } from '@/components/ui/toast';
 import { liveApi, imgUrl } from '@/lib/miveloo-client';
@@ -18,23 +17,41 @@ type Item = PublicProduct & Partial<Pick<LiveProduct, 'imageUrl' | 'supplierName
  *  With NEXT_PUBLIC_API_URL set it lists live listings and places real orders; otherwise it stays a labelled demo. */
 export function SchoolMarketplace() {
   const [q, setQ] = useState(''); const [cat, setCat] = useState(''); const [cart, setCart] = useState<Record<string, number>>({}); const toast = useToast(); const [busy, setBusy] = useState(false);
-  const [products, setProducts] = useState<Item[]>(sampleProducts); const [isLive, setIsLive] = useState(false); const [note, setNote] = useState<string>();
+  const [products, setProducts] = useState<Item[]>([]); const [isLive, setIsLive] = useState(false); const [note, setNote] = useState<string>();
   useEffect(() => {
-    if (!liveApi) return; let off = false;
-    loadLiveProducts().then((p) => { if (!off && p.length) { setProducts(p); setIsLive(true); } }).catch(() => { if (!off) setNote('Live listings are unavailable right now (the service may be waking up). Showing sample data.'); });
+    if (!liveApi) {
+      setNote('Marketplace listings are unavailable because the backend is not configured.');
+      return;
+    }
+    let off = false;
+    loadLiveProducts()
+      .then((p) => {
+        if (!off) {
+          setProducts(p);
+          setIsLive(true);
+          setNote(p.length ? undefined : 'No published listings are available yet.');
+        }
+      })
+      .catch(() => {
+        if (!off) setNote('Live listings are unavailable right now. Please try again later.');
+      });
     return () => { off = true; };
   }, []);
   const items = useMemo(() => filterProducts(products, { q, category: cat || undefined }) as Item[], [products, q, cat]);
   const lines = products.filter((p) => cart[p.id]); const total = lines.reduce((s, p) => s + (p.indicativePriceRWF ?? 0) * (cart[p.id] ?? 0), 0);
-  const supplier = (p: Item) => p.supplierName ?? sampleSuppliers.find((s) => s.id === p.supplierId)?.name ?? 'Supplier';
+  const supplier = (p: Item) => p.supplierName ?? 'Supplier';
   async function submit() {
+    if (!isLive) {
+      toast('Ordering is unavailable until the marketplace backend is connected.');
+      return;
+    }
     setBusy(true);
     try {
       if (isLive) {
         const res = await placeOrdersAction(lines.map((p) => ({ listingId: p.id, supplierId: p.supplierId, quantity: cart[p.id] ?? 0 })));
         if (res.ok) { setCart({}); toast(`Order${res.orders > 1 ? 's' : ''} placed (${res.orders}). Track ${res.orders > 1 ? 'them' : 'it'} under Orders.`); }
         else toast(res.placed ? `${res.placed} order(s) placed, then: ${res.error}` : res.error);
-      } else { await new Promise((r) => setTimeout(r, 600)); setCart({}); toast('Demo only: in production this submits a draft order to the server.'); }
+      }
     } finally { setBusy(false); }
   }
   return (
@@ -46,7 +63,7 @@ export function SchoolMarketplace() {
         <ul className="grid gap-4 sm:grid-cols-2">{items.map((p) => (
           <li key={p.id}><Card className="space-y-2">
             {p.imageUrl && <div>{/* eslint-disable-next-line @next/next/no-img-element */}<img src={imgUrl(p.imageUrl) ?? undefined} alt={p.name} loading="lazy" className="h-36 w-full rounded-xl object-cover" /></div>}
-            <div className="flex items-start justify-between gap-2"><h3 className="text-lg font-semibold"><span aria-hidden>{p.emoji} </span>{p.name}</h3>{(!isLive || p.isSample) && <SampleBadge />}</div>
+            <div className="flex items-start justify-between gap-2"><h3 className="text-lg font-semibold"><span aria-hidden>{p.emoji} </span>{p.name}</h3></div>
             <p className="text-sm text-ink-soft">{supplier(p)}{isLive ? '' : ` · ${p.district}`}</p>
             <p className="font-bold text-teal-dark">{p.indicativePriceRWF != null ? `${formatRWF(p.indicativePriceRWF)} / ${p.unit}` : 'Request a quotation'}</p>
             <p className="text-sm">Available: {p.availableQuantity ?? 'ask supplier'} {p.availableQuantity != null && p.unit} · Delivery terms: agreed per order</p>

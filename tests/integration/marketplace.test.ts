@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { filterProducts, listPublicProducts } from '@/features/products/services/products.service';
-import { sampleProducts } from '@/lib/sample-data';
+import { sampleProducts } from '../fixtures/sample-data';
 
 describe('public marketplace', () => {
   it('filters by search, category, price and availability', () => {

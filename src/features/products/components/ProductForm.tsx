@@ -4,10 +4,10 @@ import { FormField } from '@/components/forms/FormField';
 import { FormError } from '@/components/forms/FormError';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/components/ui/toast';
-import { CATEGORY_LABEL } from '@/lib/sample-data';
+import { CATEGORY_LABEL } from '@/config/product-categories';
 import { productSchema } from '../schemas/product.schema';
 import { fieldErrors } from '@/features/auth/schemas/auth.schema';
-import { api, hasBackend } from '@/lib/api-client';
+import { hasBackend } from '@/lib/api-client';
 import { friendlyError } from '@/lib/errors';
 import { liveApi, searchFoods, type Food } from '@/lib/miveloo-client';
 import { saveListingAction } from '../actions';
@@ -41,8 +41,7 @@ export function ProductForm({ defaults = {} }: { defaults?: Record<string, strin
         if (!res.ok) { setFormErr(res.error); return; }
         toast(res.status === 'pending_approval' ? `Saved${res.photos ? ` with ${res.photos} photo(s)` : ''}. It goes live after Miveloo approves it.` : `Saved${res.photos ? ` with ${res.photos} photo(s)` : ''}.`);
       } else {
-        if (hasBackend) await api('/supplier/products', { method: 'POST', body: JSON.stringify(r.data) });
-        toast(hasBackend ? 'Saved as draft. Publish when ready.' : 'Demo only: nothing was saved.');
+        setFormErr('Listing submission is unavailable because the live listing service is not configured.');
       }
     } catch (err) { setFormErr(friendlyError(err)); } finally { setBusy(false); }
   }

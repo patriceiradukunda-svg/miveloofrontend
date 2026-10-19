@@ -22,7 +22,6 @@ export default async function AuthLayout({ children }: { children: React.ReactNo
           <Eyebrow>Miveloo</Eyebrow>
           <h2 className="max-w-lg text-balance font-display text-4xl font-semibold leading-[1.08] xl:text-5xl">{tagline}</h2>
           <ul className="flex flex-wrap gap-2">{chips.map((c) => <li key={c} className="rounded-full border border-cream/30 bg-ink/40 px-4 py-2 text-sm font-semibold backdrop-blur-md">{c}</li>)}</ul>
-          <p className="text-xs text-cream/70">{t('auth.photoNote', 'Photographs are illustrative and do not depict verified Miveloo users.')}</p>
         </div>
       </aside>
 
