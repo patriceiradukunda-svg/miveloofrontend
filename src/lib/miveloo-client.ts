@@ -5,7 +5,7 @@
  * - Base URL: NEXT_PUBLIC_API_URL (e.g. https://miveloo-backend.onrender.com). The /api/v1 prefix is added here.
  */
 const RAW = process.env.NEXT_PUBLIC_API_URL || '';
-/** true only when NEXT_PUBLIC_API_URL is set: live backend data on; otherwise the UI keeps its labelled sample data. */
+/** True only when NEXT_PUBLIC_API_URL is set; live API features require the backend. */
 export const liveApi = RAW.length > 0;
 export const API_ORIGIN = RAW.replace(/\/+$/, '').replace(/\/api\/v1$/, '');
 export const API_BASE = `${API_ORIGIN}/api/v1`;

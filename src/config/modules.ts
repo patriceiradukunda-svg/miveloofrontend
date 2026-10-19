@@ -6,26 +6,8 @@ export const modules: Record<string, ModuleSpec> = {
   "desc": "Orders, deliveries, spend and alerts at a glance.",
   "status": "available",
   "features": [],
-  "metrics": [
-   [
-    "Active orders",
-    "3"
-   ],
-   [
-    "Pending requests",
-    "2"
-   ],
-   [
-    "Expected deliveries",
-    "1"
-   ],
-   [
-    "Month spend (RWF)",
-    "1,250,000"
-   ]
-  ],
+  "metrics": null,
   "notes": [
-   "Figures are sample data for design review."
   ]
  },
  "school/meal-planning": {
@@ -129,7 +111,6 @@ export const modules: Record<string, ModuleSpec> = {
   "metrics": null,
   "notes": [
    "Historical data in your own dashboard is free.",
-   "Chart below is sample data."
   ]
  },
  "school/reports": {
@@ -159,26 +140,8 @@ export const modules: Record<string, ModuleSpec> = {
   "desc": "Listings, orders, stock and sales.",
   "status": "available",
   "features": [],
-  "metrics": [
-   [
-    "Active listings",
-    "5"
-   ],
-   [
-    "Incoming orders",
-    "2"
-   ],
-   [
-    "Stock alerts",
-    "1"
-   ],
-   [
-    "Month sales (RWF)",
-    "840,000"
-   ]
-  ],
+  "metrics": null,
   "notes": [
-   "Figures are sample data for design review."
   ]
  },
  "supplier/orders": {
@@ -289,24 +252,7 @@ export const modules: Record<string, ModuleSpec> = {
   "desc": "Members, stock, orders and fulfilment.",
   "status": "in-development",
   "features": [],
-  "metrics": [
-   [
-    "Members",
-    "8"
-   ],
-   [
-    "Open orders",
-    "2"
-   ],
-   [
-    "Confirmed stock (kg)",
-    "1,800"
-   ],
-   [
-    "Estimated capacity (kg)",
-    "4,000"
-   ]
-  ],
+  "metrics": null,
   "notes": [
    "Estimated capacity is never shown as confirmed stock. Sample figures."
   ]
@@ -408,24 +354,7 @@ export const modules: Record<string, ModuleSpec> = {
   "desc": "Programme and regional overview.",
   "status": "agreement",
   "features": [],
-  "metrics": [
-   [
-    "Schools in coverage",
-    "—"
-   ],
-   [
-    "Coverage period",
-    "—"
-   ],
-   [
-    "Last data update",
-    "—"
-   ],
-   [
-    "Data sources",
-    "—"
-   ]
-  ],
+  "metrics": null,
   "notes": [
    "No data loaded. Coverage will be shown here and never assumed to be national."
   ]

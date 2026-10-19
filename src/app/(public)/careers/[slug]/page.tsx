@@ -113,7 +113,6 @@ export default async function JobPage({ params }: Props) {
             <Link href="/careers/idea" className={gold}>{t('car.p2cta', 'Share your idea')} <span aria-hidden className="ml-2">→</span></Link>
             <Link href="/careers#roles" className={light}>{t('car.d.back', 'All roles')}</Link>
           </div>
-          <p className="mx-auto mt-10 max-w-xl text-sm text-cream/80">{t('home2.photoNote', 'Photographs are illustrative and do not depict verified Miveloo users. Marketplace access is available to authorised schools and partners after sign-in.')}</p>
         </Reveal>
       </Bg>
     </>

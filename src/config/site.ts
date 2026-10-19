@@ -13,5 +13,5 @@ export const site = {
     { label: 'Instagram', href: process.env.NEXT_PUBLIC_SOCIAL_INSTAGRAM ?? '' },
   ].filter((s) => s.href),
   // ON by default, OFF when DEMO_MODE=false. Always ignored when a backend (API_URL) is configured.
-  demoMode: process.env.DEMO_MODE !== 'false',
+  demoMode: process.env.DEMO_MODE === 'true',
 } as const;

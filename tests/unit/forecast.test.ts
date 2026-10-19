@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { sampleSeries } from '@/lib/sample-forecast';
+import { sampleSeries } from '../fixtures/sample-forecast';
 describe('sample forecast data', () => {
   it('keeps observations and forecasts distinct, in time order', () => {
     for (const s of sampleSeries) { const all = [...s.observed.map((o) => o.label), ...s.forecast.map((f) => f.label)]; expect(new Set(all).size).toBe(all.length); expect(s.forecast.length).toBeGreaterThan(0); }
