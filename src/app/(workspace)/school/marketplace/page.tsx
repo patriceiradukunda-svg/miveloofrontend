@@ -1,4 +1,9 @@
-import { PageHeader } from '@/components/layout/PageHeader';
-import { SchoolMarketplace } from '@/features/orders/components/SchoolMarketplace';
-export const metadata = { title: 'School marketplace' };
-export default function Page() { return <div className="space-y-6"><PageHeader title="School marketplace" lead="Compare offers, check quantities and delivery terms, then submit a purchase request." status="available" /><SchoolMarketplace /></div>; }
+import { Suspense } from 'react';
+import { SchoolGallery } from '@/features/marketplace/components/SchoolGallery';
+import { GallerySkeleton } from '@/features/marketplace/components/GallerySkeleton';
+import { loadSchoolMarket } from '@/features/marketplace/service';
+export const metadata = { title: 'Marketplace' };
+export default async function Page() {
+  const d = await loadSchoolMarket();
+  return <Suspense fallback={<GallerySkeleton />}><SchoolGallery items={d.items} place={d.place} sample={d.sample} error={d.error} previews={d.previews} /></Suspense>;
+}

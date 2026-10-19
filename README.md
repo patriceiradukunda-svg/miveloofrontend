@@ -61,3 +61,10 @@ Visitors and suppliers cannot see marketplace listings. Only verified schools ca
 ## Not included yet (known gaps)
 
 Image upload, real-time messaging, notification preferences UI, two-factor flow, support tickets, i18n of workspace module pages, dropdown/popover/tabs/tooltip primitives, visual-regression and accessibility CI (add axe + Lighthouse CI), analytics (add consent-aware tooling, track searches/sign-ups/drop-off).
+
+## Marketplace gallery (school) and listings (supplier)
+
+* `/school/marketplace`: gallery of large product cards, nearest first. Hover (or focus, or touch) reveals an eye (details), a cart (add to basket) and an image icon (more photos). Filters are icons and live in the URL, so any filtered view is a shareable link; `matchLink()` in `features/marketplace/filters.ts` builds the link a "matching food" notification should open. The **Request** button opens the existing request form at `/school/requests/new`.
+* `/supplier/products`: the same experience for the supplier's own listings, by status (Published, Draft, Unpublished). **Add listing** opens the existing listing form.
+* Place shown on a card depends on the viewer (`src/lib/places.ts`): same village = distance only; same cell = village; same sector = cell/village; same district = sector/cell/village; same province or another province = district/sector/cell/village. Distance is a straight line between confirmed coordinates.
+* Backend contracts still to confirm: `GET /school/marketplace` -> `{ items: MarketItem[]; place: Place }` (the school's confirmed registered location, never device GPS) and `GET /supplier/listings` -> `{ items: SupplierListing[] }`. Types: `src/features/marketplace/types.ts`. Without a backend, labelled sample data with real Rwanda place names is used.

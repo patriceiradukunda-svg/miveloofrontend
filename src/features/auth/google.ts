@@ -20,7 +20,7 @@ export async function verifyGoogleCredential(credential: string): Promise<{ ok: 
     const { keys } = (await res.json()) as { keys: (JsonWebKeyInput['key'] & { kid?: string })[] };
     const jwk = keys.find((k) => k.kid === header.kid);
     if (!jwk) return bad();
-    if (!createVerify('RSA-SHA256').update(`${h}.${p}`).verify(createPublicKey({ key: jwk, format: 'jwk' }), b64(s))) return bad();
+    if (!createVerify('RSA-SHA256').update(`${h}.${p}`).verify(createPublicKey({ key: jwk as unknown as import('node:crypto').JsonWebKey, format: 'jwk' }), b64(s))) return bad();
     const c = JSON.parse(b64(p).toString('utf8')) as { iss?: string; aud?: string; exp?: number; email?: string; email_verified?: boolean; name?: string; sub?: string };
     const now = Math.floor(Date.now() / 1000);
     if (!['https://accounts.google.com', 'accounts.google.com'].includes(c.iss ?? '') || c.aud !== CLIENT_ID || !c.exp || c.exp + 60 < now || c.email_verified !== true || !c.email) return bad();
