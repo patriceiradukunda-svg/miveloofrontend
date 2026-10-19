@@ -25,12 +25,12 @@ export async function logout() {
 
 // Backend organization type -> UI role. We pick the first candidate that exists in this app's ROLES list.
 const ROLE_CANDIDATES: Record<string, string[]> = {
-  school: ['school', 'school_admin', 'school_buyer', 'buyer'],
-  supplier: ['supplier', 'individual_supplier', 'supplier_owner'],
-  cooperative: ['cooperative', 'cooperative_manager'],
-  government: ['institution', 'institutional_analyst', 'government', 'analyst'],
-  ngo: ['institution', 'institutional_analyst', 'ngo', 'analyst'],
-  platform: ['admin', 'platform_admin', 'support'],
+  school: ['school'],
+  supplier: ['supplier'],
+  cooperative: ['group'],
+  government: ['institution'],
+  ngo: ['institution'],
+  platform: ['admin'],
 };
 function pickRole(orgType: string): Role | undefined {
   const all = ROLES as readonly string[];
