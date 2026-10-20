@@ -81,10 +81,14 @@ export const editListing = (token: string, id: string, b: { title?: string; unit
 export type InventoryLot = {
   id: string;
   food_id: string;
-  listing_id: string | null;
   unit: string;
-  quantity: string;
+  on_hand?: string;
+  reserved?: string;
+  available?: string;
   expires_on: string | null;
+  /** not returned by the backend today; kept optional for forward compatibility */
+  listing_id?: string | null;
+  quantity?: string;
   status?: string;
 };
 
