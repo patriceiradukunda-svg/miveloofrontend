@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { getT } from '@/i18n/server';
 import { HeroSlider } from '@/components/public/home/HeroSlider';
 import { Reveal } from '@/components/public/home/Reveal';
+import { ServicesSection } from '@/components/public/home/ServicesSection';
 
 const P = '/images/miveloo-photos/';
 const wide = 'mx-auto w-full max-w-[90rem] px-4 sm:px-6 lg:px-10';
@@ -191,12 +192,7 @@ export default async function Home() {
         </Reveal>
       </Bg>
 
-      <section className="bg-cream-deep py-16">
-        <div className={`${wide} flex flex-wrap items-center justify-between gap-6`}>
-          <div className="max-w-2xl"><h2 style={h2s} className="font-semibold text-teal-dark">{t('home2.freeTitle', 'Free core. Optional extras.')}</h2><p className="mt-2 text-lg text-ink-soft">{t('home2.freeBody', 'The core platform has no access fee. Advanced services are optional and clearly labelled.')}</p></div>
-          <Link href="/pricing" className={solid}>{t('home2.pricing', 'See pricing')}</Link>
-        </div>
-      </section>
+      <ServicesSection />
 
       <Bg n="02-farmer-grass-portrait" pos="50% 30%" overlay="bg-gradient-to-r from-ink/90 via-ink/70 to-ink/40" className="py-28 text-center">
         <Reveal className={wide}>
