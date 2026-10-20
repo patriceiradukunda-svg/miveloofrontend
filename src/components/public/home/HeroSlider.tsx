@@ -12,18 +12,17 @@ const ring = 'focus-visible:outline focus-visible:outline-2 focus-visible:outlin
  * Hero slider.
  * - Below lg: the photo sits on top (nothing is cropped away behind text) and the headline and buttons follow on a solid dark band.
  * - From lg up: full-screen photo background with the text on top, as before.
- * Autoplay pauses on hover/focus, has an explicit pause button, and stays off under reduced motion.
+ * Autoplay pauses on hover/focus and stays off under reduced motion.
  */
 export function HeroSlider({ slides, labels, children }: { slides: Slide[]; labels: Labels; children: React.ReactNode }) {
   const n = slides.length;
   const [i, setI] = useState(0);
   const [paused, setPaused] = useState(false); // hover / keyboard focus
-  const [stopped, setStopped] = useState(false); // pause button
   const [tick, setTick] = useState(0); // restarts the progress bar whenever autoplay (re)starts
   const [reduced, setReduced] = useState(true); // no autoplay until the preference is known
   const x0 = useRef<number | null>(null);
   const go = useCallback((k: number) => setI(((k % n) + n) % n), [n]);
-  const halted = paused || stopped;
+  const halted = paused;
 
   useEffect(() => {
     const m = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -72,13 +71,6 @@ export function HeroSlider({ slides, labels, children }: { slides: Slide[]; labe
               </span>
             </button>
           ))}
-          {!reduced && (
-            <button type="button" aria-pressed={stopped} aria-label={stopped ? (labels.play ?? 'Play photo rotation') : (labels.pause ?? 'Pause photo rotation')} onClick={() => setStopped((v) => !v)} className={`ml-1 grid h-11 w-11 place-items-center rounded-full bg-cream/90 text-teal-dark hover:bg-gold ${ring}`}>
-              <svg viewBox="0 0 24 24" fill="currentColor" className="h-4 w-4" aria-hidden>{stopped ? <path d="M8 5v14l11-7z" /> : <><rect x="6" y="5" width="4" height="14" rx="1" /><rect x="14" y="5" width="4" height="14" rx="1" /></>}</svg>
-            </button>
-          )}
-          <button type="button" aria-label={labels.prev} onClick={() => go(i - 1)} className={`ml-1 grid h-11 w-11 place-items-center rounded-full bg-cream/90 text-lg font-bold text-teal-dark hover:bg-gold ${ring}`}><span aria-hidden>←</span></button>
-          <button type="button" aria-label={labels.next} onClick={() => go(i + 1)} className={`ml-1 grid h-11 w-11 place-items-center rounded-full bg-cream/90 text-lg font-bold text-teal-dark hover:bg-gold ${ring}`}><span aria-hidden>→</span></button>
         </div>
       </div>
 
