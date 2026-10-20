@@ -17,7 +17,7 @@ export interface ServiceSlide {
   bg: string;
   photo?: { src: string; alt: string };
 }
-export interface SliderLabels { region: string; prev: string; next: string; pause: string; play: string; goTo: string; slide: string; forWho: string }
+export interface SliderLabels { region: string; goTo: string; slide: string; forWho: string }
 
 const INTERVAL = 5000;
 const GAP = '1.25rem';
@@ -35,7 +35,7 @@ const kindTone: Record<ServiceSlide['kind'], string> = { free: 'bg-green-dark te
 /**
  * Services carousel. Shows 1 card on phones, 2 on tablets, 3 on laptops and 4 on wide screens.
  * Moves one card every 5 seconds, then fades back to the first card (first → last → first, on repeat).
- * Pauses on hover and keyboard focus, has a pause button, supports swipe and arrow keys, and never autoplays
+ * Pauses on hover and keyboard focus, supports swipe, dots and arrow keys, and never autoplays
  * when the visitor prefers reduced motion.
  */
 export function ServicesSlider({ slides, labels }: { slides: ServiceSlide[]; labels: SliderLabels }) {
@@ -45,14 +45,12 @@ export function ServicesSlider({ slides, labels }: { slides: ServiceSlide[]; lab
   const wrapTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const [n, setN] = useState(1);
   const [i, setI] = useState(0);
-  const [tick, setTick] = useState(0);
   const [phase, setPhase] = useState<'idle' | 'out' | 'jump'>('idle');
   const [hover, setHover] = useState(false);
-  const [stopped, setStopped] = useState(false);
   const [reduced, setReduced] = useState(true); // no autoplay until the preference is known
   const max = Math.max(0, total - n);
   const idx = Math.min(i, max);
-  const halted = hover || stopped;
+  const halted = hover;
   const playing = !halted && !reduced && max > 0;
 
   useEffect(() => {
@@ -86,14 +84,13 @@ export function ServicesSlider({ slides, labels }: { slides: ServiceSlide[]; lab
     if (k < 0) { wrap(max); return; }
     if (k > max) { wrap(0); return; }
     setI(k);
-    setTick((v) => v + 1);
   }, [max, wrap]);
 
   useEffect(() => {
     if (!playing || phase !== 'idle') return;
     const id = setTimeout(() => go(idx + 1), INTERVAL);
     return () => clearTimeout(id);
-  }, [playing, phase, idx, tick, go]);
+  }, [playing, phase, idx, go]);
 
   const trackMotion = phase === 'idle' ? 'opacity-100 transition-[transform,opacity] duration-700 ease-out' : phase === 'out' ? 'opacity-0 transition-opacity duration-300' : 'opacity-0 transition-none';
 
@@ -107,7 +104,6 @@ export function ServicesSlider({ slides, labels }: { slides: ServiceSlide[]; lab
       onPointerUp={(e) => { if (x0.current !== null) { const d = e.clientX - x0.current; if (Math.abs(d) > 50) go(idx + (d < 0 ? 1 : -1)); x0.current = null; } }}
       className="touch-pan-y"
     >
-      <style>{'@keyframes svcbar{from{width:0}to{width:100%}}'}</style>
       <div ref={viewport} className="-my-4 overflow-hidden py-4 [--n:1] sm:[--n:2] lg:[--n:3] xl:[--n:4]">
         <ul
           aria-live={playing ? 'off' : 'polite'}
@@ -152,29 +148,13 @@ export function ServicesSlider({ slides, labels }: { slides: ServiceSlide[]; lab
         </ul>
       </div>
 
-      <div className="mt-6 flex flex-wrap items-center justify-between gap-4">
-        <div className="flex items-center">
-          {Array.from({ length: max + 1 }, (_, k) => (
-            <button key={k} type="button" aria-label={`${labels.goTo} ${k + 1}`} aria-current={k === idx} onClick={() => go(k)} className={`grid h-11 w-6 place-items-center ${ring}`}>
-              <span className={`h-2 rounded-full transition-all ${k === idx ? 'w-6 bg-teal' : 'w-2 bg-ink/25'}`} />
-            </button>
-          ))}
-        </div>
-        <div className="flex items-center gap-2">
-          {!reduced && max > 0 && (
-            <button type="button" aria-pressed={stopped} aria-label={stopped ? labels.play : labels.pause} onClick={() => setStopped((v) => !v)} className={`grid h-11 w-11 place-items-center rounded-full border-2 border-teal text-teal hover:bg-teal-tint ${ring}`}>
-              <svg viewBox="0 0 24 24" fill="currentColor" className="h-4 w-4" aria-hidden>{stopped ? <path d="M8 5v14l11-7z" /> : <><rect x="6" y="5" width="4" height="14" rx="1" /><rect x="14" y="5" width="4" height="14" rx="1" /></>}</svg>
-            </button>
-          )}
-          <button type="button" aria-label={labels.prev} onClick={() => go(idx - 1)} className={`grid h-11 w-11 place-items-center rounded-full bg-teal text-lg font-bold text-cream hover:bg-teal-dark ${ring}`}><span aria-hidden>←</span></button>
-          <button type="button" aria-label={labels.next} onClick={() => go(idx + 1)} className={`grid h-11 w-11 place-items-center rounded-full bg-teal text-lg font-bold text-cream hover:bg-teal-dark ${ring}`}><span aria-hidden>→</span></button>
-        </div>
+      <div className="mt-6 flex items-center justify-center">
+        {Array.from({ length: max + 1 }, (_, k) => (
+          <button key={k} type="button" aria-label={`${labels.goTo} ${k + 1}`} aria-current={k === idx} onClick={() => go(k)} className={`grid h-11 w-6 place-items-center ${ring}`}>
+            <span className={`h-2 rounded-full transition-all ${k === idx ? 'w-6 bg-teal' : 'w-2 bg-ink/25'}`} />
+          </button>
+        ))}
       </div>
-      {!reduced && max > 0 && (
-        <div aria-hidden className="mt-4 h-1 overflow-hidden rounded-full bg-ink/10">
-          <span key={`${idx}-${tick}-${phase}`} className="block h-full bg-gold" style={{ animation: `svcbar ${INTERVAL}ms linear forwards`, animationPlayState: halted || phase !== 'idle' ? 'paused' : 'running' }} />
-        </div>
-      )}
     </div>
   );
 }

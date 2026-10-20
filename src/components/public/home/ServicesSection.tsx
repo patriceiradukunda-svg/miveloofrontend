@@ -98,7 +98,6 @@ export async function ServicesSection() {
           <div className="max-w-2xl">
             <Eyebrow dark={false}>{t('svc.eyebrow', 'Services and pricing')}</Eyebrow>
             <h2 style={h2s} className="mt-3 text-balance font-semibold text-teal-dark">{t('home2.freeTitle', 'Free core. Optional extras.')}</h2>
-            <p className="mt-3 text-lg text-ink-soft">{t('home2.freeBody', 'The core platform has no access fee. Advanced services are optional and clearly labelled.')}</p>
           </div>
           <Link href="/pricing" className={solid}>{t('home2.pricing', 'See pricing')} <span aria-hidden className="ml-2">→</span></Link>
         </Reveal>
@@ -107,17 +106,12 @@ export async function ServicesSection() {
             slides={slides}
             labels={{
               region: t('svc.region', 'Our services'),
-              prev: t('svc.prev', 'Previous service'),
-              next: t('svc.next', 'Next service'),
-              pause: t('svc.pause', 'Pause automatic sliding'),
-              play: t('svc.play', 'Start automatic sliding'),
               goTo: t('svc.goTo', 'Go to service'),
               slide: t('svc.slide', 'Service {n} of {total}'),
               forWho: t('svc.for', 'For'),
             }}
           />
         </div>
-        <p className="mt-6 max-w-3xl text-sm text-ink-soft">{t('svc.note', 'The free core does not include every advanced AI service. Optional services will show eligibility, price, limits and terms before you subscribe.')}</p>
       </div>
     </section>
   );
