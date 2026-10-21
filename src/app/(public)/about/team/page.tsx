@@ -34,18 +34,48 @@ export default async function TeamPage() {
           <Reveal>
             <h2 style={h2s} className="mt-3 max-w-3xl text-balance font-semibold text-teal-dark">{t('team.mTitle', 'Real people behind the platform')}</h2>
           </Reveal>
-          <ul className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+          <ul className="mx-auto mt-12 grid max-w-[56rem] gap-8 sm:grid-cols-2">
             {team.map((m, k) => (
               <li key={m.name}>
                 <Reveal delay={k * 120} className="h-full">
                   <article className="group flex h-full flex-col overflow-hidden rounded-2xl border border-ink/10 bg-white shadow-card transition-transform duration-300 hover:-translate-y-1">
                     <div className="relative aspect-square overflow-hidden bg-cream-deep">
-                      <Image src={m.photo} alt={t('team.photoAlt', 'Portrait of') + ' ' + m.name} fill sizes="(min-width:1024px) 30vw, (min-width:640px) 45vw, 100vw" className="object-cover transition-transform duration-500 group-hover:scale-[1.03]" style={{ objectPosition: '50% 22%' }} />
+                      <Image src={m.photo} alt={t('team.photoAlt', 'Portrait of') + ' ' + m.name} fill sizes="(min-width:1024px) 448px, (min-width:640px) 45vw, 100vw" className="object-cover transition-transform duration-500 group-hover:scale-[1.03]" style={{ objectPosition: '50% 22%' }} />
                     </div>
-                    <div className="p-6 sm:p-7">
+                    <div className="flex flex-1 flex-col p-6 sm:p-7">
                       <h3 className="text-2xl font-semibold text-teal-dark">{m.name}</h3>
                       {m.role ? <p className="mt-1 text-xs font-bold uppercase tracking-[0.16em] text-gold-dark">{m.role}</p> : null}
                       {m.bio ? <p className="mt-3 text-base text-ink-soft">{m.bio}</p> : null}
+
+                      {m.qualifications?.length ? (
+                        <div className="mt-5 border-t border-ink/10 pt-5">
+                          <h4 className="text-xs font-bold uppercase tracking-[0.16em] text-teal-dark">{t('team.qual', 'Qualifications')}</h4>
+                          <ul className="mt-3 space-y-3 text-sm text-ink-soft">
+                            {m.qualifications.map((q) => (
+                              <li key={q.credential}>
+                                <span className="block font-semibold text-teal-dark">{q.credential}</span>
+                                <span>{q.contribution}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      ) : null}
+
+                      {m.responsibilities?.length ? (
+                        <div className="mt-5 border-t border-ink/10 pt-5">
+                          <h4 className="text-xs font-bold uppercase tracking-[0.16em] text-teal-dark">{t('team.resp', 'Responsibilities')}</h4>
+                          <ul className="mt-3 space-y-3 text-sm text-ink-soft">
+                            {m.responsibilities.map((r) => (
+                              <li key={r.title} className="flex gap-2">
+                                <span aria-hidden className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-gold-dark" />
+                                <span>
+                                  <span className="font-semibold text-teal-dark">{r.title}:</span> {r.scope}
+                                </span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      ) : null}
                     </div>
                   </article>
                 </Reveal>
