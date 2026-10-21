@@ -2,7 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Logo } from '@/components/layout/Logo';
 import { LanguageSwitcher } from '@/components/layout/LanguageSwitcher';
-import { Eyebrow, P } from '@/components/public/kit';
+import { P } from '@/components/public/kit';
 import { getT } from '@/i18n/server';
 
 const SCENES = [['02-farmer-grass-portrait', '50% 30%'], ['03-school-canteen-serving', '50% 30%'], ['13-farmer-carrying-sack', '50% 30%'], ['06-school-kitchen-cooks', '50% 45%']] as const;
@@ -19,7 +19,6 @@ export default async function AuthLayout({ children }: { children: React.ReactNo
         {SCENES.map(([n, pos], k) => <Image key={n} src={`${P}${n}.jpg`} alt="" fill priority={k === 0} sizes="50vw" className="-z-20 object-cover" style={{ objectPosition: pos, animation: `authfade 28s linear ${k * 7}s infinite backwards` }} />)}
         <div aria-hidden className="absolute inset-0 -z-10 bg-gradient-to-t from-ink/90 via-ink/40 to-ink/25" />
         <div className="sticky top-0 flex h-screen flex-col justify-end gap-5 p-12 xl:p-16">
-          <Eyebrow>Miveloo</Eyebrow>
           <h2 className="max-w-lg text-balance font-display text-4xl font-semibold leading-[1.08] xl:text-5xl">{tagline}</h2>
           <ul className="flex flex-wrap gap-2">{chips.map((c) => <li key={c} className="rounded-full border border-cream/30 bg-ink/40 px-4 py-2 text-sm font-semibold backdrop-blur-md">{c}</li>)}</ul>
         </div>

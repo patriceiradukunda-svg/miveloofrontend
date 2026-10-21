@@ -6,7 +6,7 @@ export const metadata: Metadata = { title: 'Guided tour', description: 'A short 
 export default function TourPage() {
   return (
     <div className="container-page max-w-5xl space-y-8 py-12">
-      <SectionHeading as="h1" eyebrow="Guided tour" title="Take a guided tour of Miveloo" lead="Nine short stops. Use the arrow keys or the buttons. Skip to the end any time." />
+      <SectionHeading as="h1" title="Take a guided tour of Miveloo" lead="Nine short stops. Use the arrow keys or the buttons. Skip to the end any time." />
       <TourPlayer photos={getPhotoMap()} />
     </div>
   );

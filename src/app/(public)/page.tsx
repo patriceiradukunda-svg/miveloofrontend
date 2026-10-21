@@ -17,9 +17,6 @@ const h2s = { fontSize: 'clamp(1.7rem, 1rem + 2.6vw, 3rem)' } as const;
 const shadow = '[text-shadow:0_2px_24px_rgba(0,0,0,0.35)]';
 const lrOverlay = 'bg-gradient-to-r from-ink/90 via-ink/65 to-ink/15';
 
-function Eyebrow({ children, dark = true }: { children: React.ReactNode; dark?: boolean }) {
-  return <p className={`flex items-center gap-3 text-[0.7rem] font-bold uppercase leading-snug tracking-[0.12em] sm:text-xs sm:tracking-[0.16em] ${dark ? 'text-gold' : 'text-teal'}`}><span aria-hidden className="h-px w-6 shrink-0 bg-current sm:w-8" /><span className="min-w-0">{children}</span></p>;
-}
 /** Full-bleed photo section: the image is the background; the overlay keeps text readable. */
 function Bg({ n, pos = 'center', overlay = lrOverlay, className = '', children }: { n: string; pos?: string; overlay?: string; className?: string; children: React.ReactNode }) {
   return (
@@ -88,7 +85,6 @@ export default async function Home() {
     <>
       <HeroSlider slides={slides} labels={{ region: t('home2.slider', 'Photo gallery'), prev: t('home2.prev', 'Previous photo'), next: t('home2.next', 'Next photo'), goTo: t('home2.goTo', 'Go to photo'), pause: t('home2.pause', 'Pause photo rotation'), play: t('home2.play', 'Play photo rotation') }}>
         <div className={`${wide} rise space-y-5 py-10 sm:space-y-6 sm:py-12 lg:pb-20 lg:pt-32`}>
-          <Eyebrow>{t('home2.eyebrow', 'Rwanda’s school food ecosystem')}</Eyebrow>
           <h1 style={h1s} className={`max-w-6xl text-balance font-semibold leading-[1.04] tracking-tight ${shadow}`}>{t('home2.title', 'From local farms to school kitchens.')}</h1>
           <p className="max-w-2xl text-lg text-cream/90 md:text-xl">{t('home2.lead', 'Miveloo connects suppliers, cooperatives, schools and institutional partners for more reliable school feeding.')}</p>
           <div className="grid gap-3 pt-2 sm:flex sm:flex-wrap">
@@ -102,7 +98,6 @@ export default async function Home() {
 
       <Bg n="01-market-baskets-produce" pos="50% 50%" className="py-24 md:py-36">
         <Reveal className={wide}>
-          <Eyebrow>{t('home2.aboutEyebrow', 'Why Miveloo')}</Eyebrow>
           <h2 style={h1s} className="mt-4 max-w-5xl text-balance font-semibold leading-[1.04]">{t('home2.about', 'Dependable food. Dependable markets.')}</h2>
           <p className="mt-6 max-w-2xl text-lg text-cream/90 md:text-xl">{t('home2.aboutBody', 'Schools need food they can count on. Suppliers need markets they can trust. Miveloo brings them together and uses data to reduce avoidable inefficiency.')}</p>
         </Reveal>
@@ -110,7 +105,7 @@ export default async function Home() {
 
       <section className="bg-cream py-24">
         <div className={wide}>
-          <Reveal><Eyebrow dark={false}>{t('home2.jEyebrow', 'The journey')}</Eyebrow><h2 style={h2s} className="mt-3 max-w-3xl text-balance font-semibold text-teal-dark">{t('home2.jTitle', 'From farm to classroom, one connected path')}</h2></Reveal>
+          <Reveal><h2 style={h2s} className="mt-3 max-w-3xl text-balance font-semibold text-teal-dark">{t('home2.jTitle', 'From farm to classroom, one connected path')}</h2></Reveal>
           <ul className="mt-10 flex flex-col gap-3 lg:h-[34rem] lg:flex-row">
             {stages.map((s, k) => (
               <li key={s.n} tabIndex={0} className="group relative isolate min-h-64 flex-1 overflow-hidden rounded-2xl text-cream shadow-card transition-[flex] duration-700 ease-out focus-visible:outline-none lg:min-h-0 lg:hover:flex-[2.6] lg:focus-within:flex-[2.6] lg:focus-visible:flex-[2.6]">
@@ -129,7 +124,7 @@ export default async function Home() {
 
       <section className="bg-cream-deep py-24">
         <div className={wide}>
-          <Reveal><Eyebrow dark={false}>{t('home2.hEyebrow', 'Getting started')}</Eyebrow><h2 style={h2s} className="mt-3 font-semibold text-teal-dark">{t('home2.howTitle', 'How Miveloo works')}</h2></Reveal>
+          <Reveal><h2 style={h2s} className="mt-3 font-semibold text-teal-dark">{t('home2.howTitle', 'How Miveloo works')}</h2></Reveal>
           <ol className="-mx-4 mt-10 flex snap-x snap-mandatory scroll-pl-4 gap-5 overflow-x-auto px-4 pb-4 sm:-mx-6 sm:px-6 sm:scroll-pl-6 lg:mx-0 lg:grid lg:grid-cols-4 lg:overflow-visible lg:px-0">
             {steps.map((s, k) => (
               <li key={s.title} className="w-[78%] shrink-0 snap-start sm:w-80 lg:w-auto">
@@ -147,7 +142,7 @@ export default async function Home() {
       </section>
 
       <section className={`${wide} py-24`}>
-        <Reveal><Eyebrow dark={false}>{t('home2.forEyebrow', 'Who it is for')}</Eyebrow><h2 style={h2s} className="mt-3 font-semibold text-teal-dark">{t('home2.forTitle', 'Built for the whole food chain')}</h2></Reveal>
+        <Reveal><h2 style={h2s} className="mt-3 font-semibold text-teal-dark">{t('home2.forTitle', 'Built for the whole food chain')}</h2></Reveal>
         <ul className="mt-10 grid gap-5 md:grid-cols-3">
           {cards.map((c, k) => (
             <li key={c.title}><Reveal delay={k * 100} className="h-full">
@@ -170,7 +165,7 @@ export default async function Home() {
 
       <section className="bg-cream py-24">
         <div className={wide}>
-          <Reveal><Eyebrow dark={false}>{t('home2.tEyebrow', 'Principles')}</Eyebrow><h2 style={h2s} className="mt-3 font-semibold text-teal-dark">{t('home2.tTitle', 'Built on trust')}</h2></Reveal>
+          <Reveal><h2 style={h2s} className="mt-3 font-semibold text-teal-dark">{t('home2.tTitle', 'Built on trust')}</h2></Reveal>
           <ul className="mt-10 grid gap-5 md:grid-cols-3">
             {trust.map((x, k) => (
               <li key={x.h}><Reveal delay={k * 100} className="h-full"><div className="h-full rounded-2xl border border-ink/10 bg-white p-7 shadow-card">
@@ -184,7 +179,6 @@ export default async function Home() {
 
       <Bg n="11-tomatoes-closeup" pos="50% 50%" overlay="bg-gradient-to-r from-ink/90 via-teal-dark/75 to-teal-dark/20" className="py-24 md:py-36">
         <Reveal className={wide}>
-          <Eyebrow>{t('home2.futEyebrow', 'Our vision')}</Eyebrow>
           <h2 style={h1s} className="mt-4 text-balance font-semibold leading-[1.04]">{t('home2.futTitle', 'A better food future')}</h2>
           <ul className="mt-10 grid max-w-5xl gap-4 md:grid-cols-3">
             {future.map((f) => <li key={f.h} className="rounded-2xl border border-cream/25 bg-ink/40 p-6 backdrop-blur-md"><h3 className="font-display text-xl font-semibold">{f.h}</h3><p className="mt-2 text-cream/90">{f.b}</p></li>)}

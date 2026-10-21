@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { getT } from '@/i18n/server';
 import { Reveal } from '@/components/public/home/Reveal';
-import { Bg, Eyebrow, Icon, gold, h1s, h2s, light, solid, wide } from '@/components/public/kit';
+import { Bg, Icon, gold, h1s, h2s, light, solid, wide } from '@/components/public/kit';
 import { formatDate, getJobs, isOpen, jobText } from '@/config/careers';
 import { jobMeta } from '@/features/careers/labels';
 
@@ -32,7 +32,6 @@ export default async function CareersPage() {
       <section className="bg-cream-deep">
         <div className={`${wide} py-20 lg:py-28`}>
           <div className="rise max-w-5xl space-y-6">
-            <Eyebrow dark={false}>{t('car.eyebrow', 'Careers')}</Eyebrow>
             <h1 style={h1s} className="text-balance font-semibold leading-[1.04] tracking-tight text-teal-dark">{t('car.title', 'Our team is not enough for this ecosystem. Come and join us.')}</h1>
             <p className="max-w-3xl text-lg text-ink-soft md:text-xl">{t('car.lead', 'There are two ways to join us. Some wait for a posted role. Others come with an idea of their own. Which one would you like today?')}</p>
           </div>
@@ -56,7 +55,6 @@ export default async function CareersPage() {
       <section id="roles" className="scroll-mt-24 py-24">
         <div className={wide}>
           <Reveal>
-            <Eyebrow dark={false}>{t('car.rEyebrow', 'Open roles')}</Eyebrow>
             <h2 style={h2s} className="mt-3 max-w-3xl text-balance font-semibold text-teal-dark">{t('car.rTitle', 'Roles we have posted')}</h2>
           </Reveal>
           {open.length === 0 ? (
@@ -98,7 +96,6 @@ export default async function CareersPage() {
       <section className="bg-cream-deep py-24">
         <div className={wide}>
           <Reveal>
-            <Eyebrow dark={false}>{t('car.hEyebrow', 'How applying works')}</Eyebrow>
             <h2 style={h2s} className="mt-3 max-w-3xl text-balance font-semibold text-teal-dark">{t('car.hTitle', 'Four simple steps')}</h2>
           </Reveal>
           <ol className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">

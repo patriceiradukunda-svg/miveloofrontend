@@ -3,7 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { getT } from '@/i18n/server';
 import { Reveal } from '@/components/public/home/Reveal';
-import { Bg, Eyebrow, Icon, gold, h1s, h2s, light, shadow, solid, wide } from '@/components/public/kit';
+import { Bg, Icon, gold, h1s, h2s, light, shadow, solid, wide } from '@/components/public/kit';
 import { PHOTO_CREDITS, resolvePhoto, type PhotoKey } from '@/lib/photos';
 
 export const metadata: Metadata = {
@@ -51,7 +51,6 @@ export default async function HowItWorksPage() {
     <>
       <Bg n="08-root-vegetables" pos="50% 55%" overlay="bg-gradient-to-r from-ink/90 via-ink/60 to-ink/10" className="flex min-h-[72svh] items-end">
         <div className={`${wide} rise space-y-6 pb-16 pt-32`}>
-          <Eyebrow>{t('how.eyebrow', 'How it works')}</Eyebrow>
           <h1 style={h1s} className={`max-w-5xl text-balance font-semibold leading-[1.04] tracking-tight ${shadow}`}>{t('how.title', 'From the farm to the school kitchen, step by step.')}</h1>
           <p className="max-w-2xl text-lg text-cream/90 md:text-xl">{t('how.lead', 'Five steps connect a school kitchen to the people who grow the food.')}</p>
           <div className="flex flex-wrap gap-3 pt-2">
@@ -64,7 +63,6 @@ export default async function HowItWorksPage() {
       <section className="py-24">
         <div className={`${wide} grid gap-12 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-16`}>
           <Reveal className="lg:sticky lg:top-32 lg:self-start">
-            <Eyebrow dark={false}>{t('how.jEyebrow', 'The journey')}</Eyebrow>
             <h2 style={h2s} className="mt-3 text-balance font-semibold text-teal-dark">{t('how.jTitle', 'Five steps, one clear path')}</h2>
             <p className="mt-4 max-w-md text-lg text-ink-soft">{t('how.jLead', 'Here is how a school kitchen and the people who grow the food come together on Miveloo.')}</p>
           </Reveal>
@@ -94,7 +92,6 @@ export default async function HowItWorksPage() {
       <Bg n="09-bananas-plantains" pos="50% 50%" overlay="bg-gradient-to-r from-ink/90 via-ink/70 to-ink/20" className="py-28">
         <Reveal className={wide}>
           <div className="max-w-3xl space-y-6">
-            <Eyebrow>{t('how.bEyebrow', 'Suppliers and schools')}</Eyebrow>
             <h2 style={h2s} className={`text-balance font-semibold leading-[1.08] ${shadow}`}>{t('how.bTitle', 'Suppliers decide what schools see.')}</h2>
             <p className="text-lg text-cream/90 md:text-xl">{t('how.bBody', 'Farmers, traders, distributors and cooperatives list what they have and publish only the details they choose. Verified schools compare offers and order from their own workspace.')}</p>
             <div className="flex flex-wrap gap-3 pt-2">
@@ -108,7 +105,6 @@ export default async function HowItWorksPage() {
       <section className="bg-cream-deep py-24">
         <div className={wide}>
           <Reveal>
-            <Eyebrow dark={false}>{t('how.aEyebrow', 'Who it is for')}</Eyebrow>
             <h2 style={h2s} className="mt-3 max-w-3xl text-balance font-semibold text-teal-dark">{t('how.aTitle', 'Find your place')}</h2>
           </Reveal>
           <ul className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">

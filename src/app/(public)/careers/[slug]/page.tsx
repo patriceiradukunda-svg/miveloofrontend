@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { getT } from '@/i18n/server';
 import { Reveal } from '@/components/public/home/Reveal';
-import { Bg, Eyebrow, gold, h2s, h1s, light, wide } from '@/components/public/kit';
+import { Bg, gold, h2s, h1s, light, wide } from '@/components/public/kit';
 import { DEFAULT_DOCUMENTS, formatDate, getJob, isOpen, jobText } from '@/config/careers';
 import { carLabels, jobMeta } from '@/features/careers/labels';
 
@@ -52,7 +52,6 @@ export default async function JobPage({ params }: Props) {
         <div className={`${wide} py-14 lg:py-20`}>
           <Link href="/careers#roles" className="inline-flex min-h-11 items-center text-sm font-bold text-teal underline"><span aria-hidden className="mr-2">←</span>{t('car.d.back', 'All roles')}</Link>
           <div className="rise mt-4 max-w-4xl space-y-5">
-            <Eyebrow dark={false}>{job.team}</Eyebrow>
             <h1 style={h2s} className="text-balance font-semibold leading-[1.1] tracking-tight text-teal-dark">{jt.title}</h1>
             <p className="text-lg text-ink-soft md:text-xl">{jt.summary}</p>
             <ul className="flex flex-wrap gap-2">

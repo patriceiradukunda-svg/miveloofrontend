@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { getT } from '@/i18n/server';
-import { Eyebrow, h2s, solid, wide } from '@/components/public/kit';
+import { h2s, solid, wide } from '@/components/public/kit';
 import { DEFAULT_DOCUMENTS, getJob, isOpen, jobText } from '@/config/careers';
 import { ApplicationWizard, type ApplyJob } from '@/features/careers/ApplicationWizard';
 import { carLabels } from '@/features/careers/labels';
@@ -47,7 +47,6 @@ export default async function ApplyPage({ params }: Props) {
         <div className={`${wide} py-12 lg:py-16`}>
           <Link href={`/careers/${job.slug}`} className="inline-flex min-h-11 items-center text-sm font-bold text-teal underline"><span aria-hidden className="mr-2">←</span>{jt.title}</Link>
           <div className="rise mt-3 max-w-3xl space-y-3">
-            <Eyebrow dark={false}>{t('car.a.eyebrow', 'Application')}</Eyebrow>
             <h1 style={h2s} className="text-balance font-semibold leading-[1.1] tracking-tight text-teal-dark">{jt.title}</h1>
             <p className="text-lg text-ink-soft">{t('car.a.lead', 'Take your time. You can go back and change anything before you send. Keep this page open until you have submitted.')}</p>
           </div>

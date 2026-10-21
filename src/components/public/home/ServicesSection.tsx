@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { getT } from '@/i18n/server';
 import { Reveal } from '@/components/public/home/Reveal';
-import { Eyebrow, h2s, solid, wide } from '@/components/public/kit';
+import { h2s, solid, wide } from '@/components/public/kit';
 import { plans, type FeatureStatus, type PlanId } from '@/config/plans';
 import { ServicesSlider, type ServiceSlide } from './ServicesSlider';
 
@@ -96,7 +96,6 @@ export async function ServicesSection() {
       <div className={wide}>
         <Reveal className="flex flex-wrap items-end justify-between gap-6">
           <div className="max-w-2xl">
-            <Eyebrow dark={false}>{t('svc.eyebrow', 'Services and pricing')}</Eyebrow>
             <h2 style={h2s} className="mt-3 text-balance font-semibold text-teal-dark">{t('home2.freeTitle', 'Free core. Optional extras.')}</h2>
           </div>
           <Link href="/pricing" className={solid}>{t('home2.pricing', 'See pricing')} <span aria-hidden className="ml-2">→</span></Link>

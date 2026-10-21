@@ -3,7 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { getT } from '@/i18n/server';
 import { Reveal } from '@/components/public/home/Reveal';
-import { Bg, Eyebrow, Icon, P, gold, h1s, h2s, light, shadow, solid, wide } from '@/components/public/kit';
+import { Bg, Icon, P, gold, h1s, h2s, light, shadow, solid, wide } from '@/components/public/kit';
 
 export const metadata: Metadata = {
   title: 'For schools',
@@ -34,7 +34,6 @@ export default async function SchoolsPage() {
     <>
       <Bg n="06-school-kitchen-cooks" pos="50% 45%" overlay="bg-gradient-to-r from-ink/90 via-ink/55 to-ink/10" className="flex min-h-[72svh] items-end">
         <div className={`${wide} rise space-y-6 pb-16 pt-32`}>
-          <Eyebrow>{t('schools.eyebrow', 'For schools')}</Eyebrow>
           <h1 style={h1s} className={`max-w-5xl text-balance font-semibold leading-[1.04] tracking-tight ${shadow}`}>{t('schools.title', 'Food your school can count on.')}</h1>
           <p className="max-w-2xl text-lg text-cream/90 md:text-xl">{t('schools.lead', 'Find food, compare offers, order and track deliveries, all inside your school’s own workspace.')}</p>
           <div className="flex flex-wrap gap-3 pt-2"><Link href="/register/school" className={gold}>{t('schools.cta', 'Register your school')}</Link><Link href="/login" className={light}>{t('nav.login', 'Log in')}</Link></div>
@@ -42,7 +41,7 @@ export default async function SchoolsPage() {
       </Bg>
 
       <section className={`${wide} py-24`}>
-        <Reveal><Eyebrow dark={false}>{t('schools.wEyebrow', 'What you can do')}</Eyebrow><h2 style={h2s} className="mt-3 max-w-3xl text-balance font-semibold text-teal-dark">{t('schools.wTitle', 'Everything in one place')}</h2></Reveal>
+        <Reveal><h2 style={h2s} className="mt-3 max-w-3xl text-balance font-semibold text-teal-dark">{t('schools.wTitle', 'Everything in one place')}</h2></Reveal>
         <ul className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {doing.map((x, k) => (
             <li key={x.h}><Reveal delay={k * 90} className="h-full"><div className="h-full rounded-2xl border border-ink/10 bg-white p-7 shadow-card transition-transform duration-300 hover:-translate-y-1">
@@ -57,7 +56,6 @@ export default async function SchoolsPage() {
         <div className={`${wide} grid items-center gap-12 lg:grid-cols-2`}>
           <Reveal><div className="relative aspect-[4/5] overflow-hidden rounded-blob shadow-card lg:max-w-xl"><Image src={`${P}03-school-canteen-serving.jpg`} alt="Children eating a meal in a school canteen" fill sizes="(min-width:1024px) 40vw, 100vw" className="object-cover" style={{ objectPosition: '45% 30%' }} /></div></Reveal>
           <Reveal delay={120}>
-            <Eyebrow dark={false}>{t('schools.vEyebrow', 'Built for verified schools')}</Eyebrow>
             <h2 style={h2s} className="mt-3 text-balance font-semibold text-teal-dark">{t('schools.vTitle', 'Simple, careful and clearly yours')}</h2>
             <ul className="mt-6 space-y-3">{checks.map((c) => <li key={c} className="flex gap-3 text-lg text-ink-soft"><span aria-hidden className="mt-1 grid h-6 w-6 shrink-0 place-items-center rounded-full bg-green text-sm font-bold text-white">✓</span>{c}</li>)}</ul>
             <p className="mt-6 text-ink-soft">{t('schools.vNote', 'Marketplace access opens after sign-in, for authorised schools and partners.')}</p>
@@ -66,7 +64,7 @@ export default async function SchoolsPage() {
       </section>
 
       <section className={`${wide} py-24`}>
-        <Reveal><Eyebrow dark={false}>{t('schools.gEyebrow', 'Getting started')}</Eyebrow><h2 style={h2s} className="mt-3 font-semibold text-teal-dark">{t('schools.gTitle', 'Four steps to your first order')}</h2></Reveal>
+        <Reveal><h2 style={h2s} className="mt-3 font-semibold text-teal-dark">{t('schools.gTitle', 'Four steps to your first order')}</h2></Reveal>
         <ol className="mt-10 grid gap-5 md:grid-cols-4">
           {steps.map((s, k) => (
             <li key={s}><Reveal delay={k * 90} className="h-full"><div className="relative h-full overflow-hidden rounded-2xl bg-white p-7 shadow-card">

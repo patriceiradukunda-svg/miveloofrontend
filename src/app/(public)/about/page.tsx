@@ -3,7 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { getT } from '@/i18n/server';
 import { Reveal } from '@/components/public/home/Reveal';
-import { Bg, Eyebrow, Icon, P, gold, h1s, h2s, light, shadow, solid, wide } from '@/components/public/kit';
+import { Bg, Icon, P, gold, h1s, h2s, light, shadow, solid, wide } from '@/components/public/kit';
 import { StatusBadge } from '@/components/ui/badge';
 
 export const metadata: Metadata = {
@@ -42,7 +42,6 @@ export default async function AboutPage() {
     <>
       <Bg n="05-farmer-harvesting-greens" pos="50% 45%" overlay="bg-gradient-to-r from-ink/90 via-ink/60 to-ink/10" className="flex min-h-[72svh] items-end">
         <div className={`${wide} rise space-y-6 pb-16 pt-32`}>
-          <Eyebrow>{t('about2.eyebrow', 'About Miveloo')}</Eyebrow>
           <h1 style={h1s} className={`max-w-5xl text-balance font-semibold leading-[1.04] tracking-tight ${shadow}`}>{t('about2.title', 'Making school feeding more reliable, starting in Rwanda.')}</h1>
           <p className="max-w-2xl text-lg text-cream/90 md:text-xl">{t('about2.lead', 'Miveloo is a school food marketplace and food-system intelligence platform that connects verified schools with the people who grow and supply food.')}</p>
           <div className="flex flex-wrap gap-3 pt-2">
@@ -55,7 +54,6 @@ export default async function AboutPage() {
       <section className="py-24">
         <div className={`${wide} grid gap-12 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-16`}>
           <Reveal className="lg:sticky lg:top-32 lg:self-start">
-            <Eyebrow dark={false}>{t('about2.wEyebrow', 'Why we exist')}</Eyebrow>
             <h2 style={h2s} className="mt-3 text-balance font-semibold text-teal-dark">{t('about2.wTitle', 'A school meal only works when the food arrives.')}</h2>
           </Reveal>
           <Reveal delay={100} className="space-y-6 text-lg text-ink-soft">
@@ -72,7 +70,6 @@ export default async function AboutPage() {
         <div className={`${wide} grid gap-6 md:grid-cols-2`}>
           <Reveal className="h-full">
             <article className="h-full rounded-3xl bg-teal p-8 text-cream sm:p-12">
-              <Eyebrow>{t('about2.mEyebrow', 'Our mission')}</Eyebrow>
               <h2 style={h2s} className="mt-4 text-balance font-semibold leading-[1.1]">{t('about2.mTitle', 'Make school feeding more reliable.')}</h2>
               <p className="mt-4 text-lg text-cream/90">{t('about2.mBody', 'Help schools access the food they need, help suppliers reach reliable markets, and reduce avoidable inefficiency in how school food is bought and delivered.')}</p>
             </article>
@@ -90,7 +87,6 @@ export default async function AboutPage() {
       <section className="py-24">
         <div className={wide}>
           <Reveal>
-            <Eyebrow dark={false}>{t('about2.pEyebrow', 'What Miveloo is')}</Eyebrow>
             <h2 style={h2s} className="mt-3 max-w-3xl text-balance font-semibold text-teal-dark">{t('about2.pTitle', 'One platform, three layers')}</h2>
           </Reveal>
           <ul className="mt-10 grid gap-6 lg:grid-cols-3">
@@ -116,7 +112,6 @@ export default async function AboutPage() {
       <Bg n="06-school-kitchen-cooks" pos="50% 40%" overlay="bg-gradient-to-r from-ink/90 via-ink/75 to-ink/40" className="py-28">
         <div className={wide}>
           <Reveal className="max-w-3xl space-y-4">
-            <Eyebrow>{t('about2.sEyebrow', 'Who we serve')}</Eyebrow>
             <h2 style={h2s} className={`text-balance font-semibold leading-[1.08] ${shadow}`}>{t('about2.sTitle', 'Everyone in the school food chain.')}</h2>
           </Reveal>
           <ul className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
@@ -138,7 +133,6 @@ export default async function AboutPage() {
       <section className="py-24">
         <div className={`${wide} grid items-start gap-12 lg:grid-cols-2 lg:gap-16`}>
           <Reveal>
-            <Eyebrow dark={false}>{t('about2.tEyebrow', 'Where we are today')}</Eyebrow>
             <h2 style={h2s} className="mt-3 text-balance font-semibold text-teal-dark">{t('about2.tTitle', 'Early-stage, and honest about it.')}</h2>
             <p className="mt-4 text-lg text-ink-soft">{t('about2.tBody', 'We label what is live, what is in development and what is planned, and we publish no customer, coverage or impact numbers we cannot prove.')}</p>
             <div className="mt-6 flex flex-wrap gap-3">
@@ -162,7 +156,6 @@ export default async function AboutPage() {
       <section className="bg-cream-deep py-24">
         <div className={wide}>
           <Reveal>
-            <Eyebrow dark={false}>{t('about2.rEyebrow', 'Our principles')}</Eyebrow>
             <h2 style={h2s} className="mt-3 max-w-3xl text-balance font-semibold text-teal-dark">{t('about2.rTitle', 'What we hold ourselves to')}</h2>
           </Reveal>
           <ul className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">

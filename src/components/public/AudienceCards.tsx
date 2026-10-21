@@ -14,7 +14,7 @@ const A: { t: string; d: string; learn: string; reg: string; scene: SceneName; p
 export function AudienceCards() {
   return (
     <section className="container-page py-16">
-      <SectionHeading eyebrow="Who it is for" title="One platform, built around the people in the school food chain" />
+      <SectionHeading title="One platform, built around the people in the school food chain" />
       <ul className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">{A.map((a, i) => (
         <li key={a.t}><Reveal delay={i * 80} className="h-full"><article className="flex h-full flex-col overflow-hidden rounded-3xl border border-ink/10 bg-white shadow-card transition-transform hover:-translate-y-1">
           <div className="aspect-[4/3] overflow-hidden bg-cream-deep"><Photo k={a.photo} alt="" className="h-full w-full" sizes="(min-width:1024px) 25vw, 50vw" fallback={<Scene name={a.scene} />} /></div>

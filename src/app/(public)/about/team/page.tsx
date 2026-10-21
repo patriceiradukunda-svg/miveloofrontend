@@ -3,7 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { getT } from '@/i18n/server';
 import { Reveal } from '@/components/public/home/Reveal';
-import { Bg, Eyebrow, Icon, gold, h1s, h2s, light, shadow, wide } from '@/components/public/kit';
+import { Bg, Icon, gold, h1s, h2s, light, shadow, wide } from '@/components/public/kit';
 import { team } from '@/config/team';
 
 export const metadata: Metadata = {
@@ -24,7 +24,6 @@ export default async function TeamPage() {
     <>
       <Bg n="03-school-canteen-serving" pos="50% 40%" overlay="bg-gradient-to-r from-ink/90 via-ink/60 to-ink/10" className="flex min-h-[64svh] items-end">
         <div className={`${wide} rise space-y-6 pb-16 pt-32`}>
-          <Eyebrow>{t('team.eyebrow', 'Our team')}</Eyebrow>
           <h1 style={h1s} className={`max-w-5xl text-balance font-semibold leading-[1.04] tracking-tight ${shadow}`}>{t('team.title', 'The people building Miveloo.')}</h1>
           <p className="max-w-2xl text-lg text-cream/90 md:text-xl">{t('team.lead', 'A small team working to make school feeding more reliable, starting in Rwanda.')}</p>
         </div>
@@ -33,7 +32,6 @@ export default async function TeamPage() {
       <section className="py-24">
         <div className={wide}>
           <Reveal>
-            <Eyebrow dark={false}>{t('team.mEyebrow', 'Meet the team')}</Eyebrow>
             <h2 style={h2s} className="mt-3 max-w-3xl text-balance font-semibold text-teal-dark">{t('team.mTitle', 'Real people behind the platform')}</h2>
           </Reveal>
           <ul className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
@@ -60,7 +58,6 @@ export default async function TeamPage() {
       <section className="bg-cream-deep py-24">
         <div className={wide}>
           <Reveal>
-            <Eyebrow dark={false}>{t('team.gEyebrow', 'What guides us')}</Eyebrow>
             <h2 style={h2s} className="mt-3 max-w-3xl text-balance font-semibold text-teal-dark">{t('team.gTitle', 'How we work')}</h2>
           </Reveal>
           <ul className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">

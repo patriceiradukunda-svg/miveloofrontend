@@ -3,7 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { getT } from '@/i18n/server';
 import { Reveal } from '@/components/public/home/Reveal';
-import { Bg, Eyebrow, Icon, gold, h1s, h2s, light, shadow, wide } from '@/components/public/kit';
+import { Bg, Icon, gold, h1s, h2s, light, shadow, wide } from '@/components/public/kit';
 import { PHOTO_CREDITS, resolvePhoto } from '@/lib/photos';
 
 export const metadata: Metadata = {
@@ -46,7 +46,6 @@ export default async function SellPage() {
     <>
       <Bg n="11-tomatoes-closeup" pos="50% 50%" overlay="bg-gradient-to-r from-ink/90 via-ink/65 to-ink/10" className="flex min-h-[72svh] items-end">
         <div className={`${wide} rise space-y-6 pb-16 pt-32`}>
-          <Eyebrow>{t('sellp.eyebrow', 'Sell on Miveloo')}</Eyebrow>
           <h1 style={h1s} className={`max-w-5xl text-balance font-semibold leading-[1.04] tracking-tight ${shadow}`}>{t('sellp.title', 'Reach schools that need what you grow.')}</h1>
           <p className="max-w-2xl text-lg text-cream/90 md:text-xl">{t('sellp.lead', 'Farmers, traders, distributors, food businesses, cooperatives and supplier groups can list food and receive orders. Basic selling has no platform access fee.')}</p>
           <div className="flex flex-wrap gap-3 pt-2">
@@ -58,7 +57,6 @@ export default async function SellPage() {
 
       <section className={`${wide} py-24`}>
         <Reveal>
-          <Eyebrow dark={false}>{t('sellp.sEyebrow', 'How selling works')}</Eyebrow>
           <h2 style={h2s} className="mt-3 max-w-3xl text-balance font-semibold text-teal-dark">{t('sellp.sTitle', 'Five steps to selling to schools')}</h2>
         </Reveal>
         <ol className="relative mt-12 grid gap-x-5 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
@@ -81,7 +79,6 @@ export default async function SellPage() {
       <Bg n="01-market-baskets-produce" pos="50% 60%" overlay="bg-gradient-to-r from-ink/90 via-ink/70 to-ink/20" className="py-28">
         <Reveal className={wide}>
           <div className="max-w-3xl space-y-6">
-            <Eyebrow>{t('sellp.bEyebrow', 'You stay in control')}</Eyebrow>
             <h2 style={h2s} className={`text-balance font-semibold leading-[1.08] ${shadow}`}>{t('sellp.bTitle', 'You decide what schools see.')}</h2>
             <p className="text-lg text-cream/90 md:text-xl">{t('sellp.bBody', 'Basic selling has no platform access fee. You publish only the details you choose, and verified schools order from their own workspace.')}</p>
             <div className="flex flex-wrap gap-3 pt-2">
@@ -103,7 +100,6 @@ export default async function SellPage() {
             </Reveal>
           ) : null}
           <Reveal delay={120}>
-            <Eyebrow dark={false}>{t('sellp.wEyebrow', 'Who can sell')}</Eyebrow>
             <h2 style={h2s} className="mt-3 text-balance font-semibold text-teal-dark">{t('sellp.wTitle', 'Open to the people who grow and supply food')}</h2>
             <ul className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-3">
               {who.map((x) => (

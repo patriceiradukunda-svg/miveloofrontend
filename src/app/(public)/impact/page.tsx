@@ -3,7 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { getT } from '@/i18n/server';
 import { Reveal } from '@/components/public/home/Reveal';
-import { Bg, Eyebrow, Icon, gold, h1s, h2s, light, wide } from '@/components/public/kit';
+import { Bg, Icon, gold, h1s, h2s, light, wide } from '@/components/public/kit';
 import { PHOTO_CREDITS, resolvePhoto } from '@/lib/photos';
 
 export const metadata: Metadata = {
@@ -37,7 +37,6 @@ export default async function ImpactPage() {
       <section className="bg-cream-deep">
         <div className={`${wide} grid items-center gap-12 py-20 lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)] lg:gap-16 lg:py-28`}>
           <div className="rise space-y-6">
-            <Eyebrow dark={false}>{t('imp.eyebrow', 'Mission and impact')}</Eyebrow>
             <h1 style={h2s} className="max-w-3xl text-balance font-semibold leading-[1.1] tracking-tight text-teal-dark">{t('imp.title', 'We publish measured impact only when we have evidence.')}</h1>
             <p className="max-w-2xl text-lg text-ink-soft md:text-xl">{t('imp.lead', 'Miveloo is early-stage. We label what is live, what is in development and what is planned.')}</p>
             <div className="flex flex-wrap items-center gap-4 pt-2">
@@ -57,7 +56,6 @@ export default async function ImpactPage() {
       <section className="py-24">
         <div className={`${wide} grid gap-12 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-16`}>
           <Reveal className="space-y-5 lg:sticky lg:top-32 lg:self-start">
-            <Eyebrow dark={false}>{t('imp.mEyebrow', 'Our mission')}</Eyebrow>
             <h2 style={h2s} className="text-balance font-semibold text-teal-dark">{t('imp.mTitle', 'Make school feeding more reliable.')}</h2>
             <h3 className="pt-2 text-xs font-bold uppercase tracking-[0.16em] text-teal">{t('imp.why', 'Why we exist')}</h3>
             <p className="max-w-xl text-lg text-ink-soft">{t('imp.whyB', 'School feeding depends on food reaching kitchens reliably. Miveloo helps schools find food, helps suppliers reach dependable markets, and uses honest data to reduce avoidable waste and inefficiency.')}</p>
@@ -80,7 +78,6 @@ export default async function ImpactPage() {
       <section className="bg-teal-dark py-24 text-cream">
         <div className={wide}>
           <Reveal>
-            <Eyebrow>{t('imp.vEyebrow', 'Our vision')}</Eyebrow>
             <h2 style={h1s} className="mt-4 max-w-4xl text-balance font-semibold leading-[1.04]">{t('imp.vTitle', 'A better food future')}</h2>
           </Reveal>
           <ul className="mt-12 grid gap-5 md:grid-cols-3">
@@ -101,7 +98,6 @@ export default async function ImpactPage() {
       <section className="bg-cream-deep py-24">
         <div className={wide}>
           <Reveal>
-            <Eyebrow dark={false}>{t('imp.eEyebrow', 'Evidence')}</Eyebrow>
             <h2 style={h2s} className="mt-3 max-w-3xl text-balance font-semibold text-teal-dark">{t('imp.eTitle', 'How we report impact')}</h2>
           </Reveal>
           <div className="mt-10 grid gap-6 lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)]">
