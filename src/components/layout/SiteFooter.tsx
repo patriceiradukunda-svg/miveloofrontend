@@ -33,7 +33,7 @@ export async function SiteFooter() {
         {col(t('footer.updates', 'Updates'), [['/insights', t('nav.blog', 'Blog')], ['/news', t('nav.news', 'News')], ['/events', t('nav.events', 'Events')]])}
         {col(t('footer.supportLegal', 'Support & legal'), [['/help', 'Help & support'], ['/faq', 'FAQs'], ['/privacy', 'Privacy policy'], ['/terms', 'Terms of service'], ['/supplier-terms', 'Supplier terms'], ['/school-terms', 'School terms'], ['/cookies', 'Cookie policy'], ['/data-ai-policy', 'Data & AI policy']])}
       </div>
-      <p className="border-t border-ink/10 py-4 text-center text-sm text-ink-soft">© {new Date().getFullYear()} Miveloo. {t('footer.rights')}</p>
+      <p className="border-t border-ink/10 py-4 text-center text-sm text-ink-soft">© {new Date().getFullYear()} Miveloo. {t('footer.rights')} <a href="#cookie-settings" data-cookie-settings className="ml-2 underline">Cookie settings</a></p>
     </footer>
   );
 }

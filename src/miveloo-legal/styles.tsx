@@ -89,4 +89,11 @@ button.mv-card:hover,button.mv-card[aria-pressed=true]{border-color:var(--b);bac
 }
 @media(max-width:520px){.mv-search{flex-direction:column}.mv-btn{width:100%}.mv-top{width:auto}}
 @media(prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+
+/* brand-override */
+.mv{--b:#00645F;--bd:#004744;--bs:#DCEFEE;--ink:#12261F;--mut:#44574F;--line:#E4DCC6;--bg:#FFF8E8;font-family:"Plus Jakarta Sans Variable",system-ui,sans-serif}
+.mv h1,.mv h2,.mv-art h2{font-family:"Fraunces Variable",Georgia,serif}
+.mv-hero{background:#FFF8E8;border-bottom:4px solid #F5A900}
+.mv-tag{background:#FFF0C9;color:#12261F}
+.mv-ph{background:#FFF0C9}
 `;
