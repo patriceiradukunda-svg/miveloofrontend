@@ -11,3 +11,7 @@ coverage
 .backup-live-*
 .backup-fix-*
 role-access-report.csv
+test-results/
+playwright-report/
+__pycache__/
+*.pyc
