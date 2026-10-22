@@ -127,3 +127,12 @@ export async function addListingPhotos(token: string, listingId: string, files: 
   for (const f of files) ids.push((await uploadImage(token, f)).id);
   return setListingImages(token, listingId, ids);
 }
+
+/* ---------- identity: one call that says who the user is and what they may do ---------- */
+export type Me = {
+  user: { id: string; email: string; full_name: string; email_verified: boolean; mfa_enabled: boolean };
+  memberships: { membership_id: string; org_id: string; org_name: string; org_type: string; org_status: string; role: string; permissions: string[] }[];
+  default_org_id: string | null;
+};
+export const authMe = (token: string) => api<Me>('/auth/me', { token, cache: 'no-store' });
+export const backendLogout = (refresh_token: string) => api('/auth/logout', { method: 'POST', body: { refresh_token } });

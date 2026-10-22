@@ -4,13 +4,15 @@ import { redirect } from 'next/navigation';
 import { SESSION_COOKIE } from '@/lib/constants';
 import { hasBackend } from '@/lib/api-client';
 import { ROLES, ROLE_HOME, type Role } from '@/config/roles';
-import { ApiError, backendLogin, liveApi, myOrganizations } from '@/lib/miveloo-client';
+import { ApiError, backendLogin, backendLogout, liveApi, myOrganizations } from '@/lib/miveloo-client';
 import { ACCESS_COOKIE, REFRESH_COOKIE, accessOpts, refreshOpts } from '@/lib/server/backend-session';
 
 const opts = { httpOnly: true, secure: process.env.NODE_ENV === 'production', sameSite: 'lax' as const, path: '/', maxAge: 60 * 60 * 8 };
 
 export async function logout() {
   const jar = await cookies();
+  const refresh = jar.get(REFRESH_COOKIE)?.value;
+  if (refresh && liveApi) { try { await backendLogout(refresh); } catch { /* best effort: cookies are cleared regardless */ } }
   jar.delete(SESSION_COOKIE); jar.delete(ACCESS_COOKIE); jar.delete(REFRESH_COOKIE);
   redirect('/login');
 }
