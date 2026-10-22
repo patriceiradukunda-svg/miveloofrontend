@@ -1,1 +1,3 @@
-export default function Page() { return <main className="p-6"><h1 className="text-2xl font-semibold capitalize">blog</h1></main>; }
+import { permanentRedirect } from 'next/navigation';
+/** Insights is the blog. Kept as an alias so the planned /blog URL never shows a duplicate or empty page. */
+export default function BlogPage() { permanentRedirect('/insights'); }

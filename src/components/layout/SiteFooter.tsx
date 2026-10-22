@@ -14,8 +14,8 @@ export async function SiteFooter() {
   const { t } = await getT();
   return (
     <footer className="mt-24 border-t-4 border-gold bg-cream-deep">
-      <div className="container-page grid gap-10 py-12 md:grid-cols-[1.3fr_repeat(3,1fr)]">
-        <div>
+      <div className="container-page grid gap-10 py-12 sm:grid-cols-2 lg:grid-cols-[1.3fr_repeat(4,1fr)]">
+        <div className="sm:col-span-2 lg:col-span-1">
           <Logo className="h-20 w-auto" />
           <p className="mt-3 max-w-xs text-ink-soft">{t('footer.mission')}</p>
           <div className="mt-4"><LanguageSwitcher /></div>
@@ -27,9 +27,10 @@ export async function SiteFooter() {
           )}
           {site.social.length > 0 && <ul className="mt-3 flex flex-wrap gap-3 text-sm">{site.social.map((s) => <li key={s.label}><a className="underline" href={s.href} rel="noopener noreferrer" target="_blank">{s.label}</a></li>)}</ul>}
         </div>
-        {col(t('footer.explore'), [['/sell', t('nav.sell')], ['/schools', 'Schools'], ['/cooperatives', 'Cooperatives'], ['/exchange', 'School exchange'], ['/institutions', 'Institutions'], ['/pricing', 'Pricing'], ['/tour', 'Take the tour'], ['/about', t('nav.about')], ['/about/team', t('nav.team', 'Team')], ['/roadmap', 'Roadmap'], ['/careers', t('nav.careers', 'Careers')], ['/contact', 'Contact']])}
-        {col(t('footer.support'), [['/help', 'Help & support'], ['/faq', 'FAQs'], ['/register/supplier', 'Supplier onboarding'], ['/register/school', 'School registration'], ['/register/institution', 'Institutional partnerships'], ['/trust', 'Trust centre'], ['/ai-intelligence', 'AI & data']])}
-        {col(t('footer.legal'), [['/privacy', 'Privacy policy'], ['/terms', 'Terms of service'], ['/cookies', 'Cookie policy'], ['/supplier-terms', 'Supplier terms'], ['/school-terms', 'School terms'], ['/data-ai-policy', 'Data & AI policy']])}
+        {col(t('footer.solutions', 'Solutions'), [['/schools', 'Schools'], ['/sell', 'Suppliers'], ['/cooperatives', 'Cooperatives'], ['/institutions', 'Institutions'], ['/exchange', 'School exchange']])}
+        {col(t('footer.platform', 'Platform'), [['/how-it-works', 'How it works'], ['/ai-intelligence', 'AI & data'], ['/pricing', 'Pricing'], ['/tour', 'Take the tour'], ['/roadmap', 'Roadmap'], ['/trust', 'Trust centre']])}
+        {col(t('footer.company', 'Company'), [['/about', t('nav.about', 'About')], ['/about/mission', 'Our mission'], ['/about/team', t('nav.team', 'Team')], ['/impact', 'Impact'], ['/insights', 'Insights'], ['/partners', 'Partners'], ['/careers', t('nav.careers', 'Careers')], ['/contact', 'Contact']])}
+        {col(t('footer.supportLegal', 'Support & legal'), [['/help', 'Help & support'], ['/faq', 'FAQs'], ['/privacy', 'Privacy policy'], ['/terms', 'Terms of service'], ['/supplier-terms', 'Supplier terms'], ['/school-terms', 'School terms'], ['/cookies', 'Cookie policy'], ['/data-ai-policy', 'Data & AI policy']])}
       </div>
       <p className="border-t border-ink/10 py-4 text-center text-sm text-ink-soft">© {new Date().getFullYear()} Miveloo. {t('footer.rights')}</p>
     </footer>
