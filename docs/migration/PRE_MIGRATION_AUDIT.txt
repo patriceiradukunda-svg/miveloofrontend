@@ -1,0 +1,447 @@
+===== PAGE INVENTORY =====
+src/app/admin/ai-monitoring/page.tsx
+src/app/admin/analytics/page.tsx
+src/app/admin/billing/page.tsx
+src/app/admin/careers/jobs/[id]/page.tsx
+src/app/admin/careers/jobs/new/page.tsx
+src/app/admin/careers/jobs/page.tsx
+src/app/admin/careers/page.tsx
+src/app/admin/dashboard/page.tsx
+src/app/admin/data/page.tsx
+src/app/admin/marketplace/page.tsx
+src/app/admin/orders/page.tsx
+src/app/admin/organizations/page.tsx
+src/app/admin/products/page.tsx
+src/app/admin/schools/page.tsx
+src/app/admin/security/page.tsx
+src/app/admin/settings/page.tsx
+src/app/admin/suppliers/page.tsx
+src/app/admin/support/page.tsx
+src/app/admin/users/page.tsx
+src/app/(auth)/accept-invitation/page.tsx
+src/app/(auth)/access-denied/page.tsx
+src/app/(auth)/complete-profile/page.tsx
+src/app/(auth)/forgot-password/page.tsx
+src/app/(auth)/login/page.tsx
+src/app/(auth)/register/cooperative/page.tsx
+src/app/(auth)/register/google/page.tsx
+src/app/(auth)/register/institution/page.tsx
+src/app/(auth)/register/page.tsx
+src/app/(auth)/register/school/page.tsx
+src/app/(auth)/register/supplier/page.tsx
+src/app/(auth)/resend-verification/page.tsx
+src/app/(auth)/reset-password/page.tsx
+src/app/(auth)/session-expired/page.tsx
+src/app/(auth)/two-factor/page.tsx
+src/app/(auth)/verify-account/page.tsx
+src/app/marketplace/page.tsx
+src/app/marketplace/[...rest]/page.tsx
+src/app/(public)/about/mission/page.tsx
+src/app/(public)/about/page.tsx
+src/app/(public)/about/team/page.tsx
+src/app/(public)/ai-intelligence/page.tsx
+src/app/(public)/careers/idea/page.tsx
+src/app/(public)/careers/page.tsx
+src/app/(public)/careers/[slug]/apply/page.tsx
+src/app/(public)/careers/[slug]/page.tsx
+src/app/(public)/contact/page.tsx
+src/app/(public)/cookies/page.tsx
+src/app/(public)/cooperatives/page.tsx
+src/app/(public)/data-ai-policy/page.tsx
+src/app/(public)/exchange/page.tsx
+src/app/(public)/faq/page.tsx
+src/app/(public)/help/page.tsx
+src/app/(public)/how-it-works/page.tsx
+src/app/(public)/impact/page.tsx
+src/app/(public)/insights/page.tsx
+src/app/(public)/insights/[slug]/page.tsx
+src/app/(public)/institutions/page.tsx
+src/app/(public)/page.tsx
+src/app/(public)/pricing/page.tsx
+src/app/(public)/privacy/page.tsx
+src/app/(public)/roadmap/page.tsx
+src/app/(public)/schools/page.tsx
+src/app/(public)/school-terms/page.tsx
+src/app/(public)/sell/page.tsx
+src/app/(public)/supplier-terms/page.tsx
+src/app/(public)/terms/page.tsx
+src/app/(public)/tour/page.tsx
+src/app/(public)/trust/page.tsx
+src/app/suppliers/page.tsx
+src/app/suppliers/[...rest]/page.tsx
+src/app/(workspace)/app/ai-assistant/page.tsx
+src/app/(workspace)/app/analytics/page.tsx
+src/app/(workspace)/app/billing/page.tsx
+src/app/(workspace)/app/billing/pay/page.tsx
+src/app/(workspace)/app/billing/subscribe/page.tsx
+src/app/(workspace)/app/dashboard/page.tsx
+src/app/(workspace)/app/marketplace/page.tsx
+src/app/(workspace)/app/messages/page.tsx
+src/app/(workspace)/app/notifications/page.tsx
+src/app/(workspace)/app/orders/[orderId]/page.tsx
+src/app/(workspace)/app/orders/page.tsx
+src/app/(workspace)/app/page.tsx
+src/app/(workspace)/app/reports/page.tsx
+src/app/(workspace)/app/settings/organization/page.tsx
+src/app/(workspace)/app/settings/preferences/page.tsx
+src/app/(workspace)/app/settings/profile/page.tsx
+src/app/(workspace)/app/settings/security/page.tsx
+src/app/(workspace)/app/settings/team/page.tsx
+src/app/(workspace)/app/support/page.tsx
+src/app/(workspace)/group/ai-insights/page.tsx
+src/app/(workspace)/group/dashboard/page.tsx
+src/app/(workspace)/group/inventory/page.tsx
+src/app/(workspace)/group/logistics/page.tsx
+src/app/(workspace)/group/members/page.tsx
+src/app/(workspace)/group/orders/page.tsx
+src/app/(workspace)/group/payments/page.tsx
+src/app/(workspace)/group/products/page.tsx
+src/app/(workspace)/group/supply-planning/page.tsx
+src/app/(workspace)/institution/billing/page.tsx
+src/app/(workspace)/institution/dashboard/page.tsx
+src/app/(workspace)/institution/data-access/page.tsx
+src/app/(workspace)/institution/forecasting/page.tsx
+src/app/(workspace)/institution/intelligence/page.tsx
+src/app/(workspace)/institution/interventions/page.tsx
+src/app/(workspace)/institution/price-intelligence/page.tsx
+src/app/(workspace)/institution/programs/page.tsx
+src/app/(workspace)/institution/reports/page.tsx
+src/app/(workspace)/institution/schools/page.tsx
+src/app/(workspace)/institution/supplier-network/page.tsx
+src/app/(workspace)/institution/supply-gaps/page.tsx
+src/app/(workspace)/school/budgets/page.tsx
+src/app/(workspace)/school/dashboard/page.tsx
+src/app/(workspace)/school/deliveries/page.tsx
+src/app/(workspace)/school/exchange/page.tsx
+src/app/(workspace)/school/finances/page.tsx
+src/app/(workspace)/school/inventory/page.tsx
+src/app/(workspace)/school/marketplace/page.tsx
+src/app/(workspace)/school/meal-planning/page.tsx
+src/app/(workspace)/school/price-history/page.tsx
+src/app/(workspace)/school/procurement/page.tsx
+src/app/(workspace)/school/profile/page.tsx
+src/app/(workspace)/school/reports/page.tsx
+src/app/(workspace)/school/requests/new/page.tsx
+src/app/(workspace)/school/suppliers/page.tsx
+src/app/(workspace)/supplier/ai-insights/page.tsx
+src/app/(workspace)/supplier/analytics/page.tsx
+src/app/(workspace)/supplier/buyers/page.tsx
+src/app/(workspace)/supplier/dashboard/page.tsx
+src/app/(workspace)/supplier/deliveries/page.tsx
+src/app/(workspace)/supplier/finances/page.tsx
+src/app/(workspace)/supplier/inventory/page.tsx
+src/app/(workspace)/supplier/orders/page.tsx
+src/app/(workspace)/supplier/performance/page.tsx
+src/app/(workspace)/supplier/products/new/page.tsx
+src/app/(workspace)/supplier/products/page.tsx
+src/app/(workspace)/supplier/products/[productId]/page.tsx
+src/app/(workspace)/supplier/verification/page.tsx
+===== UNDER DEVELOPMENT COMPONENT =====
+import Link from "next/link";
+
+type UnderDevelopmentProps = {
+  title: string;
+  description: string;
+  backHref?: string;
+  backLabel?: string;
+};
+
+export default function UnderDevelopment({
+  title,
+  description,
+  backHref,
+  backLabel = "Return to workspace",
+}: UnderDevelopmentProps) {
+  return (
+    <section
+      aria-labelledby="under-development-title"
+      className="mx-auto flex w-full max-w-4xl flex-col justify-center px-5 py-12 sm:px-8 sm:py-16"
+    >
+      <div className="rounded-3xl border border-stone-200 bg-white p-6 shadow-sm sm:p-10">
+        <span className="inline-flex items-center gap-2 rounded-full border border-amber-200 bg-amber-50 px-3 py-1 text-sm font-medium text-amber-800">
+          <span
+            aria-hidden="true"
+            className="h-2 w-2 rounded-full bg-amber-500"
+          />
+          Under Development
+        </span>
+
+        <div
+          aria-hidden="true"
+          className="my-8 flex h-16 w-16 items-center justify-center rounded-2xl bg-stone-100 text-3xl"
+        >
+          ◷
+        </div>
+
+        <h1
+          id="under-development-title"
+          className="text-2xl font-semibold tracking-tight text-stone-900 sm:text-3xl"
+        >
+          {title}
+        </h1>
+
+        <p className="mt-4 max-w-2xl text-base leading-7 text-stone-600">
+          {description}
+        </p>
+
+        <p className="mt-3 text-sm leading-6 text-stone-500">
+          We are preparing this part of Miveloo. It will become available when
+          its design, functionality, and quality checks are complete.
+        </p>
+
+        {backHref ? (
+          <div className="mt-8">
+            <Link
+              href={backHref}
+              className="inline-flex min-h-11 items-center justify-center rounded-xl bg-stone-900 px-5 py-3 text-sm font-medium text-white transition hover:bg-stone-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-stone-900"
+            >
+              {backLabel}
+            </Link>
+          </div>
+        ) : null}
+      </div>
+    </section>
+  );
+}
+===== CHECKLIST =====
+# Miveloo New Structure — Route Completion Checklist
+
+Status meanings:
+- EXISTING: a route file already exists; functionality still needs review.
+- CREATE: a required route has no matching route file.
+- UNDER DEVELOPMENT: route exists but the final UI/workflow is not ready.
+- REVIEW: check for overlap before removing or merging anything.
+
+## A. Public Website
+- [ ] Home
+- [ ] About
+- [ ] Mission
+- [ ] Team
+- [ ] Solutions for Schools
+- [ ] Solutions for Suppliers
+- [ ] Solutions for Cooperatives
+- [ ] Solutions for Institutions
+- [ ] How It Works
+- [ ] Pricing
+- [ ] Contact
+- [ ] Help Centre / FAQ
+- [ ] Careers
+- [ ] Job Details
+- [ ] Insights / Articles
+- [ ] Impact
+- [ ] Trust
+- [ ] Privacy
+- [ ] Terms
+- [ ] Cookies
+- [ ] Data & AI Policy
+- [ ] School Terms
+- [ ] Supplier Terms
+
+## B. Supplier Workspace
+- [ ] Dashboard
+- [ ] Marketplace
+- [ ] Product Catalogue
+- [ ] Orders & Fulfilment
+- [ ] Inventory
+- [ ] Customers & Sales
+- [ ] Price Intelligence
+- [ ] Demand Forecasting
+- [ ] Harvest & Production Planning
+- [ ] Replenishment Assistant
+- [ ] Business Analytics
+- [ ] AI Assistant
+- [ ] Reports
+- [ ] Subscription & Billing
+- [ ] Team & Settings
+
+## C. School Feeding & Procurement
+- [ ] Dashboard
+- [ ] Marketplace
+- [ ] Shopping & Requests
+- [ ] Orders & Deliveries
+- [ ] Inventory & Warehouse
+- [ ] Daily Meal Planner
+- [ ] Nutrition & Menu Analysis
+- [ ] Food Budget Planner
+- [ ] Procurement Intelligence
+- [ ] Demand Forecasting
+- [ ] Waste Management
+- [ ] Kitchen Operations
+- [ ] Supplier Performance
+- [ ] Reports & Audit Trail
+- [ ] Staff & Permissions
+- [ ] Subscription & Billing
+
+## D. Cooperative & Supplier Group
+- [ ] Dashboard
+- [ ] Member Management
+- [ ] Production & Harvest
+- [ ] Supply Aggregation
+- [ ] Marketplace & Buyers
+- [ ] Orders & Contracts
+- [ ] Warehouse & Inventory
+- [ ] Price Intelligence
+- [ ] Supply & Demand Forecasting
+- [ ] Member Allocation
+- [ ] Delivery & Logistics
+- [ ] Sales & Profitability
+- [ ] Member Payments
+- [ ] Loss & Quality Management
+- [ ] AI Cooperative Assistant
+- [ ] Reports & Audit Trail
+- [ ] Team & Billing
+
+## E. Institutional Food Intelligence
+- [ ] Intelligence Overview
+- [ ] Food Prices
+- [ ] Food Availability
+- [ ] Supply & Demand
+- [ ] Agricultural Outlook
+- [ ] School-Feeding Intelligence
+- [ ] Food Security & Early Warning
+- [ ] Trade & Imports
+- [ ] Geographic Explorer
+- [ ] Scenario Simulator
+- [ ] Reports & Exports
+- [ ] Alerts & Monitoring
+- [ ] Organisation & Team
+- [ ] Subscription & Billing
+
+## F. Platform Administration
+- [ ] Executive Control Centre
+- [ ] Users & Access Control
+- [ ] Organisations & Verification
+- [ ] Marketplace Operations
+- [ ] Finance & Subscriptions
+- [ ] AI, Data & Intelligence Governance
+- [ ] Website & Content Management
+- [ ] Careers & Recruitment
+- [ ] Customer Success & Support
+- [ ] Security, Privacy & Compliance
+- [ ] Technology & Integrations
+- [ ] Shared Reference Data
+- [ ] Approvals & Audit Trail
+
+## G. AI & Data Operations
+- [ ] Data Source Registry
+- [ ] Ingestion Pipelines
+- [ ] Data Quality
+- [ ] Food & Geography Coverage
+- [ ] Feature Engineering
+- [ ] Model Registry
+- [ ] Training & Experiments
+- [ ] Evaluation & Backtesting
+- [ ] Deployment & Rollback
+- [ ] Drift & Monitoring
+- [ ] AI Service Health
+- [ ] Forecast Audit
+- [ ] Feedback & Outcomes
+- [ ] Access & Governance
+
+## Safety rules
+- Do not delete existing pages during migration.
+- Reuse existing routes when they already serve the intended purpose.
+- Do not replace functional pages with placeholders.
+- All unfinished pages must visibly say "Under Development".
+- Never present mock data or untrained forecasts as real results.
+- Enforce permissions on the server/backend, not only in navigation.
+- Review authentication, legal, and API routes separately.
+===== ROUTES =====
+import type { Role } from './roles';
+
+export const routes = {
+  home: '/', sell: '/sell',
+  howItWorks: '/how-it-works', schools: '/schools', institutions: '/institutions',
+  ai: '/ai-intelligence', pricing: '/pricing', about: '/about', mission: '/about/mission',
+  team: '/about/team', impact: '/impact', contact: '/contact', faq: '/faq', help: '/help',
+  insights: '/insights', privacy: '/privacy', terms: '/terms', cookies: '/cookies',
+  supplierTerms: '/supplier-terms', schoolTerms: '/school-terms', dataAi: '/data-ai-policy',
+  tour: '/tour', careers: '/careers', roadmap: '/roadmap', cooperatives: '/cooperatives', exchange: '/exchange', trust: '/trust',
+  login: '/login', register: '/register', forgot: '/forgot-password',
+} as const;
+
+/** Path prefix -> the only role allowed in. '/app' is any authenticated user. */
+export const PROTECTED_PREFIXES: ReadonlyArray<{ prefix: string; role: Role | 'any' }> = [
+  { prefix: '/admin', role: 'admin' },
+  { prefix: '/school', role: 'school' },
+  { prefix: '/supplier', role: 'supplier' },
+  { prefix: '/group', role: 'group' },
+  { prefix: '/institution', role: 'institution' },
+  { prefix: '/marketplace', role: 'any' }, // private: old links are routed by the server gate
+  { prefix: '/suppliers', role: 'any' },
+  { prefix: '/app', role: 'any' },
+];
+===== PERMISSIONS =====
+import type { Role } from './roles';
+
+/** UI hints only. The backend must re-check every one of these on every request. */
+export const PERMISSIONS = {
+  'marketplace.browse.public': ['school', 'supplier', 'group', 'institution', 'admin'],
+  'marketplace.buy': ['school'],
+  'order.create': ['school'],
+  'order.respond': ['supplier', 'group'],
+  'listing.manage': ['supplier', 'group'],
+  'group.allocate': ['group'],
+  'intelligence.aggregate': ['institution', 'admin'],
+  'admin.access': ['admin'],
+  'verification.review': ['admin'],
+  'audit.read': ['admin'],
+} as const satisfies Record<string, readonly Role[]>;
+
+export type Permission = keyof typeof PERMISSIONS;
+===== ROLES =====
+export const ROLES = ['school', 'supplier', 'group', 'institution', 'admin'] as const;
+export type Role = (typeof ROLES)[number];
+
+export const ROLE_HOME: Record<Role, string> = {
+  school: '/school/dashboard',
+  supplier: '/supplier/dashboard',
+  group: '/group/dashboard',
+  institution: '/institution/dashboard',
+  admin: '/admin/dashboard',
+};
+
+export const ROLE_LABEL: Record<Role, string> = {
+  school: 'School',
+  supplier: 'Individual supplier',
+  group: 'Cooperative / supplier group',
+  institution: 'Institution, NGO or government partner',
+  admin: 'Miveloo staff',
+};
+
+/** Account types a visitor may *request* at sign-up. Requesting is never granting. */
+export const REGISTRABLE = ['school', 'supplier', 'group', 'institution'] as const satisfies readonly Role[];
+export type Registrable = (typeof REGISTRABLE)[number];
+===== NAVIGATION =====
+import type { Role } from './roles';
+export interface NavLink { href: string; label: string }
+const shared: NavLink[] = [
+  { href: '/app/orders', label: 'Orders' }, { href: '/app/messages', label: 'Messages' }, { href: '/app/notifications', label: 'Notifications' },
+  { href: '/app/ai-assistant', label: 'AI assistant' }, { href: '/app/analytics', label: 'Analytics' }, { href: '/app/reports', label: 'Reports' },
+  { href: '/app/billing', label: 'Billing' }, { href: '/app/support', label: 'Support' }, { href: '/app/settings/profile', label: 'Settings' },
+];
+const own: Record<Role, NavLink[]> = {
+  school: ['dashboard:Dashboard', 'marketplace:Marketplace', 'meal-planning:Meal planning', 'procurement:Procurement', 'budgets:Budgets', 'inventory:Inventory', 'suppliers:Suppliers', 'exchange:School exchange', 'deliveries:Deliveries', 'finances:Finances', 'price-history:Price history', 'profile:School profile'].map((s) => ({ href: `/school/${s.split(':')[0]}`, label: s.split(':')[1]! })),
+  supplier: ['dashboard:Dashboard', 'products:Products', 'orders:Orders', 'buyers:Buyers', 'inventory:Inventory', 'deliveries:Deliveries', 'finances:Sales', 'analytics:Analytics', 'ai-insights:AI insights', 'performance:Performance', 'verification:Verification'].map((s) => ({ href: `/supplier/${s.split(':')[0]}`, label: s.split(':')[1]! })),
+  group: ['dashboard:Dashboard', 'members:Members', 'inventory:Inventory', 'products:Listings', 'orders:Bulk orders', 'supply-planning:Supply planning', 'logistics:Logistics', 'payments:Payments', 'ai-insights:AI insights'].map((s) => ({ href: `/group/${s.split(':')[0]}`, label: s.split(':')[1]! })),
+  institution: ['dashboard:Dashboard', 'intelligence:Intelligence', 'schools:Schools', 'programs:Programmes', 'forecasting:Forecasting', 'supply-gaps:Supply gaps', 'price-intelligence:Prices', 'supplier-network:Suppliers', 'reports:Reports', 'interventions:Interventions', 'data-access:Data access', 'billing:Billing'].map((s) => ({ href: `/institution/${s.split(':')[0]}`, label: s.split(':')[1]! })),
+  admin: ['dashboard:Overview', 'careers:Careers', 'users:Users', 'organizations:Organisations', 'schools:Schools', 'suppliers:Suppliers', 'products:Products', 'marketplace:Marketplace', 'orders:Orders', 'billing:Billing', 'ai-monitoring:AI monitoring', 'data:Data', 'analytics:Analytics', 'support:Support', 'security:Security', 'settings:Settings'].map((s) => ({ href: `/admin/${s.split(':')[0]}`, label: s.split(':')[1]! })),
+};
+export function navFor(role: Role): NavLink[] { return role === 'admin' ? own.admin : [...own[role], ...shared]; }
+===== PACKAGE SCRIPTS =====
+{
+  "dev": "next dev",
+  "build": "next build",
+  "start": "next start",
+  "lint": "next lint",
+  "typecheck": "tsc --noEmit",
+  "test": "vitest run",
+  "test:e2e": "playwright test",
+  "format": "prettier --write .",
+  "prebuild": "node scripts/photos-manifest.mjs",
+  "predev": "node scripts/photos-manifest.mjs",
+  "images": "bash scripts/fetch-images.sh"
+}
+===== GIT STATUS =====
+?? docs/migration/
+?? src/components/feedback/UnderDevelopment.tsx

@@ -10,3 +10,4 @@ playwright-report
 coverage
 .backup-live-*
 .backup-fix-*
+role-access-report.csv
