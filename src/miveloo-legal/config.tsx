@@ -11,8 +11,10 @@ export const ORG = {
   supportEmail: site.contact.email || "", // if set, shown as fallback when the support form fails
 };
 export const DRAFT_NOTICE = false; // set false after legal + product review
-export const SUPPORT_ENDPOINT = "/api/support";   // must return JSON { reference: "..." } on success
-export const FEEDBACK_ENDPOINT = "/api/feedback";
+const API = process.env.NEXT_PUBLIC_API_URL ?? "";
+export const SUPPORT_ENDPOINT = API + "/api/v1/help/support";
+export const FEEDBACK_ENDPOINT = API + "/api/v1/help/feedback";
+export const VOTE_ENDPOINT = API + "/api/v1/help/faq-votes";
 export const STATUS_URL = "";                       // only shown if a real status system exists
 export const LANGS = ["en"];                        // add "rw" ONLY when Kinyarwanda content exists
 export const MARKETING_USED = false;                // true only if advertising trackers really exist

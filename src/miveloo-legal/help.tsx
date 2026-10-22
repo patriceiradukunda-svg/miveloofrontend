@@ -39,7 +39,7 @@ const SUPPORT_FIELDS = [
  { name: "reference", label: "Order or listing reference" },
  { name: "subject", label: "Subject", required: true },
  { name: "description", label: "What happened?", type: "textarea", required: true, min: 20, help: "Never include passwords, card details or unnecessary personal documents." },
- { name: "attachment", label: "Screenshot or attachment", type: "file", help: "Images or PDF, up to 5 MB." },
+ { name: "attachment", label: "Screenshot or attachment", type: "file", help: "Images or PDF, up to 1.5 MB." },
 ];
 const FB_FIELDS = [
  { name: "area", label: "Area", type: "select", options: ["Marketplace", "Help pages", "Pro plans", "AI features", "Other"] },

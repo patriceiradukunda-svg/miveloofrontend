@@ -63,7 +63,7 @@ export function SubmitForm({ fields, endpoint, type, submitLabel = "Send", succe
       if (f.required && empty) e[f.name] = "This field is required.";
       else if (!empty && f.type === "email" && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(x)) e[f.name] = "Enter a valid email address.";
       else if (!empty && f.min && String(x).trim().length < f.min) e[f.name] = "Please write at least " + f.min + " characters.";
-      else if (f.type === "file" && x && x.size > 5 * 1024 * 1024) e[f.name] = "File must be smaller than 5 MB.";
+      else if (f.type === "file" && x && x.size > 1.5 * 1024 * 1024) e[f.name] = "File must be smaller than 1.5 MB.";
     });
     return e;
   };

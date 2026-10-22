@@ -4,7 +4,7 @@
 import React, { useState, useEffect, useMemo } from "react";
 import { Shell, Acc, Rich } from "./ui";
 import { rank } from "./search";
-import { FEEDBACK_ENDPOINT, UPDATED } from "./config";
+import { VOTE_ENDPOINT, UPDATED } from "./config";
 
 export const CATS = ["General", "Accounts and verification", "Marketplace and listings", "School purchasing and orders", "Suppliers and cooperatives", "Deliveries, quality and disputes", "Pro plans, pricing and billing", "Stock and meal planning", "AI, forecasts and analytics", "Privacy, security and data", "Technical support"];
 const R = UPDATED;
@@ -35,7 +35,7 @@ export const FAQS = [
 
 function Vote({ id }) {
   const [v, setV] = useState("");
-  const send = x => { setV(x); try { fetch(FEEDBACK_ENDPOINT, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ type: "faq-vote", id, helpful: x === "yes" }) }).catch(() => {}); } catch (_) {} };
+  const send = x => { setV(x); try { fetch(VOTE_ENDPOINT, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ faq_id: id, helpful: x === "yes" }) }).catch(() => {}); } catch (_) {} };
   if (v) return <p className="mv-small" role="status">Thanks for your feedback.</p>;
   return <p className="mv-small">Was this helpful? <button className="mv-chip" onClick={() => send("yes")}>Yes</button> <button className="mv-chip" onClick={() => send("no")}>No</button></p>;
 }
