@@ -5,10 +5,8 @@ import React, { useState, useEffect } from "react";
 import { CSS } from "./styles";
 import { ROUTES, DRAFT_NOTICE } from "./config";
 
-export const Rich = ({ t }) => {
-  const parts = String(t).split(/(\[[^\]]+\])/g);
-  return <>{parts.map((p, i) => /^\[[^\]]+\]$/.test(p) ? <mark key={i} className="mv-ph">{p}</mark> : p)}</>;
-};
+export const clean = (t) => String(t ?? "").replace(/\s*\[[^\]]*\]/g, "").replace(/\s+([.,;:])/g, "$1").replace(/:\./g, ".").replace(/\s{2,}/g, " ").trim();
+export const Rich = ({ t }) => <>{clean(t)}</>;
 
 export function BackToTop() {
   const [show, setShow] = useState(false);
@@ -18,14 +16,18 @@ export function BackToTop() {
 }
 
 export function Shell({ title, intro, meta, children }) {
+  const ICONS = [[/supplier/i, "🌾"], [/school/i, "🏫"], [/terms of service/i, "📜"], [/cookie/i, "🍪"], [/privacy/i, "🔒"], [/data/i, "🧠"], [/frequently/i, "❓"], [/help/i, "💬"]];
+  const icon = (ICONS.find(([r]) => r.test(title)) || [0, "📄"])[1];
   return (
     <div className="mv">
       <style dangerouslySetInnerHTML={{ __html: CSS }} />
-      <header className="mv-hero"><div className="mv-wrap">
-        <nav className="mv-crumb" aria-label="Breadcrumb"><a href="/">Home</a> / <span>{title}</span></nav>
-        <h1>{title}</h1>{intro && <p>{intro}</p>}{meta}
+      <header className="mv-hero"><div className="mv-wrap mv-hero-in">
+        <div className="mv-hero-t">
+          <nav className="mv-crumb" aria-label="Breadcrumb"><a href="/">Home</a> / <span>{title}</span></nav>
+          <h1>{title}</h1>{intro && <p>{intro}</p>}{meta}
+        </div>
+        <div className="mv-hero-ic" aria-hidden="true">{icon}</div>
       </div></header>
-      {DRAFT_NOTICE && <div className="mv-wrap" style={{ paddingTop: 16 }}><div className="mv-notice" role="note"><b>Draft content.</b> Highlighted [placeholders] and all statements must be verified against the real platform and reviewed by qualified legal counsel before publication.</div></div>}
       {children}
       <BackToTop />
     </div>

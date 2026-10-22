@@ -24,7 +24,7 @@ const ARTICLES = [
  A("pro-subscription", "How Miveloo Pro works and how to manage a subscription", "Core marketplace use is free; Pro adds advanced tools.", "Billing", ["schools", "suppliers", "orgs"], ["Open your organisation settings and choose Plans.", "Select a plan available for your role.", "Manage renewal or cancellation in the same place. [Match to real billing screens.]", "If a plan ends, paid tools switch off but your data stays yours."], ["ai-forecasts"]),
  A("ai-forecasts", "How to understand AI forecasts and confidence levels", "Forecasts are estimates, not facts.", "AI", ["schools", "suppliers", "orgs"], ["Look for the label: record, current observation or forecast.", "Check the date, horizon and any uncertainty range.", "Compare with real stock and current prices before deciding.", "Report anything that looks wrong."], ["manage-stock"]),
  A("data-request", "How to request a copy of your personal data", "Use the privacy route to access, correct or delete data.", "Privacy", ["tech", "schools", "suppliers", "orgs"], ["Contact the privacy address in the Privacy Policy, or open a request from support.", "Say what you need: access, correction or deletion.", "We may verify your identity first.", "We will explain anything we must keep for legal reasons."], ["report-security"]),
- A("report-security", "How to report a security or privacy concern", "Report suspected compromise or misuse straight away.", "Security", ["tech", "schools", "suppliers", "orgs"], ["Use the contact form below and choose Security or privacy concern.", "Never include passwords or card details.", "Change your password if you suspect compromise.", "We investigate and take action; [describe notification practice]."], ["data-request"]),
+ A("report-security", "How to report a security or privacy concern", "Report suspected compromise or misuse straight away.", "Security", ["tech", "schools", "suppliers", "orgs"], ["Use the contact form below and choose Security or privacy concern.", "Never include passwords or card details.", "Change your password if you suspect compromise.", "We investigate and take action and notify affected people where required."], ["data-request"]),
 ];
 
 const CATEGORIES = ["Account or verification", "Finding or listing food", "Orders and deliveries", "Order dispute", "Billing or Pro plan", "AI forecasts or reports", "Technical error", "Misleading information", "Urgent: suspected account compromise", "Urgent: unauthorised access", "Urgent: fraudulent listing", "Urgent: unsafe food concern", "Urgent: privacy incident", "Other"];
@@ -67,7 +67,7 @@ export function HelpPage() {
       </div></section>}
       <section className="mv-sec alt"><div className="mv-wrap">
         <h2>Choose your situation</h2><p className="mv-lead">Each card opens the guides that fit you.</p>
-        <div className="mv-grid">{PATHS.map(p => <button key={p.id} className="mv-card" aria-pressed={aud === p.id} onClick={() => choose(p.id)}><h3>{p.t}</h3><p>{p.d}</p></button>)}</div>
+        <div className="mv-grid">{PATHS.map(p => <button key={p.id} className="mv-card" aria-pressed={aud === p.id} onClick={() => choose(p.id)}><span className="mv-ico">{({ schools: "🏫", suppliers: "🌾", orgs: "🤝", tech: "🛠️" })[p.id]}</span><h3>{p.t}</h3><p>{p.d}</p></button>)}</div>
       </div></section>
       <section className="mv-sec" id="articles"><div className="mv-wrap">
         <h2>{aud === "all" ? "Popular help articles" : PATHS.find(p => p.id === aud).t}</h2>

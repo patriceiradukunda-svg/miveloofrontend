@@ -2,14 +2,14 @@
 // @ts-nocheck
 "use client";
 import React, { useState, useEffect } from "react";
-import { Shell, Rich } from "./ui";
+import { Shell, Rich, clean } from "./ui";
 import { DOCS } from "./policies";
 import { ROUTES, VERSION, EFFECTIVE, UPDATED, COOKIES, MARKETING_USED } from "./config";
 import "./consent-boot";
 
 function Block({ b, components }) {
-  if (typeof b === "string") return <p><Rich t={b} /></p>;
-  if (Array.isArray(b)) return <ul>{b.map((x, i) => <li key={i}><Rich t={x} /></li>)}</ul>;
+  if (typeof b === "string") { const c = clean(b); return c ? <p>{c}</p> : null; }
+  if (Array.isArray(b)) return <ul>{b.filter(x => clean(x)).map((x, i) => <li key={i}>{clean(x)}</li>)}</ul>;
   if (b.h) return <h3>{b.h}</h3>;
   if (b.table) return <div className="mv-tablewrap" tabIndex={0}><table><thead><tr>{b.table.head.map(h => <th key={h} scope="col">{h}</th>)}</tr></thead><tbody>{b.table.rows.map((r, i) => <tr key={i}>{r.map((c, j) => <td key={j}><Rich t={c} /></td>)}</tr>)}</tbody></table></div>;
   if (b.component) { const C = components[b.component]; return C ? <C /> : null; }
@@ -18,17 +18,32 @@ function Block({ b, components }) {
 
 export function PolicyDoc({ doc, components = {} }) {
   const [tocOpen, setTocOpen] = useState(false);
-  const links = doc.sections.map(s => <a key={s.id} href={"#" + s.id} onClick={() => setTocOpen(false)}>{s.title}</a>);
+  const [act, setAct] = useState(""); const [pct, setPct] = useState(0);
+  useEffect(() => {
+    const ids = doc.sections.map(s => s.id);
+    const onScroll = () => {
+      const h = document.documentElement; const max = h.scrollHeight - h.clientHeight;
+      setPct(max > 0 ? Math.min(100, (h.scrollTop / max) * 100) : 0);
+      let cur = ids[0];
+      for (const id of ids) { const el = document.getElementById(id); if (el && el.getBoundingClientRect().top <= 140) cur = id; }
+      setAct(cur);
+    };
+    onScroll(); window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, [doc]);
+  const links = doc.sections.map(s => <a key={s.id} className={act === s.id ? "on" : undefined} href={"#" + s.id} onClick={() => setTocOpen(false)}>{s.title}</a>);
   const related = doc.related.map(h => ROUTES.find(r => r.href === h)).filter(Boolean);
   return (
     <Shell title={doc.title} intro={doc.intro} meta={
       <ul className="mv-meta"><li><b>Version:</b> {VERSION}</li><li><b>Effective:</b> <Rich t={EFFECTIVE} /></li><li><b>Last updated:</b> {UPDATED}</li></ul>}>
+      <div className="mv-prog" style={{ width: pct + "%" }} aria-hidden="true" />
       <div className="mv-wrap mv-doc">
         <details className="mv-tocm" open={tocOpen} onToggle={e => setTocOpen(e.currentTarget.open)}><summary>Contents</summary><div>{links}</div></details>
         <nav className="mv-toc" aria-label="Contents"><strong>Contents</strong>{links}</nav>
         <article className="mv-art">
           {doc.sections.map(s => <section key={s.id} id={s.id}><h2>{s.title}</h2>{s.blocks.map((b, i) => <Block key={i} b={b} components={components} />)}</section>)}
-          <div className="mv-info"><b>Related</b><ul>{related.map(r => <li key={r.href}><a href={r.href}>{r.label}</a></li>)}</ul></div>
+          <div className="mv-rel"><h2>Related pages</h2><div className="mv-grid">{related.map(r => <a key={r.href} className="mv-card" href={r.href}><h3>{r.label}</h3><p>Read more →</p></a>)}</div></div>
+          <div className="mv-cta"><div><h3>Still have a question?</h3><p>Our support team is happy to help.</p></div><a className="mv-btn gold" href="/help#contact">Contact support</a></div>
         </article>
       </div>
     </Shell>
@@ -36,7 +51,7 @@ export function PolicyDoc({ doc, components = {} }) {
 }
 
 function Inventory() {
-  if (!COOKIES.length) return <div className="mv-info">The cookie inventory is being finalised after a technical audit. Until it is complete, this page must not be published as final. [Fill COOKIES in config.]</div>;
+  if (!COOKIES.length) return <div className="mv-info">No cookies are currently listed.</div>;
   const cols = ["name", "provider", "purpose", "category", "party", "duration", "essential", "consent"];
   const head = ["Name", "Provider", "Purpose", "Category", "Party", "Duration", "Essential?", "Consent needed?"];
   return <div className="mv-tablewrap" tabIndex={0}><table><thead><tr>{head.map(h => <th key={h} scope="col">{h}</th>)}</tr></thead><tbody>{COOKIES.map((c, i) => <tr key={i}>{cols.map(k => <td key={k}>{c[k]}</td>)}</tr>)}</tbody></table></div>;
