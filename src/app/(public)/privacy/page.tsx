@@ -1,4 +1,4 @@
 import type { Metadata } from 'next';
-import { ContentPage } from '@/components/public/ContentPage';
+import { PrivacyPage as Page } from '@/miveloo-legal';
 export const metadata: Metadata = { title: "Privacy policy", alternates: { canonical: '/privacy' } };
-export default function Page() { return <ContentPage slug="privacy" />; }
+export default Page;

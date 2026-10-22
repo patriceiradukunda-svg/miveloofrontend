@@ -1,3 +1,4 @@
+import "../miveloo-legal/consent-boot";
 import type { Metadata, Viewport } from 'next';
 import './globals.css';
 import { site } from '@/config/site';

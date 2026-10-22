@@ -1,4 +1,4 @@
 import type { Metadata } from 'next';
-import { ContentPage } from '@/components/public/ContentPage';
+import { CookiePage as Page } from '@/miveloo-legal';
 export const metadata: Metadata = { title: "Cookie policy", alternates: { canonical: '/cookies' } };
-export default function Page() { return <ContentPage slug="cookies" />; }
+export default Page;

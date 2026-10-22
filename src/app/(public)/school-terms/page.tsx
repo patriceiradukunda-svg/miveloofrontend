@@ -1,4 +1,4 @@
 import type { Metadata } from 'next';
-import { ContentPage } from '@/components/public/ContentPage';
+import { SchoolTermsPage as Page } from '@/miveloo-legal';
 export const metadata: Metadata = { title: "School terms", alternates: { canonical: '/school-terms' } };
-export default function Page() { return <ContentPage slug="school-terms" />; }
+export default Page;

@@ -15,3 +15,9 @@ test-results/
 playwright-report/
 __pycache__/
 *.pyc
+*.bak-miveloo
+COOKIE_AUDIT.txt
+deploy.log
+deploy-miveloo.sh
+fix-miveloo.sh
+fix2-miveloo.sh
