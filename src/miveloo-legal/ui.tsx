@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment, @next/next/no-html-link-for-pages, @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/ban-ts-comment, @next/next/no-html-link-for-pages */
 // @ts-nocheck
 "use client";
 import React, { useState, useEffect } from "react";
@@ -77,9 +77,9 @@ export function SubmitForm({ fields, endpoint, type, submitLabel = "Send", succe
       fields.filter(vis).forEach(f => { const x = v[f.name]; if (x !== undefined && x !== "") fd.append(f.name, x); });
       const r = await fetch(endpoint, { method: "POST", body: fd });
       if (!r.ok) throw new Error(String(r.status));
-      let j = {}; try { j = await r.json(); } catch (_) {}
+      let j = {}; try { j = await r.json(); } catch {}
       setRef(j.reference || ""); setSt("done");
-    } catch (_) { setSt("error"); }
+    } catch { setSt("error"); }
   };
   if (st === "done") return (
     <div className="mv-ok" role="status"><h3 style={{ margin: "0 0 6px" }}>{successTitle}</h3>

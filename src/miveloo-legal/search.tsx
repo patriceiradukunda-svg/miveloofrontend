@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment, @next/next/no-html-link-for-pages, @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 // @ts-nocheck
 "use client";
 const SYN = { login:["sign","password","account","access"], signin:["login","password"], password:["account","recovery","security"], refund:["billing","subscription","cancel"], invoice:["billing","subscription"], pay:["billing","payment"], price:["pricing","billing"], forecast:["ai","prediction","estimate"], predict:["ai","forecast"], delete:["data","privacy"], erase:["data","privacy"], hack:["security","compromise"], stolen:["security"], late:["delivery"], broken:["damaged","delivery"], missing:["delivery"], verify:["verification","account"], supplier:["seller","listing"], seller:["supplier","listing"], buy:["request","order","school"], kinyarwanda:["language"] };

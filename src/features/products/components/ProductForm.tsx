@@ -1,16 +1,27 @@
+/* eslint-disable @next/next/no-img-element -- upload previews use temporary browser URLs */
 "use client";
 import { useEffect, useState } from 'react';
+
 import { FormField } from '@/components/forms/FormField';
+
 import { FormError } from '@/components/forms/FormError';
+
 import { Button } from '@/components/ui/button';
+
 import { useToast } from '@/components/ui/toast';
+
 import { CATEGORY_LABEL } from '@/config/product-categories';
+
 import { productSchema } from '../schemas/product.schema';
+
 import { fieldErrors } from '@/features/auth/schemas/auth.schema';
-import { hasBackend } from '@/lib/api-client';
+
 import { friendlyError } from '@/lib/errors';
+
 import { liveApi, searchFoods, type Food } from '@/lib/miveloo-client';
+
 import { saveListingAction } from '../actions';
+
 
 /** Live mode (NEXT_PUBLIC_API_URL set): saves to the Miveloo backend database, photos included. `defaults.listingId` switches to edit mode. */
 export function ProductForm({ defaults = {} }: { defaults?: Record<string, string> }) {
@@ -74,7 +85,7 @@ export function ProductForm({ defaults = {} }: { defaults?: Record<string, strin
             <input className="field mt-1" type="file" name="photos" accept="image/jpeg,image/png,image/webp" multiple
               onChange={(e) => setPreviews(Array.from((e.target.files ?? []) as ArrayLike<File>).map((f) => URL.createObjectURL(f)))} />
           </label>
-          {previews.length > 0 && <ul className="mt-2 flex flex-wrap gap-2">{previews.map((u) => (<li key={u}>{/* eslint-disable-next-line @next/next/no-img-element */}<img src={u} alt="Selected photo preview" className="h-20 w-20 rounded-xl object-cover" /></li>))}</ul>}
+          {previews.length > 0 && <ul className="mt-2 flex flex-wrap gap-2">{previews.map((u) => (<li key={u}><img src={u} alt="Selected photo preview" className="h-20 w-20 rounded-xl object-cover" /></li>))}</ul>}
         </div>
       )}
       <Button type="submit" disabled={busy}>{busy ? 'Saving…' : editing ? 'Save changes' : 'Save draft'}</Button>

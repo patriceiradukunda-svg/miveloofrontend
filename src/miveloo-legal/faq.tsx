@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment, @next/next/no-html-link-for-pages, @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 // @ts-nocheck
 "use client";
 import React, { useState, useEffect, useMemo } from "react";
@@ -35,7 +35,7 @@ export const FAQS = [
 
 function Vote({ id }) {
   const [v, setV] = useState("");
-  const send = x => { setV(x); try { fetch(VOTE_ENDPOINT, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ faq_id: id, helpful: x === "yes" }) }).catch(() => {}); } catch (_) {} };
+  const send = x => { setV(x); try { fetch(VOTE_ENDPOINT, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ faq_id: id, helpful: x === "yes" }) }).catch(() => {}); } catch {} };
   if (v) return <p className="mv-small" role="status">Thanks for your feedback.</p>;
   return <p className="mv-small">Was this helpful? <button className="mv-chip" onClick={() => send("yes")}>Yes</button> <button className="mv-chip" onClick={() => send("no")}>No</button></p>;
 }
@@ -43,7 +43,7 @@ function Vote({ id }) {
 export function FaqPage() {
   const [q, setQ] = useState(""); const [cat, setCat] = useState("all"); const [open, setOpen] = useState({}); const [more, setMore] = useState({});
   useEffect(() => { const h = decodeURIComponent(location.hash.slice(1)); const it = FAQS.find(f => f.id === h); if (it) { setOpen({ [h]: true }); setMore({ [it.cat]: true }); setTimeout(() => document.getElementById(h)?.scrollIntoView(), 60); } }, []);
-  const toggle = id => { const o = !open[id]; setOpen(p => ({ ...p, [id]: o })); if (o) try { history.replaceState(null, "", "#" + id); } catch (_) {} };
+  const toggle = id => { const o = !open[id]; setOpen(p => ({ ...p, [id]: o })); if (o) try { history.replaceState(null, "", "#" + id); } catch {} };
   const items = useMemo(() => FAQS.map(f => ({ ...f, title: f.q, text: f.a + " " + f.cat })), []);
   const results = q.trim() ? rank(items, q) : null;
   const item = f => (

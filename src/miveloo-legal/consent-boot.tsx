@@ -1,10 +1,10 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment, @next/next/no-html-link-for-pages, @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 // @ts-nocheck
 "use client";
 import { CSS } from "./styles";
 import { MARKETING_USED } from "./config";
 const KEY = "miveloo_consent", VERSION = 1, MAX_AGE = 365 * 24 * 3600 * 1000;
-function read() { try { const j = JSON.parse(localStorage.getItem(KEY) || "null"); if (j && j.v === VERSION && Date.now() - j.ts < MAX_AGE) return j; } catch (_) {} return null; }
+function read() { try { const j = JSON.parse(localStorage.getItem(KEY) || "null"); if (j && j.v === VERSION && Date.now() - j.ts < MAX_AGE) return j; } catch {} return null; }
 function init() {
   if (typeof window === "undefined" || window.mivelooConsent) return;
   const subs = new Set(); let el = null;
@@ -12,7 +12,7 @@ function init() {
     get: read,
     has: c => c === "necessary" ? true : !!(read() && read()[c]),   // third-party scripts MUST call has("analytics") before loading
     save(c) { const rec = { v: VERSION, functional: !!c.functional, analytics: !!c.analytics, marketing: MARKETING_USED && !!c.marketing, ts: Date.now() };
-      try { localStorage.setItem(KEY, JSON.stringify(rec)); } catch (_) {}
+      try { localStorage.setItem(KEY, JSON.stringify(rec)); } catch {}
       if (!rec.functional) { /* clear optional functional keys here if you add any */ }
       close(); subs.forEach(f => f(rec)); window.dispatchEvent(new CustomEvent("miveloo:consent", { detail: rec })); },
     acceptAll() { api.save({ functional: true, analytics: true, marketing: true }); },

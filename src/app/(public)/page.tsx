@@ -10,7 +10,6 @@ const wide = 'mx-auto w-full max-w-[90rem] px-4 sm:px-6 lg:px-10';
 const btn = 'inline-flex min-h-12 items-center justify-center rounded-full px-6 text-[0.95rem] font-bold transition-all duration-300';
 const gold = `${btn} bg-gold text-ink hover:-translate-y-0.5 hover:bg-cream hover:shadow-card`;
 const light = `${btn} border-2 border-cream/70 text-cream hover:bg-cream/10`;
-const solid = `${btn} bg-teal text-cream hover:-translate-y-0.5 hover:bg-teal-dark`;
 // Wide, horizontal headings that run across the page in 1-2 lines.
 const h1s = { fontSize: 'clamp(2.1rem, 0.9rem + 4.4vw, 5rem)' } as const;
 const h2s = { fontSize: 'clamp(1.7rem, 1rem + 2.6vw, 3rem)' } as const;

@@ -27,7 +27,6 @@ export function ApplicationWizard({ job, L }: { job: ApplyJob; L: CarLabels }) {
   const min = (n: number) => L.e.min.replace('{n}', String(n));
   const total = Object.values(files).reduce((s, f) => s + f.size, 0);
   const firstDocStep = 4;
-  const reviewStep = firstDocStep + job.docs.length;
 
   const steps: Step[] = [
     {

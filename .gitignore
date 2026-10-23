@@ -26,3 +26,5 @@ design-miveloo.sh
 help-center-frontend.sh
 cookies-miveloo.sh
 cookies-responsive.sh
+fix-warnings.sh
+build.log

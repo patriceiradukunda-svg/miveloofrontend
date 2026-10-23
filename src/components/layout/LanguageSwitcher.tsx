@@ -1,9 +1,12 @@
 "use client";
 import { useRouter } from 'next/navigation';
+
 import { LOCALE_NAMES, locales } from '@/i18n/config';
+
 import { LOCALE_COOKIE } from '@/lib/constants';
+
 import { useT } from '@/providers/LocaleProvider';
-import { cn } from '@/lib/utils';
+
 
 /** Compact two-way toggle: EN | RW. */
 export function LanguageSwitcher() {
