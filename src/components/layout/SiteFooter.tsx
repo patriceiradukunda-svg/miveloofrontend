@@ -17,7 +17,7 @@ export async function SiteFooter() {
       <div className="container-page grid gap-10 py-12 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-[1.3fr_repeat(5,1fr)]">
         <div className="sm:col-span-2 lg:col-span-3 xl:col-span-1">
           <Logo className="h-20 w-auto" />
-          <p className="mt-3 max-w-xs text-ink-soft">{t('footer.mission')}</p>
+          <p className="mt-3 max-w-xs text-ink-soft">{t('brand.tagline', 'No More Struggles. All Solutions Within Reach.')}</p>
           <div className="mt-4"><LanguageSwitcher /></div>
           {(site.contact.email || site.contact.phone) && (
             <address className="mt-4 text-sm not-italic">
