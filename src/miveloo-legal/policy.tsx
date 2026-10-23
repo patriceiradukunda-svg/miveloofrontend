@@ -54,7 +54,7 @@ function Inventory() {
   if (!COOKIES.length) return <div className="mv-info">No cookies are currently listed.</div>;
   const cols = ["name", "provider", "purpose", "category", "party", "duration", "essential", "consent"];
   const head = ["Name", "Provider", "Purpose", "Category", "Party", "Duration", "Essential?", "Consent needed?"];
-  return <div className="mv-tablewrap" tabIndex={0}><table><thead><tr>{head.map(h => <th key={h} scope="col">{h}</th>)}</tr></thead><tbody>{COOKIES.map((c, i) => <tr key={i}>{cols.map(k => <td key={k}>{c[k]}</td>)}</tr>)}</tbody></table></div>;
+  return <div className="mv-tablewrap mv-cktable"><table><thead><tr>{head.map(h => <th key={h} scope="col">{h}</th>)}</tr></thead><tbody>{COOKIES.map((c, i) => <tr key={i}>{cols.map((k, j) => <td key={k} data-label={head[j]}>{c[k]}</td>)}</tr>)}</tbody></table></div>;
 }
 
 function Prefs() {
