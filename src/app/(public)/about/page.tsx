@@ -69,7 +69,7 @@ export default async function AboutPage() {
       <section className="bg-cream-deep py-24">
         <div className={wide}>
           <Reveal>
-            <p className="mx-auto max-w-3xl text-balance text-center font-display text-2xl font-semibold italic text-teal-dark md:text-3xl">{t('brand.tagline', 'Nta Zindi Ngorane. Ibisubizo Byose Biri Imbere Yawe.')}</p>
+            <p className="mx-auto max-w-3xl text-balance text-center font-display text-2xl font-semibold italic text-teal-dark md:text-3xl">{t('brand.tagline', 'No More Struggles. All Solutions Within Reach.')}</p>
           </Reveal>
           <div className="mt-10 grid gap-6 md:grid-cols-2">
             <Reveal className="h-full">
