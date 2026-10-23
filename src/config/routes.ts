@@ -3,7 +3,7 @@ import type { Role } from './roles';
 export const routes = {
   home: '/', sell: '/sell',
   howItWorks: '/how-it-works', schools: '/schools', institutions: '/institutions',
-  ai: '/ai-intelligence', pricing: '/pricing', about: '/about', mission: '/about/mission',
+  ai: '/ai-intelligence', pricing: '/pricing', about: '/about', mission: '/about#mission',
   team: '/about/team', impact: '/impact', contact: '/contact', faq: '/faq', help: '/help',
   insights: '/insights', partners: '/partners', privacy: '/privacy', terms: '/terms', cookies: '/cookies',
   supplierTerms: '/supplier-terms', schoolTerms: '/school-terms', dataAi: '/data-ai-policy',

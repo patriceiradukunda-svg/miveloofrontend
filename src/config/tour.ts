@@ -7,7 +7,7 @@ export interface TourStep {
 }
 /** Written in Miveloo's voice. No invented statistics, customers or partners. Kinyarwanda titles need native review. */
 export const tourSteps: TourStep[] = [
-  { id: 'why', scene: 'cycle', photo: 'schoolMeal', href: '/about/mission', cta: 'Our mission', title: { en: 'Why Miveloo exists', rw: 'Impamvu Miveloo ibaho' },
+  { id: 'why', scene: 'cycle', photo: 'schoolMeal', href: '/about#mission', cta: 'Our mission', title: { en: 'Why Miveloo exists', rw: 'Impamvu Miveloo ibaho' },
     say: 'A school meal only works when the food arrives: on time, fresh, at a fair price. The people who grow it and the kitchens that need it often cannot see each other. Miveloo is the bridge between them, with honest data on top.',
     points: ['Schools find the food they need', 'Suppliers reach reliable markets', 'Data helps everyone waste less'] },
   { id: 'schools', scene: 'school', photo: 'schoolKitchen', href: '/schools', cta: 'See the school journey', title: { en: 'If you run a school kitchen', rw: 'Niba uyobora igikoni cy\'ishuri' },

@@ -15,7 +15,7 @@
  "home.ctaBrowse": "Reba uko bikora",
  "home.ctaSchool": "Andikisha ishuri ryawe",
  "home.sampleNote": "Ibyerekanwa ni ingero kugeza abagurisha nyakuri batangajwe.",
- "footer.mission": "Gufasha amashuri kubona ibiribwa akeneye, n'abagurisha kugera ku isoko ryizewe.",
+ "footer.mission": "Guhuza amashuri, abatanga ibiribwa, amakoperative n’ibigo binyuranye, tubinyujije mu bisubizo byoroshye kugeraho no mu ikoranabuhanga ry’ubwenge, kugira ngo kubona ibiribwa, gucunga ububiko no gutegura amafunguro y’abanyeshuri birusheho koroha no kunoga.",
  "footer.explore": "Reba",
  "footer.support": "Ubufasha",
  "footer.legal": "Amategeko",
@@ -545,5 +545,8 @@
  "price.faq.q5": "Kuki gahunda z’ibigo zisaba amasezerano?",
  "price.faq.a5": "Amakuru y’ibigo asaba amasezerano yo gusangira amakuru. Ibikubiyemo biterwa n’amakuru aboneka koko.",
  "price.end.title": "Tangira ku buntu uyu munsi",
- "price.end.login": "Kwinjira"
+ "price.end.login": "Kwinjira",
+ "brand.tagline": "Nta Zindi Ngorane. Ibisubizo Byose Biri Imbere Yawe.",
+ "brand.mission": "Guhuza amashuri, abatanga ibiribwa, amakoperative n’ibigo binyuranye, tubinyujije mu bisubizo byoroshye kugeraho no mu ikoranabuhanga ry’ubwenge, kugira ngo kubona ibiribwa, gucunga ububiko no gutegura amafunguro y’abanyeshuri birusheho koroha no kunoga.",
+ "brand.vision": "Kubaka ejo hazaza aho buri shuri rishobora kubona ibiribwa rikeneye, abatanga ibiribwa bakabona amasoko yabo, kandi gahunda yose yo kugaburira abanyeshuri ikarangwa n’ubufatanye, amakuru yizewe n’ibisubizo by’ikoranabuhanga."
 }

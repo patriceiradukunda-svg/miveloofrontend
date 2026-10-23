@@ -67,20 +67,24 @@ export default async function AboutPage() {
       </section>
 
       <section className="bg-cream-deep py-24">
-        <div className={`${wide} grid gap-6 md:grid-cols-2`}>
-          <Reveal className="h-full">
-            <article className="h-full rounded-3xl bg-teal p-8 text-cream sm:p-12">
-              <h2 style={h2s} className="mt-4 text-balance font-semibold leading-[1.1]">{t('about2.mTitle', 'Make school feeding more reliable.')}</h2>
-              <p className="mt-4 text-lg text-cream/90">{t('about2.mBody', 'Help schools access the food they need, help suppliers reach reliable markets, and reduce avoidable inefficiency in how school food is bought and delivered.')}</p>
-            </article>
+        <div className={wide}>
+          <Reveal>
+            <p className="mx-auto max-w-3xl text-balance text-center font-display text-2xl font-semibold italic text-teal-dark md:text-3xl">{t('brand.tagline', 'Nta Zindi Ngorane. Ibisubizo Byose Biri Imbere Yawe.')}</p>
           </Reveal>
-          <Reveal delay={120} className="h-full">
-            <article className="h-full rounded-3xl bg-gold p-8 text-ink sm:p-12">
-              <p className="flex items-center gap-3 text-xs font-bold uppercase tracking-[0.16em] text-ink/70"><span aria-hidden className="h-px w-8 bg-current" />{t('about2.vEyebrow', 'Our vision')}</p>
-              <h2 style={h2s} className="mt-4 text-balance font-semibold leading-[1.1]">{t('about2.vTitle', 'Informed school feeding, Rwanda first, Africa next.')}</h2>
-              <p className="mt-4 text-lg text-ink/80">{t('about2.vBody', 'A trusted platform where institutions decide with reliable data, and suppliers of every size reach meaningful demand: in Rwanda first and, over time, across Africa.')}</p>
-            </article>
-          </Reveal>
+          <div className="mt-10 grid gap-6 md:grid-cols-2">
+            <Reveal className="h-full">
+              <article id="mission" className="h-full scroll-mt-28 rounded-3xl bg-teal p-8 text-cream sm:p-12">
+                <h2 className="flex items-center gap-3 text-sm font-bold uppercase tracking-[0.16em] text-cream/80"><span aria-hidden className="h-px w-8 bg-current" />{t('about2.mEyebrow', 'Our mission')}</h2>
+                <p className="mt-5 text-balance text-xl leading-relaxed md:text-2xl">{t('brand.mission', 'To connect schools, food suppliers, cooperatives, and institutions through accessible solutions and intelligent technology that make food sourcing, supply management, and school meal planning easier, smarter, and more efficient.')}</p>
+              </article>
+            </Reveal>
+            <Reveal delay={120} className="h-full">
+              <article id="vision" className="h-full scroll-mt-28 rounded-3xl bg-gold p-8 text-ink sm:p-12">
+                <h2 className="flex items-center gap-3 text-sm font-bold uppercase tracking-[0.16em] text-ink/70"><span aria-hidden className="h-px w-8 bg-current" />{t('about2.vEyebrow', 'Our vision')}</h2>
+                <p className="mt-5 text-balance text-xl leading-relaxed md:text-2xl">{t('brand.vision', 'To create a future where every school can access the food it needs, suppliers can reach the markets they serve, and the entire school food system operates through reliable connections, informed decisions, and intelligent solutions.')}</p>
+              </article>
+            </Reveal>
+          </div>
         </div>
       </section>
 

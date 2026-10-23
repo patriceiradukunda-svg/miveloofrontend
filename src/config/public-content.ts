@@ -142,25 +142,7 @@ export const publicContent: Record<string, PublicPage> = {
   "scene": "farm",
   "photo": "hills"
  },
- "about/mission": {
-  "title": "Mission",
-  "lead": "Make school feeding more reliable.",
-  "status": null,
-  "sections": [
-   [
-    "Our commitments",
-    [
-     "Help schools access the food they need.",
-     "Help suppliers reach reliable markets.",
-     "Reduce avoidable inefficiency in purchasing and distribution.",
-     "Support better-informed school-feeding decisions with honest data."
-    ]
-   ]
-  ],
-  "scene": "cycle",
-  "photo": "womenHarvest"
- },
- "impact": {
+  "impact": {
   "title": "Mission and impact",
   "lead": "We publish measured impact only when we have evidence.",
   "status": null,

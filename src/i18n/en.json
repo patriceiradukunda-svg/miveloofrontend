@@ -15,7 +15,7 @@
  "home.ctaBrowse": "See how it works",
  "home.ctaSchool": "Register your school",
  "home.sampleNote": "Listings shown are sample data until live suppliers are published.",
- "footer.mission": "Helping schools get the food they need and suppliers reach reliable markets.",
+ "footer.mission": "To connect schools, food suppliers, cooperatives, and institutions through accessible solutions and intelligent technology that make food sourcing, supply management, and school meal planning easier, smarter, and more efficient.",
  "footer.explore": "Explore",
  "footer.support": "Help & support",
  "footer.legal": "Legal",
@@ -65,8 +65,8 @@
  "team.endLead": "Schools, suppliers, cooperatives and partners are welcome to get in touch.",
  "team.contact": "Contact us",
  "team.photoAlt": "Portrait of",
-  "team.qual": "Qualifications",
-  "team.resp": "Responsibilities",
+ "team.qual": "Qualifications",
+ "team.resp": "Responsibilities",
  "about2.eyebrow": "About Miveloo",
  "about2.title": "Making school feeding more reliable, starting in Rwanda.",
  "about2.team": "Meet the team",
@@ -76,5 +76,9 @@
  "mk.request": "Request",
  "mk.search": "Search food",
  "mk.all": "All",
- "mk.near": "Distances are measured from here."
+ "mk.near": "Distances are measured from here.",
+ "brand.tagline": "Nta Zindi Ngorane. Ibisubizo Byose Biri Imbere Yawe.",
+ "brand.mission": "To connect schools, food suppliers, cooperatives, and institutions through accessible solutions and intelligent technology that make food sourcing, supply management, and school meal planning easier, smarter, and more efficient.",
+ "brand.vision": "To create a future where every school can access the food it needs, suppliers can reach the markets they serve, and the entire school food system operates through reliable connections, informed decisions, and intelligent solutions.",
+ "about2.mEyebrow": "Our mission"
 }
