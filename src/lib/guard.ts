@@ -3,6 +3,7 @@ import { headers } from 'next/headers';
 import { redirect } from 'next/navigation';
 import { getSession, type Session } from './session';
 import { checkRouteAccess } from './permissions';
+import { positionAllows } from '@/config/positions';
 
 /** Server-side guard used by workspace and admin layouts. The backend must still re-check every API call. */
 export async function requireAccess(): Promise<{ session: Session; pathname: string }> {
@@ -11,5 +12,6 @@ export async function requireAccess(): Promise<{ session: Session; pathname: str
   const result = checkRouteAccess(pathname, session?.role);
   if (!session || result === 'login') redirect(`/login?next=${encodeURIComponent(pathname)}`);
   if (result === 'denied') redirect('/access-denied');
+  if (!positionAllows(session.position, pathname)) redirect('/access-denied');
   return { session, pathname };
 }

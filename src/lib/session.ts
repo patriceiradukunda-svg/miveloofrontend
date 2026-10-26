@@ -20,6 +20,8 @@ export interface Session {
   orgType?: string;
   /** The backend role string (e.g. supplier_owner, support). */
   backendRole?: string;
+  /** Job-title level access inside a backend role (e.g. admin-hr-manager). */
+  position?: string;
   /** Backend permission list for the active membership: menus and buttons should be filtered by this. */
   permissions?: string[];
   email?: string;
@@ -73,6 +75,7 @@ export async function getSession(): Promise<Session | null> {
         orgId: m.org_id,
         orgType: m.org_type,
         backendRole: m.role,
+        position: m.position ?? undefined,
         permissions: m.permissions,
         email: me.user.email,
         fullName: me.user.full_name,
