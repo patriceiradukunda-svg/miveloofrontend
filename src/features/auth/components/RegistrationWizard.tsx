@@ -7,6 +7,8 @@ import { LocationFields, locationSummary, validateLocation } from '@/components/
 import { FormField } from '@/components/forms/FormField';
 import { PasswordInput } from './PasswordInput';
 import { GoogleStart, type GoogleIdentity } from './GoogleStart';
+import { registerWithGoogle } from '../google-register';
+import { ApiError } from '@/lib/errors';
 import { api, hasBackend } from '@/lib/api-client';
 import { friendlyError } from '@/lib/errors';
 import type { RegistrationType } from '../schemas/auth.schema';
@@ -64,7 +66,16 @@ export function RegistrationWizard({ type }: { type: RegistrationType }) {
     const payload = { accountType: type, name: str(v.name).trim(), email: str(v.email).trim(), phone: str(v.phone).trim(), organisation: str(v.organisation).trim(), password: g ? undefined : str(v.password), googleCredential: g?.credential, authProvider: g ? 'google' : 'password', consent: true,
       country: str(v.country) || 'RW', province: rw ? str(v.provinceName) : '', district: rw ? str(v.districtName) : str(v.city), sector: str(v.sectorName), cell: str(v.cellName), village: str(v.villageName), address: str(v.address),
       latitude: str(v.lat) ? Number(v.lat) : undefined, longitude: str(v.lng) ? Number(v.lng) : undefined };
-    if (hasBackend) await api('/auth/register', { method: 'POST', body: JSON.stringify(payload) });
+    if (hasBackend) {
+      if (g) {
+        // Google sign-up: the server creates the account and the organisation, then signs the user in.
+        const r = await registerWithGoogle({ credential: g.credential, accountType: String(type), name: payload.name, phone: payload.phone, organisation: payload.organisation });
+        if (r.error || !r.to) throw new ApiError(400, r.error ?? 'Sign-up did not complete. Please try again.');
+        window.location.assign(r.to);
+        return new Promise<void>(() => {}); // keep the form busy until the browser navigates
+      }
+      await api('/auth/register', { method: 'POST', body: JSON.stringify(payload) });
+    }
   }
   return (
     <Wizard steps={steps} initial={{ country: 'RW', countryName: 'Rwanda', consent: false }} onSubmit={onSubmit} formatError={friendlyError} submitLabel="Create account"
