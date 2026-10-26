@@ -10,7 +10,7 @@ const ACCOUNTS = [
   { ui: 'supplier', email: `supplier-owner@${D}` },
   { ui: 'school', email: `school-owner@${D}` },
   { ui: 'group', email: `coop-owner@${D}` },
-  { ui: 'institution', email: `inst-district-analyst@${D}` },
+  { ui: 'institution', email: `inst-district-admin@${D}` },
   { ui: 'admin', email: `admin-super-administrator@${D}` },
 ] as const;
 const INTERNAL = ['admin', 'ai-ops', 'app', 'cooperative', 'group', 'institution', 'intelligence', 'marketplace', 'school', 'supplier', 'suppliers', 'select-workspace'];
