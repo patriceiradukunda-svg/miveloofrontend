@@ -15,7 +15,10 @@ const config: NextConfig = {
   // product photo uploads go through server actions (max 1.5 MB per photo, a few per save)
   experimental: { serverActions: { bodySizeLimit: '8mb' } },
   async redirects() {
-    return [{ source: '/about/mission', destination: '/about#mission', permanent: true }];
+    return [
+      { source: '/about/mission', destination: '/about#mission', permanent: true },
+      { source: '/cooperative/:path*', destination: '/group/:path*', permanent: true },
+    ];
   },
   async headers() {
     return [{ source: '/:path*', headers: securityHeaders }];

@@ -18,7 +18,6 @@ export const PROTECTED_PREFIXES: ReadonlyArray<{ prefix: string; role: Role | 'a
   { prefix: '/supplier', role: 'supplier' },
   { prefix: '/group', role: 'group' },
   { prefix: '/institution', role: 'institution' },
-  { prefix: '/cooperative', role: 'group' },
   { prefix: '/intelligence', role: 'institution' },
   { prefix: '/ai-ops', role: 'admin' },
   { prefix: '/marketplace', role: 'any' }, // private: old links are routed by the server gate

@@ -1,1 +1,3 @@
-export default function Page() { return <main className="p-6"><h1 className="text-2xl font-semibold capitalize">food security</h1></main>; }
+import { ModulePage } from '@/components/dashboard/ModulePage';
+export const metadata = { title: "Food security" };
+export default function Page() { return <ModulePage id="intelligence/food-security" />; }

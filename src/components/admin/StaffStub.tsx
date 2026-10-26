@@ -1,9 +1,10 @@
 import Link from 'next/link';
 import { staffModule } from '@/config/staff-modules';
+import { roleStaffModules } from '@/config/role-modules';
 
 /** Empty-but-ready page for an admin module that is not built yet. */
 export function StaffStub({ id }: { id: string }) {
-  const m = staffModule(id);
+  const m = roleStaffModules[id] ?? staffModule(id);
   return (
     <section className="space-y-6">
       <header>
