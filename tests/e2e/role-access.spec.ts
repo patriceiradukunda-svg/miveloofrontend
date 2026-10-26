@@ -43,6 +43,9 @@ async function login(page: Page, email: string) {
 }
 async function probe(page: Page, url: string) {
   const res = await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 60_000 });
+  // Layout redirects stream after the 200 response; wait for them to land before reading the URL.
+  await page.waitForLoadState('load').catch(() => {});
+  await page.waitForTimeout(1500);
   const final = new URL(page.url()).pathname;
   const status = res?.status() ?? 0;
   const body = (await page.locator('body').innerText().catch(() => '')).slice(0, 400);
