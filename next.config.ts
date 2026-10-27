@@ -11,8 +11,6 @@ const securityHeaders = [
 const config: NextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
-  // block on generateMetadata so notFound() there returns a real 404 status (not a streamed 200)
-  htmlLimitedBots: /.*/,
   images: { formats: ['image/avif', 'image/webp'] },
   // product photo uploads go through server actions (max 1.5 MB per photo, a few per save)
   experimental: { serverActions: { bodySizeLimit: '8mb' } },

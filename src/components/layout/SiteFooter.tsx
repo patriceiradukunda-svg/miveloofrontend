@@ -28,7 +28,7 @@ export async function SiteFooter() {
           {site.social.length > 0 && <ul className="mt-3 flex flex-wrap gap-3 text-sm">{site.social.map((s) => <li key={s.label}><a className="underline" href={s.href} rel="noopener noreferrer" target="_blank">{s.label}</a></li>)}</ul>}
         </div>
         {col(t('footer.solutions', 'Solutions'), [['/schools', 'Schools'], ['/sell', 'Suppliers'], ['/cooperatives', 'Cooperatives'], ['/institutions', 'Institutions'], ['/exchange', 'School exchange']])}
-        {col(t('footer.platform', 'Platform'), [['/how-it-works', t('nav.howItWorks', 'How It Works')], ['/ai-intelligence', 'AI & data'], ['/pricing', 'Pricing'], ['/tour', 'Take the tour'], ['/roadmap', 'Roadmap'], ['/trust', 'Trust centre']])}
+        {col(t('footer.platform', 'Platform'), [['/how-it-works', t('nav.howItWorks', 'How It Works')], ['/pricing', 'Pricing'], ['/tour', 'Take the tour']])}
         {col(t('footer.company', 'Company'), [['/about', t('nav.aboutUs', 'About Us')], ['/about/team', t('nav.team', 'Team')], ['/impact', t('nav.ourImpact', 'Our Impact')], ['/partners', 'Partners'], ['/careers', t('nav.careers', 'Careers')], ['/contact', 'Contact']])}
         {col(t('footer.updates', 'Updates'), [['/insights', t('nav.blog', 'Blog')], ['/news', t('nav.news', 'News')], ['/events', t('nav.events', 'Events')]])}
         {col(t('footer.supportLegal', 'Support & legal'), [['/help', 'Help & support'], ['/faq', 'FAQs'], ['/privacy', 'Privacy policy'], ['/terms', 'Terms of service'], ['/supplier-terms', 'Supplier terms'], ['/school-terms', 'School terms'], ['/cookies', 'Cookie policy'], ['/data-ai-policy', 'Data & AI policy']])}

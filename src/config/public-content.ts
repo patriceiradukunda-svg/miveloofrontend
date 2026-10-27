@@ -93,34 +93,6 @@ export const publicContent: Record<string, PublicPage> = {
   "scene": "data",
   "photo": "agritech"
  },
- "ai-intelligence": {
-  "title": "AI and data intelligence",
-  "lead": "One shared intelligence layer, honest about what is working today and what is not.",
-  "status": "in-development",
-  "sections": [
-   [
-    "Status of capabilities",
-    [
-     "Historical price and order records in your dashboard: available when data exists",
-     "Demand forecasts, shortage alerts, procurement suggestions: in development",
-     "Conversational assistant: in development",
-     "Institutional forecasting and scenario planning: planned, needs agreement"
-    ]
-   ],
-   [
-    "Principles",
-    [
-     "Predictions are estimates, never confirmed facts.",
-     "The assistant explains its assumptions and says when data is insufficient.",
-     "It never invents prices, quantities, suppliers, transactions or statistics.",
-     "It respects your role, plan, organisation and data-access rights on every request.",
-     "Features are evaluated for accuracy, fairness, privacy and harm before being presented as dependable."
-    ]
-   ]
-  ],
-  "scene": "data",
-  "photo": "digitalFarmer"
- },
  "about": {
   "title": "About Miveloo",
   "lead": "We exist to make school feeding more reliable, starting in Rwanda.",
@@ -338,47 +310,4 @@ export const publicContent: Record<string, PublicPage> = {
    ]
   ]
  },
- "trust": {
-  "title": "Trust centre",
-  "lead": "What we verify, what stays private, and what we will never claim.",
-  "status": null,
-  "scene": "trust",
-  "photo": "storage",
-  "sections": [
-   [
-    "Verification",
-    [
-     "Schools and suppliers are verified before protected features unlock.",
-     "Choosing a role at sign-up never grants access by itself."
-    ]
-   ],
-   [
-    "Public vs private",
-    [
-     "The marketplace is private: only verified schools can see listings, and suppliers choose what schools see.",
-     "School data is private. Institutional views use aggregated or anonymised data under agreements."
-    ]
-   ],
-   [
-    "Honest claims",
-    [
-     "We do not claim customers, partners, national coverage or measured impact without evidence.",
-     "Anything marked \"Sample data\" is illustrative."
-    ]
-   ],
-   [
-    "AI principles",
-    [
-     "Estimates are labelled as estimates, with data period and assumptions.",
-     "When data is insufficient, we say so instead of guessing."
-    ]
-   ],
-   [
-    "Report a problem",
-    [
-     "Use the contact page. We take safety and fraud reports seriously."
-    ]
-   ]
-  ]
- }
 };

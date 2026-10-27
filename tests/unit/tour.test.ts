@@ -4,7 +4,7 @@ import { tourSteps } from '@/config/tour';
 import { publicContent } from '@/config/public-content';
 import { PHOTO_FILES } from '@/lib/photos';
 
-const staticRoutes = new Set(['/about/mission', '/schools', '/sell', '/cooperatives', '/exchange', '/ai-intelligence', '/pricing', '/trust', '/register']);
+const staticRoutes = new Set(['/about#mission', '/schools', '/sell', '/cooperatives', '/exchange', '/pricing', '/register']);
 describe('guided tour', () => {
   it('every step links to a real page and has a title in both languages', () => {
     for (const s of tourSteps) { expect(staticRoutes.has(s.href)).toBe(true); expect(s.title.en.length).toBeGreaterThan(3); expect(s.title.rw.length).toBeGreaterThan(3); }

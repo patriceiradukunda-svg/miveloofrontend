@@ -16,8 +16,8 @@ export default async function AboutPage() {
   const { t } = await getT();
   const pillars = [
     { d: ['M3 9l1-5h16l1 5', 'M4 9v11h16V9', 'M9 20v-6h6v6'], s: 'available' as const, h: t('about2.p1h', 'A private marketplace'), b: t('about2.p1b', 'Verified schools compare offers and order inside their own workspace. Suppliers publish only what they choose to share.'), href: '/how-it-works', cta: t('about2.p1c', 'See how it works') },
-    { d: ['M3 7h11v9H3z', 'M14 10h4l3 3v3h-7z', 'M7 19.5h.01', 'M17 19.5h.01'], s: 'in-development' as const, h: t('about2.p2h', 'Tools for every step'), b: t('about2.p2b', 'Orders, deliveries, inventory and meal planning for schools, and stock and order tools for suppliers and cooperatives.'), href: '/roadmap', cta: t('about2.p2c', 'View the roadmap') },
-    { d: ['M3 3v18h18', 'M7 14l4-4 3 3 5-6'], s: 'in-development' as const, h: t('about2.p3h', 'Honest data and AI'), b: t('about2.p3b', 'Forecasts and alerts are shown as estimates, with their data period and assumptions. When data is thin, we say so.'), href: '/ai-intelligence', cta: t('about2.p3c', 'How our AI works') },
+    { d: ['M3 7h11v9H3z', 'M14 10h4l3 3v3h-7z', 'M7 19.5h.01', 'M17 19.5h.01'], s: 'in-development' as const, h: t('about2.p2h', 'Tools for every step'), b: t('about2.p2b', 'Orders, deliveries, inventory and meal planning for schools, and stock and order tools for suppliers and cooperatives.') },
+    { d: ['M3 3v18h18', 'M7 14l4-4 3 3 5-6'], s: 'in-development' as const, h: t('about2.p3h', 'Honest data and AI'), b: t('about2.p3b', 'Forecasts and alerts are shown as estimates, with their data period and assumptions. When data is thin, we say so.') },
   ];
   const serve = [
     { h: t('about2.a1', 'Schools'), b: t('about2.a1b', 'Find food, compare offers, order and track deliveries.'), href: '/schools' },
@@ -104,7 +104,7 @@ export default async function AboutPage() {
                     </div>
                     <h3 className="mt-5 text-2xl font-semibold text-teal-dark">{x.h}</h3>
                     <p className="mt-2 flex-1 text-lg text-ink-soft">{x.b}</p>
-                    <Link href={x.href} className="mt-5 inline-flex min-h-11 items-center font-bold text-teal underline underline-offset-4">{x.cta} →</Link>
+                    {x.href && <Link href={x.href} className="mt-5 inline-flex min-h-11 items-center font-bold text-teal underline underline-offset-4">{x.cta} →</Link>}
                   </article>
                 </Reveal>
               </li>
@@ -140,8 +140,6 @@ export default async function AboutPage() {
             <h2 style={h2s} className="mt-3 text-balance font-semibold text-teal-dark">{t('about2.tTitle', 'Early-stage, and honest about it.')}</h2>
             <p className="mt-4 text-lg text-ink-soft">{t('about2.tBody', 'We label what is live, what is in development and what is planned, and we publish no customer, coverage or impact numbers we cannot prove.')}</p>
             <div className="mt-6 flex flex-wrap gap-3">
-              <Link href="/roadmap" className={solid}>{t('about2.road', 'View the roadmap')}</Link>
-              <Link href="/trust" className="inline-flex min-h-12 items-center justify-center rounded-full border-2 border-teal px-6 font-bold text-teal hover:bg-teal-tint">{t('about2.trust', 'Trust centre')}</Link>
             </div>
           </Reveal>
           <Reveal delay={120}>
