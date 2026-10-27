@@ -1,3 +1,4 @@
-import { ModulePage } from '@/components/dashboard/ModulePage';
-export const metadata = { title: "Payments and contributions" };
-export default function Page() { return <ModulePage id="group/payments" />; }
+import { ExpertPage } from '@/components/kit/ExpertPage';
+export const metadata = { title: "Member payments" };
+export const dynamic = 'force-dynamic';
+export default async function Page() { return ExpertPage({ id: "group/payments" }); }

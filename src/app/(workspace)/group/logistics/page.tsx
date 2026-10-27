@@ -1,3 +1,4 @@
-import { ModulePage } from '@/components/dashboard/ModulePage';
-export const metadata = { title: "Collection and delivery" };
-export default function Page() { return <ModulePage id="group/logistics" />; }
+import { ExpertPage } from '@/components/kit/ExpertPage';
+export const metadata = { title: "Transport" };
+export const dynamic = 'force-dynamic';
+export default async function Page() { return ExpertPage({ id: "group/logistics" }); }

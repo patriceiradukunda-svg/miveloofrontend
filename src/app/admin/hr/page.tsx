@@ -1,3 +1,4 @@
-import { StaffStub } from '@/components/admin/StaffStub';
+import { ExpertPage } from '@/components/kit/ExpertPage';
+export const metadata = { title: "Staff directory" };
 export const dynamic = 'force-dynamic';
-export default function Page() { return <StaffStub id="hr" />; }
+export default async function Page() { return ExpertPage({ id: "admin/hr" }); }
