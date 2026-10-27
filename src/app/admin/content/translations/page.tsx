@@ -1,3 +1,3 @@
-import { StaffStub } from '@/components/admin/StaffStub';
+import { TranslationsView } from '@/features/contentadmin/Queues';
 export const dynamic = 'force-dynamic';
-export default function Page() { return <StaffStub id="content/translations" />; }
+export default async function Page({ searchParams }: { searchParams: Promise<Record<string, string | undefined>> }) { return <TranslationsView sp={await searchParams} />; }

@@ -1,3 +1,4 @@
-import { StaffStub } from '@/components/admin/StaffStub';
+import { EventsAdmin } from '@/features/contentadmin/EventsAdmin';
 export const dynamic = 'force-dynamic';
-export default function Page() { return <StaffStub id="content/events" />; }
+export const metadata = { title: 'Events' };
+export default async function Page({ searchParams }: { searchParams: Promise<Record<string, string | undefined>> }) { return <EventsAdmin sp={await searchParams} />; }

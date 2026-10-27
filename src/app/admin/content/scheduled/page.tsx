@@ -1,3 +1,3 @@
-import { StaffStub } from '@/components/admin/StaffStub';
+import { ScheduledQueue } from '@/features/contentadmin/Queues';
 export const dynamic = 'force-dynamic';
-export default function Page() { return <StaffStub id="content/scheduled" />; }
+export default async function Page({ searchParams }: { searchParams: Promise<Record<string, string | undefined>> }) { return <ScheduledQueue sp={await searchParams} />; }
