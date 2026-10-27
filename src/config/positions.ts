@@ -85,7 +85,9 @@ export function positionAllows(position: string | undefined | null, pathname: st
   }
   if (AREAS.includes(seg)) {
     if (sub === '' || COMMON.includes(sub)) return true;
-    return mods.some((m) => pathname === '/' + m || pathname.startsWith('/' + m + '/'));
+    // /group/* and /cooperative/* are one workspace under two URLs: a position listed under either may open both
+    const alt = seg === 'group' ? pathname.replace(/^\/group/, '/cooperative') : seg === 'cooperative' ? pathname.replace(/^\/cooperative/, '/group') : pathname;
+    return mods.some((m) => [pathname, alt].some((q) => q === '/' + m || q.startsWith('/' + m + '/')));
   }
   return true;
 }
