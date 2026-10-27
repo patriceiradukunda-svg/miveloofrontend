@@ -3,7 +3,8 @@ import Link from 'next/link';
 import { getT } from '@/i18n/server';
 import { Reveal } from '@/components/public/home/Reveal';
 import { Bg, Icon, gold, h1s, h2s, light, solid, wide } from '@/components/public/kit';
-import { formatDate, getJobs, isOpen, jobText } from '@/config/careers';
+import { formatDate, isOpen, jobText } from '@/config/careers';
+import { fetchJobs } from '@/lib/careers-public';
 import { jobMeta } from '@/features/careers/labels';
 
 export const metadata: Metadata = {
@@ -15,7 +16,7 @@ export const metadata: Metadata = {
 export default async function CareersPage() {
   const { t, locale } = await getT();
   const meta = jobMeta(t);
-  const open = getJobs().filter((j) => isOpen(j));
+  const open = (await fetchJobs()).filter((j) => isOpen(j));
   const paths = [
     { d: ['M3 7h18v13H3z', 'M8 7V4h8v3', 'M3 13h18'], h: t('car.p1h', 'Apply for a posted role'), b: t('car.p1b', 'See what we are hiring for, read the full details and apply step by step.'), href: '#roles', cta: t('car.p1cta', 'See open roles'), cls: gold },
     { d: ['M9 18h6', 'M10 21h4', 'M12 3a6 6 0 00-4 10.5c.7.7 1 1.5 1 2.5h6c0-1 .3-1.8 1-2.5A6 6 0 0012 3z'], h: t('car.p2h', 'Bring your own idea'), b: t('car.p2b', 'Have an idea for this ecosystem and want to build it with us? Tell us about it.'), href: '/careers/idea', cta: t('car.p2cta', 'Share your idea'), cls: solid },

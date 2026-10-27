@@ -3,7 +3,8 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { getT } from '@/i18n/server';
 import { h2s, solid, wide } from '@/components/public/kit';
-import { DEFAULT_DOCUMENTS, getJob, isOpen, jobText } from '@/config/careers';
+import { DEFAULT_DOCUMENTS, isOpen, jobText } from '@/config/careers';
+import { fetchJob } from '@/lib/careers-public';
 import { ApplicationWizard, type ApplyJob } from '@/features/careers/ApplicationWizard';
 import { carLabels } from '@/features/careers/labels';
 
@@ -11,13 +12,13 @@ type Props = { params: Promise<{ slug: string }> };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
-  const job = getJob(slug);
+  const job = await fetchJob(slug);
   return { title: job ? `Apply: ${job.title}` : 'Careers', robots: { index: false, follow: true } };
 }
 
 export default async function ApplyPage({ params }: Props) {
   const { slug } = await params;
-  const job = getJob(slug);
+  const job = await fetchJob(slug);
   if (!job) notFound();
   const { t, locale } = await getT();
   const L = carLabels(t);

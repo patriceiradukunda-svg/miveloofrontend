@@ -4,14 +4,15 @@ import { notFound } from 'next/navigation';
 import { getT } from '@/i18n/server';
 import { Reveal } from '@/components/public/home/Reveal';
 import { Bg, gold, h2s, h1s, light, wide } from '@/components/public/kit';
-import { DEFAULT_DOCUMENTS, formatDate, getJob, isOpen, jobText } from '@/config/careers';
+import { DEFAULT_DOCUMENTS, formatDate, isOpen, jobText } from '@/config/careers';
+import { fetchJob } from '@/lib/careers-public';
 import { carLabels, jobMeta } from '@/features/careers/labels';
 
 type Props = { params: Promise<{ slug: string }> };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
-  const job = getJob(slug);
+  const job = await fetchJob(slug);
   if (!job) return { title: 'Careers' };
   return { title: job.title, description: job.summary, alternates: { canonical: `/careers/${job.slug}` } };
 }
@@ -29,7 +30,7 @@ function Block({ title, items }: { title: string; items: string[] }) {
 
 export default async function JobPage({ params }: Props) {
   const { slug } = await params;
-  const job = getJob(slug);
+  const job = await fetchJob(slug);
   if (!job) notFound();
   const { t, locale } = await getT();
   const L = carLabels(t);
