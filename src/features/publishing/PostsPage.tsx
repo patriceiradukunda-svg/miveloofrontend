@@ -1,7 +1,6 @@
 import { getT } from '@/i18n/server';
 import { EmptyState } from '@/components/ui/empty-state';
 import { wide } from '@/components/public/kit';
-import { Hero } from './Hero';
 import { FeaturedPost } from './FeaturedPost';
 import { PostsBrowser } from './PostsBrowser';
 import { NewsletterBand } from './NewsletterBand';
@@ -13,12 +12,9 @@ export async function PostsPage({ kind }: { kind: 'blog' | 'news' }) {
   const base = kind === 'blog' ? '/insights' : '/news';
   const items = res.status === 'ok' ? res.data.items.map((p) => localize(p, locale)) : [];
   const featured = items.find((p) => p.is_featured) ?? items[0];
-  const tagline = <p className="text-sm font-bold tracking-wide text-gold">{t('brand.tagline', 'No More Struggles. All Solutions Within Reach.')}</p>;
   return (
     <>
-      {kind === 'blog'
-        ? <Hero photo="06-school-kitchen-cooks" eyebrow={t('pub.blogEyebrow', 'The Miveloo Journal')} title={t('pub.blogTitle', 'Ideas for a better school food system.')} lead={t('pub.blogLead', 'Stories, knowledge and fresh perspectives on school feeding, food supply, intelligent planning and the people building a better food future.')} extra={tagline} />
-        : <Hero photo="05-farmer-harvesting-greens" eyebrow={t('pub.newsEyebrow', 'News and updates')} title={t('pub.newsTitle', 'News and updates from Miveloo.')} lead={t('pub.newsLead', 'Announcements, product updates and stories about school feeding, local agriculture, food markets and nutrition.')} />}
+      <h1 className="sr-only">{kind === 'blog' ? t('pub.blogTitle', 'Ideas for a better school food system.') : t('pub.newsTitle', 'News and updates from Miveloo.')}</h1>
       <div className={`${wide} pt-16`}>
         {res.status === 'error' && <EmptyState title="This page is temporarily unavailable" body="We could not load the latest stories. Please try again in a few minutes." />}
         {res.status === 'ok' && !items.length && <EmptyState title={kind === 'blog' ? 'No articles published yet' : 'No news published yet'} body="New stories will appear here as soon as they are published." />}
