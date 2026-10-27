@@ -43,6 +43,30 @@ async function supplierStock(): Promise<Row[]> {
   });
 }
 
+async function ordersRaw(): Promise<Raw[]> {
+  const r = await withBackendToken((token) => api<Raw[]>('/orders?limit=100', { token, cache: 'no-store' }));
+  return Array.isArray(r) ? r : [];
+}
+function orderStatus(s: unknown): string {
+  const v = String(s ?? '').toLowerCase();
+  if (/cancel|reject|declin/.test(v)) return 'Cancelled';
+  if (/disput/.test(v)) return 'Disputed';
+  if (/deliver|receiv|complet|closed/.test(v)) return 'Delivered';
+  if (/dispatch|transit|ship/.test(v)) return 'In transit';
+  if (/confirm|accept/.test(v)) return 'Confirmed';
+  if (/draft|place|submit|new/.test(v)) return 'Placed';
+  return v ? v.charAt(0).toUpperCase() + v.slice(1) : 'Placed';
+}
+function supplierStage(s: unknown): string {
+  const v = String(s ?? '').toLowerCase();
+  if (/disput/.test(v)) return 'Disputed';
+  if (/deliver|receiv|complet|closed/.test(v)) return 'Delivered';
+  if (/dispatch|transit|ship/.test(v)) return 'Dispatched';
+  if (/prepar|pack|process/.test(v)) return 'Preparing';
+  if (/confirm|accept/.test(v)) return 'Confirmed';
+  return 'New';
+}
+
 export async function loadRows(id: string): Promise<Row[]> {
   if (!liveApi) return [];
   try {
@@ -66,6 +90,19 @@ export async function loadRows(id: string): Promise<Row[]> {
         }));
       case 'supplier/inventory':
         return await supplierStock();
+      case 'school/orders':
+        return (await ordersRaw()).map((o) => ({ ref: String(o.id).slice(0, 8).toUpperCase(), total: Number(o.total_amount) || 0, status: orderStatus(o.status) }));
+      case 'supplier/orders':
+        return (await ordersRaw()).filter((o) => !/cancel|reject|declin/i.test(String(o.status))).map((o) => ({
+          stage: supplierStage(o.status),
+          title: 'Order ' + String(o.id).slice(0, 8).toUpperCase(),
+          sub: `${(Number(o.total_amount) || 0).toLocaleString('en-GB')} ${String(o.currency ?? 'RWF')}`,
+          meta: orderStatus(o.status),
+        }));
+      case 'admin/audit': {
+        const r = await withBackendToken((token) => api<Raw[]>('/admin/audit?limit=100', { token, cache: 'no-store' }));
+        return Array.isArray(r) ? r.map((e) => ({ time: day(e.at), actor: String(e.actor ?? '').slice(0, 8), action: String(e.action ?? ''), target: String(e.resource ?? ''), outcome: 'Success' })) : [];
+      }
       default:
         return [];
     }
