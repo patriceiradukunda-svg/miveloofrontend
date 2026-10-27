@@ -33,3 +33,4 @@ mission-vision.sh
 fix-tagline.sh
 footer-tagline.sh
 playwright.deployed.config.ts
+publishing-public.sh

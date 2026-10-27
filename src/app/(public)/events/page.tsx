@@ -1,7 +1,4 @@
-import { ComingSoon } from '@/components/public/ComingSoon';
-
-export const metadata = { title: 'Events', robots: { index: false } };
-
-export default function EventsPage() {
-  return <ComingSoon eyebrow="Events" title="Events are coming soon" text="Workshops, supplier and school meetups, and partner convenings will be listed here once dates are confirmed. Get in touch if you would like to host or join one." />;
-}
+import type { Metadata } from 'next';
+import { EventsPage } from '@/features/publishing/EventsPage';
+export const metadata: Metadata = { title: 'Events', description: 'Workshops, meetups and partner gatherings for the school food community.', alternates: { canonical: '/events' } };
+export default function Page() { return <EventsPage />; }
