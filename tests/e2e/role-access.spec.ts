@@ -37,7 +37,7 @@ function expected(url: string, ui: string): 'ok' | 'denied' {
 async function login(page: Page, email: string) {
   await page.goto('/login');
   await page.fill('input[name=email]', email);
-  await page.fill('input[name=password]', PW);
+  await page.fill('input[name=password]', email.startsWith('admin-') ? (process.env.ADMIN_TEST_PASSWORD ?? PW) : PW);
   await page.click('button[type=submit]');
   await page.waitForURL((u) => !u.pathname.startsWith('/login'), { timeout: 60_000 });
 }
