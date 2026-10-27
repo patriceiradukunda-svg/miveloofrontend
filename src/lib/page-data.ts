@@ -1,11 +1,75 @@
 import type { Row } from '@/components/kit/types';
+import { api, getFood, liveApi } from '@/lib/miveloo-client';
+import { withBackendToken } from '@/lib/server/backend-session';
 
 /**
  * The single place where designed pages get their records.
  * Return rows shaped like the page's columns in src/config/page-specs.ts (pipeline pages: { stage, title, sub, meta }).
- * Until a module is wired to the backend this returns an empty list and the page shows its designed empty state.
+ * A page that is not wired yet, or any API failure, returns an empty list and the page shows its designed empty state.
  */
+const CAREERS_ADMIN = '/admin/careers';
+
+type Raw = Record<string, unknown>;
+const pick = (o: Raw, ...keys: string[]) => { for (const k of keys) { const v = o[k]; if (v !== undefined && v !== null && v !== '') return v; } return undefined; };
+const day = (v: unknown) => (typeof v === 'string' ? v.slice(0, 10) : undefined);
+
+function stageOf(status: unknown): string {
+  const v = String(status ?? '').toLowerCase();
+  if (/hire|accept|start/.test(v)) return 'Hired';
+  if (/reject|declin|withdraw|not.?select|unsuccess/.test(v)) return 'Rejected';
+  if (/offer/.test(v)) return 'Offer';
+  if (/interview/.test(v)) return 'Interview';
+  if (/screen|review|shortlist|assess|progress/.test(v)) return 'Screening';
+  return 'New';
+}
+
+async function applications(): Promise<Raw[]> {
+  const r = await withBackendToken((token) => api<{ items?: Raw[] }>(`${CAREERS_ADMIN}/applications?limit=100`, { token, cache: 'no-store' }));
+  return Array.isArray(r?.items) ? r.items : [];
+}
+
+async function supplierStock(): Promise<Row[]> {
+  const lots = await withBackendToken((token) => api<Raw[]>('/inventory/lots?limit=50', { token, cache: 'no-store' }));
+  if (!Array.isArray(lots)) return [];
+  const ids = [...new Set(lots.map((l) => String(l.food_id)))].slice(0, 50);
+  const names = new Map<string, string>();
+  (await Promise.allSettled(ids.map((id) => getFood(id)))).forEach((res, i) => { if (res.status === 'fulfilled') names.set(ids[i]!, res.value.name); });
+  const soon = Date.now() + 7 * 864e5;
+  return lots.map((l) => {
+    const onHand = Number(l.on_hand) || 0, available = Number(l.available) || 0;
+    const exp = typeof l.expires_on === 'string' ? Date.parse(l.expires_on) : NaN;
+    const status = available <= 0 ? 'Out of stock' : !Number.isNaN(exp) && exp <= soon ? 'Expiring' : available < onHand * 0.2 ? 'Low' : 'In stock';
+    return { product: names.get(String(l.food_id)) ?? 'Product', lot: String(l.id).slice(0, 8), onHand, reserved: Number(l.reserved) || 0, available, bestBefore: day(l.expires_on), status };
+  });
+}
+
 export async function loadRows(id: string): Promise<Row[]> {
-  void id;
-  return [];
+  if (!liveApi) return [];
+  try {
+    switch (id) {
+      case 'admin/careers/applications':
+        return (await applications()).map((a) => ({
+          stage: stageOf(a.status),
+          title: String(pick(a, 'full_name', 'name') ?? 'Applicant'),
+          sub: String(pick(a, 'job_title') ?? ''),
+          meta: [pick(a, 'reference'), day(pick(a, 'created_at', 'applied_at'))].filter(Boolean).join(' · '),
+        }));
+      case 'admin/careers/candidates':
+        return (await applications()).map((a) => ({
+          name: String(pick(a, 'full_name', 'name') ?? 'Applicant'),
+          role: String(pick(a, 'job_title') ?? ''),
+          applied: day(pick(a, 'created_at', 'applied_at')),
+          source: String(pick(a, 'source') ?? 'Website'),
+          score: pick(a, 'rating') as number | undefined,
+          stage: stageOf(a.status),
+          location: String(pick(a, 'location') ?? ''),
+        }));
+      case 'supplier/inventory':
+        return await supplierStock();
+      default:
+        return [];
+    }
+  } catch {
+    return [];
+  }
 }
