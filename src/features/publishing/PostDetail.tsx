@@ -17,6 +17,7 @@ const BASE = { blog: '/insights', news: '/news' } as const;
 
 export async function postMetadata(kind: 'blog' | 'news', slug: string): Promise<Metadata> {
   const r = await getPost(kind, slug);
+  if (r.status === 'missing') notFound();
   if (r.status !== 'ok') return { title: kind === 'blog' ? 'Article' : 'News', robots: { index: false } };
   const p = r.data; const title = p.seo_title || p.title; const description = p.seo_description || p.summary || undefined;
   return { title, description, alternates: { canonical: `${BASE[kind]}/${p.slug}` }, robots: p.is_demo ? { index: false, follow: true } : undefined, openGraph: { title, description, type: 'article' } };
@@ -44,7 +45,7 @@ export async function PostDetail({ kind, slug }: { kind: 'blog' | 'news'; slug: 
         {(post.cover) && <div className="relative aspect-[16/9] overflow-hidden rounded-2xl"><Cover fill cover={post.cover} alt={post.cover_alt} label={post.category?.name ?? 'Miveloo'} seed={post.slug} /></div>}
         <Markdown text={post.body ?? ''} />
         {post.tags.length > 0 && <ul className="flex flex-wrap gap-2">{post.tags.map((g) => <li key={g} className="rounded-full border border-ink/15 px-3 py-1 text-sm text-ink-soft">#{g}</li>)}</ul>}
-        <div className="flex flex-wrap items-center gap-3 border-t border-ink/10 pt-6"><CopyButton /><Link href={base} className="font-bold text-teal underline">Back to all {kind === 'blog' ? 'articles' : 'news'}</Link></div>
+        <div className="flex flex-wrap items-center gap-3 border-t border-ink/10 pt-6"><CopyButton /><Link href={base} className="font-bold text-teal underline">{`Back to all ${kind === 'blog' ? 'articles' : 'news'}`}</Link></div>
       </article>
       {related.length > 0 && <section className={`${wide} mt-8`}><h2 className="font-display text-3xl font-semibold text-teal-dark">Keep reading</h2><ul className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">{related.map((x) => <li key={x.id}><PostCard post={x} href={`${base}/${x.slug}`} /></li>)}</ul></section>}
       <NewsletterBand source={`${kind}-article`} language={locale} />

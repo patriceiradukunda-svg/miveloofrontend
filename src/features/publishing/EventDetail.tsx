@@ -14,6 +14,7 @@ import { FORMAT_LABEL, fmtDateTime, localize, placeText, whenText, type LEvent }
 
 export async function eventMetadata(slug: string): Promise<Metadata> {
   const r = await getEvent(slug);
+  if (r.status === 'missing') notFound();
   if (r.status !== 'ok') return { title: 'Event', robots: { index: false } };
   const e = r.data; const title = e.seo_title || e.title; const description = e.seo_description || e.summary || undefined;
   return { title, description, alternates: { canonical: `/events/${e.slug}` }, robots: e.is_demo ? { index: false, follow: true } : undefined, openGraph: { title, description, type: 'website' } };
@@ -31,7 +32,7 @@ function Panel({ ev }: { ev: LEvent }) {
   return (
     <div className={box}>
       <h2 className="text-xl font-semibold text-teal-dark">{r.mode === 'interest' ? 'Express your interest' : r.state === 'waitlist' ? 'Join the waiting list' : 'Register to attend'}</h2>
-      {r.seats_left !== null && r.state === 'open' && <p className="mt-1 text-sm font-semibold text-teal">{r.seats_left} {r.seats_left === 1 ? 'seat' : 'seats'} left</p>}
+      {r.seats_left !== null && r.state === 'open' && <p className="mt-1 text-sm font-semibold text-teal">{`${r.seats_left} ${r.seats_left === 1 ? 'seat' : 'seats'} left`}</p>}
       {r.closes_at && <p className="mt-1 text-sm text-ink-soft">Registration closes {fmtDateTime(r.closes_at)}.</p>}
       <div className="mt-4"><RegisterForm slug={ev.slug} title={ev.title} mode={r.mode === 'interest' ? 'interest' : 'required'} state={r.state === 'waitlist' ? 'waitlist' : 'open'} seatsLeft={r.seats_left}
         note={ev.registration_note ?? null} startsAt={ev.starts_at} endsAt={ev.ends_at} place={placeText(ev)} /></div>
