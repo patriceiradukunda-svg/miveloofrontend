@@ -103,8 +103,9 @@ export default async function Page({ params, searchParams }: { params: Promise<{
         </p>
       ) : null}
 
-      <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_20rem]">
-        <aside className="space-y-4 lg:col-start-2 lg:row-start-1" aria-label="Applicant details">
+      <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_20rem] lg:grid-rows-[auto_auto_1fr] lg:items-start">
+        <div className="order-1 lg:col-start-2 lg:row-start-1"><Section title="Stage"><StageForm id={id} current={status} statuses={[...APP_STATUSES]} /></Section></div>
+        <div className="order-2 space-y-4 lg:col-start-2 lg:row-start-2" aria-label="Applicant details">
           <Section title="Contact">
             <dl className="space-y-3">
               <Field label="Email">{email ? <a className="underline" href={`mailto:${email}`}>{email}</a> : none}</Field>
@@ -124,6 +125,8 @@ export default async function Page({ params, searchParams }: { params: Promise<{
             </dl>
             {skills.length ? <ul className="flex flex-wrap gap-1.5 pt-1" aria-label="Skills">{skills.map((s) => <li key={s} className="rounded-full bg-cream-deep px-2.5 py-0.5 text-xs font-semibold">{s}</li>)}</ul> : null}
           </Section>
+        </div>
+        <aside className="order-4 space-y-4 lg:col-start-2 lg:row-start-3" aria-label="Rating and documents">
           <Section title="Rating and tags">
             <form action={updateApplication} className="space-y-3">
               <input type="hidden" name="id" value={id} />
@@ -141,8 +144,7 @@ export default async function Page({ params, searchParams }: { params: Promise<{
           </Section>
         </aside>
 
-        <div className="min-w-0 space-y-4 lg:col-start-1 lg:row-start-1">
-          <Section title="Stage"><StageForm id={id} current={status} statuses={[...APP_STATUSES]} /></Section>
+        <div className="order-3 min-w-0 space-y-4 lg:col-start-1 lg:row-span-3 lg:row-start-1">
           {summary ? <Section title="Summary"><p className="whitespace-pre-line text-sm">{summary}</p></Section> : null}
           <Section title="Cover note">{cover ? <p className="whitespace-pre-line text-sm">{cover}</p> : <p className="text-sm text-ink/60">No cover note.</p>}</Section>
           {answers.length ? <Section title="Screening answers"><dl className="space-y-3">{answers.map(([k, v]) => <Field key={k} label={human(k)}>{str(v) || none}</Field>)}</dl></Section> : null}

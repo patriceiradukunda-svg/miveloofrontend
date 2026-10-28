@@ -13,7 +13,7 @@ export function StageForm({ id, current, statuses }: { id: string; current: stri
     <form action={changeStatus} className="space-y-3">
       <input type="hidden" name="id" value={id} />
       <div>
-        <label htmlFor="stage" className={lbl}>Stage</label>
+        <label htmlFor="stage" className={lbl}>Move to</label>
         <select id="stage" name="status" value={next} onChange={(e) => setNext(e.target.value)} className={`${field} min-h-11`}>
           {statuses.map((s) => <option key={s} value={s}>{name(s)}{s === current ? ' (current)' : ''}</option>)}
         </select>
