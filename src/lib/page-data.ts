@@ -47,8 +47,13 @@ async function ordersRaw(): Promise<Raw[]> {
   const r = await withBackendToken((token) => api<Raw[]>('/orders?limit=100', { token, cache: 'no-store' }));
   return Array.isArray(r) ? r : [];
 }
+// Exact backend order statuses first: `in_delivery` contains "deliver", which the loose matching below used to read as Delivered.
+const ORDER_LABEL: Record<string, string> = { draft: 'Placed', placed: 'Placed', confirmed: 'Confirmed', in_delivery: 'In transit', delivered: 'Delivered', cancelled: 'Cancelled', disputed: 'Disputed' };
+const SUPPLIER_STAGE: Record<string, string> = { draft: 'New', placed: 'New', confirmed: 'Confirmed', in_delivery: 'Dispatched', delivered: 'Delivered', disputed: 'Disputed' };
 function orderStatus(s: unknown): string {
   const v = String(s ?? '').toLowerCase();
+  const exact = ORDER_LABEL[v];
+  if (exact) return exact;
   if (/cancel|reject|declin/.test(v)) return 'Cancelled';
   if (/disput/.test(v)) return 'Disputed';
   if (/deliver|receiv|complet|closed/.test(v)) return 'Delivered';
@@ -59,6 +64,8 @@ function orderStatus(s: unknown): string {
 }
 function supplierStage(s: unknown): string {
   const v = String(s ?? '').toLowerCase();
+  const exact = SUPPLIER_STAGE[v];
+  if (exact) return exact;
   if (/disput/.test(v)) return 'Disputed';
   if (/deliver|receiv|complet|closed/.test(v)) return 'Delivered';
   if (/dispatch|transit|ship/.test(v)) return 'Dispatched';
