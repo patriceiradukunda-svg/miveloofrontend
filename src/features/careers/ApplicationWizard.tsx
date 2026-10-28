@@ -144,7 +144,7 @@ export function ApplicationWizard({ job, L }: { job: ApplyJob; L: CarLabels }) {
     const fd = new FormData();
     fd.append('data', JSON.stringify(data));
     job.docs.forEach((d) => { const f = files[d.id]; if (f) fd.append(d.id, f, f.name); });
-    await postForm('/careers/applications', fd);
+    await postForm(`/careers/jobs/${encodeURIComponent(job.slug)}/apply`, fd);
   }
   function formatError(e: unknown): string {
     if (e instanceof SubmitError) {

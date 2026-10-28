@@ -1,3 +1,4 @@
+import { API_ORIGIN } from '@/lib/miveloo-client';
 /** Browser-side file rules. These are a convenience only: the backend must check type and size again. */
 export const MAX_MB = 5;
 export const MAX_BYTES = MAX_MB * 1024 * 1024;
@@ -20,8 +21,8 @@ export function formatSize(bytes: number): string {
  * (Browser code can only read NEXT_PUBLIC_ variables, so this needs NEXT_PUBLIC_API_URL.)
  * We do not reuse api() here because it forces a JSON content type, which breaks file uploads.
  */
-const API_BASE = process.env.NEXT_PUBLIC_API_URL ?? '';
-export const careersReady = API_BASE.length > 0;
+const API_BASE = `${API_ORIGIN}/api/v1`;
+export const careersReady = API_ORIGIN.length > 0;
 
 export class SubmitError extends Error {
   constructor(public status: number) {
