@@ -31,3 +31,9 @@
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
 }
+
+/* Workspace frame (school and supplier): sans headings and a dark focus ring; the gold ring is only ~2:1 on light backgrounds */
+@layer base {
+  .ws h1, .ws h2, .ws h3 { @apply font-sans; }
+  .ws :focus-visible { outline-color: #176B4D; }
+}

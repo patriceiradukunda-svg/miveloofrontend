@@ -11,6 +11,7 @@ const config: Config = {
         red: { DEFAULT: '#E94532', dark: '#B72E1E', tint: '#FDE6E2' },
         cream: { DEFAULT: '#FFF8E8', deep: '#F6EBCF' },
         ink: { DEFAULT: '#12261F', soft: '#44574F' },
+        ws: { green: '#176B4D', 'green-dark': '#125A40', mint: '#E9F5EE', bg: '#F6F8F6', line: '#E4EBE6', ink: '#172A22', muted: '#5F6E66', 'amber-tint': '#FEF3DC', 'amber-ink': '#7A540A', red: '#B33E3E', 'red-tint': '#FCE8E8' },
       },
       fontFamily: {
         display: ['"Fraunces Variable"', 'Georgia', 'serif'],
